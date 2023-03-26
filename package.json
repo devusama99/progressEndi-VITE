@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "move-static": "cp -a ./node_modules/@pdftron/webviewer/public/. ./dist/webviewer",
+    "move-static": "cp -a ./node_modules/@pdftron/webviewer/public/. ./build/webviewer",
     "dev": "vite",
     "build": "vite build && npm run move-static",
     "preview": "vite preview"
