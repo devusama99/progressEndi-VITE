@@ -2,6 +2,7 @@ import {
   Add,
   CalendarMonth,
   Cancel,
+  Close,
   FilterList,
   GridView,
   InsertDriveFile,
@@ -29,12 +30,17 @@ import {
   Stack,
   MenuItem,
   DialogActions,
+  Popover,
+  Divider,
 } from "@mui/material";
 import React, { useState } from "react";
 import { Table } from "react-bootstrap";
 import ButtonCustom from "../components/ButtonCustom";
 import DocumentCard from "../components/DocumentCard";
 import InputFeildCustom from "../components/InputFeildCustom";
+import PDFIcon from "../assets/pdf-icon.png";
+import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
+import PDF from "../assets/PDF.pdf";
 
 function Documents() {
   const [viewType, setViewType] = useState("right");
@@ -49,6 +55,22 @@ function Documents() {
   const dropFile = (e) => {
     e.preventDefault();
     setPlanFile(e.dataTransfer.files[0]);
+  };
+
+  // Filter
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const open = Boolean(anchorEl);
+
+  // Modal document
+  const [viewDoc, setViewDoc] = useState(false);
+  const toggleViewDoc = () => {
+    setViewDoc(!viewDoc);
   };
   return (
     <div className="h-100 ">
@@ -133,6 +155,29 @@ function Documents() {
           />
         </DialogActions>
       </Dialog>
+      <Dialog open={viewDoc} maxWidth="md" fullWidth onClose={toggleViewDoc}>
+        <div className="d-flex justify-content-end">
+          <IconButton onClick={toggleViewDoc}>
+            <Close />
+          </IconButton>
+        </div>
+
+        <Box className="w-100">
+          <DocViewer
+            pluginRenderers={DocViewerRenderers}
+            config={{
+              header: {
+                disableHeader: true,
+              },
+            }}
+            documents={[
+              {
+                uri: PDF,
+              },
+            ]}
+          />
+        </Box>
+      </Dialog>
       <Grid container spacing={3} className="pb-4">
         <Grid item xs={6}>
           <Typography variant="h5" className="fw-bold">
@@ -184,7 +229,67 @@ function Documents() {
               color="secondary"
               label={<FilterList />}
               className="ms-3"
+              onClick={handleClick}
             />
+            <Popover
+              open={open}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              elevation={1}
+            >
+              <Box className="p-3 border">
+                <div
+                  className="d-flex flex-column flex-md-row align-items-center justify-content-between"
+                  style={{ minWidth: "300px" }}
+                >
+                  <Typography>Filters</Typography>
+                  <IconButton onClick={handleClose}>
+                    <Cancel />
+                  </IconButton>
+                </div>
+                <Divider className="w-100 mb-2" />
+                <Stack spacing={2}>
+                  <div className="d-flex align-items-center">
+                    <Typography sx={{ fontSize: "12px" }} className="w-50">
+                      Type Of Event
+                    </Typography>
+                    <InputFeildCustom
+                      select
+                      color="secondary"
+                      textDark
+                      value={1}
+                      border
+                      className="ms-3"
+                      fullWidth
+                    >
+                      <MenuItem value={1}>All</MenuItem>
+                      <MenuItem value={2}>Filter 1</MenuItem>
+                    </InputFeildCustom>
+                  </div>
+                  <div className="d-flex align-items-center">
+                    <Typography sx={{ fontSize: "12px" }} className="w-50">
+                      Category
+                    </Typography>
+                    <InputFeildCustom
+                      select
+                      color="secondary"
+                      textDark
+                      value={1}
+                      border
+                      className="ms-3"
+                      fullWidth
+                    >
+                      <MenuItem value={1}>All</MenuItem>
+                      <MenuItem value={2}>Filter 1</MenuItem>
+                    </InputFeildCustom>
+                  </div>
+                </Stack>
+              </Box>
+            </Popover>
           </div>
         </Grid>
         <Grid item xs={12} md={6}>
@@ -243,14 +348,10 @@ function Documents() {
                 {Array(8)
                   .fill(0)
                   .map((item, i) => (
-                    <tr>
+                    <tr onClick={toggleViewDoc} style={{ cursor: "pointer" }}>
                       <td>
                         <div className="d-flex align-items-center">
-                          <img
-                            src={require("../assets/pdf-icon.png")}
-                            alt="pdf"
-                            width={"20px"}
-                          />
+                          <img src={PDFIcon} alt="pdf" width={"20px"} />
                           <Typography className="ms-2">
                             Document Name
                           </Typography>

@@ -12,6 +12,7 @@ import Projects from "../screens/Projects";
 import ProjectsEvents from "../screens/ProjectsEvents";
 import ProjectView from "../screens/ProjectView";
 import Reports from "../screens/Reports";
+import RisksOpportunities from "../screens/RisksOpportunities";
 import Settings from "../screens/Settings";
 import SignIn from "../screens/SignIn";
 import Signup from "../screens/Signup";
@@ -97,6 +98,10 @@ export const router = createBrowserRouter([
       {
         path: "timeline",
         element: <Timeline />,
+      },
+      {
+        path: "risks",
+        element: <RisksOpportunities />,
       },
     ],
   },

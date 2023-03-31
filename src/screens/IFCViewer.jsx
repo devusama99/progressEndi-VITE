@@ -1,5 +1,15 @@
 /*eslint-disable*/
-import { Box, Grid, InputBase, Typography } from "@mui/material";
+import {
+  Box,
+  Divider,
+  Grid,
+  IconButton,
+  InputBase,
+  MenuItem,
+  Popover,
+  Stack,
+  Typography,
+} from "@mui/material";
 import React, { useEffect, useRef } from "react";
 import {
   Viewer,
@@ -7,7 +17,8 @@ import {
 } from "https://cdn.jsdelivr.net/npm/@xeokit/xeokit-sdk/dist/xeokit-sdk.es.min.js";
 
 import ButtonCustom from "../components/ButtonCustom";
-import { Add, FilterList, IosShare, Search } from "@mui/icons-material";
+import { Add, Cancel, FilterList, IosShare, Search } from "@mui/icons-material";
+import InputFeildCustom from "../components/InputFeildCustom";
 
 function IFCViewer() {
   const FileInput = useRef();
@@ -42,6 +53,16 @@ function IFCViewer() {
     // }
   }, []);
 
+  // Filter
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const open = Boolean(anchorEl);
+
   return (
     <div className="h-100" style={{ maxHeight: "73vh" }}>
       <Grid container spacing={3} id="head">
@@ -74,7 +95,67 @@ function IFCViewer() {
               color="secondary"
               label={<FilterList />}
               className="ms-3"
+              onClick={handleClick}
             />
+            <Popover
+              open={open}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              elevation={1}
+            >
+              <Box className="p-3 border">
+                <div
+                  className="d-flex flex-column flex-md-row align-items-center justify-content-between"
+                  style={{ minWidth: "300px" }}
+                >
+                  <Typography>Filters</Typography>
+                  <IconButton onClick={handleClose}>
+                    <Cancel />
+                  </IconButton>
+                </div>
+                <Divider className="w-100 mb-2" />
+                <Stack spacing={2}>
+                  <div className="d-flex align-items-center">
+                    <Typography sx={{ fontSize: "12px" }} className="w-50">
+                      Type Of Event
+                    </Typography>
+                    <InputFeildCustom
+                      select
+                      color="secondary"
+                      textDark
+                      value={1}
+                      border
+                      className="ms-3"
+                      fullWidth
+                    >
+                      <MenuItem value={1}>All</MenuItem>
+                      <MenuItem value={2}>Filter 1</MenuItem>
+                    </InputFeildCustom>
+                  </div>
+                  <div className="d-flex align-items-center">
+                    <Typography sx={{ fontSize: "12px" }} className="w-50">
+                      Category
+                    </Typography>
+                    <InputFeildCustom
+                      select
+                      color="secondary"
+                      textDark
+                      value={1}
+                      border
+                      className="ms-3"
+                      fullWidth
+                    >
+                      <MenuItem value={1}>All</MenuItem>
+                      <MenuItem value={2}>Filter 1</MenuItem>
+                    </InputFeildCustom>
+                  </div>
+                </Stack>
+              </Box>
+            </Popover>
           </div>
         </Grid>
         <Grid item xs={12} md={6}>

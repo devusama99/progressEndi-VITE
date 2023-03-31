@@ -9,7 +9,7 @@ import { Avatar, AvatarGroup, Box, Chip, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 
-function EventsExpand({ title, count, expand }) {
+function EventsExpand({ title, count, expand, onClick }) {
   const [show, setExpand] = useState(expand);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ function EventsExpand({ title, count, expand }) {
               {Array(3)
                 .fill(0)
                 .map((item, i) => (
-                  <tr>
+                  <tr onClick={onClick} style={{ cursor: "pointer" }}>
                     <td>
                       <div className="d-flex align-items-center">
                         <Warning color="primary" />

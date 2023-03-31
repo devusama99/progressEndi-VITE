@@ -1,13 +1,18 @@
 import {
   Add,
+  AttachFile,
   Cancel,
+  Circle,
+  Close,
   ExpandMore,
   FilterList,
   GridView,
   IosShare,
   KeyboardArrowRight,
   Menu,
+  PinDrop,
   Search,
+  Send,
 } from "@mui/icons-material";
 import {
   Grid,
@@ -31,6 +36,10 @@ import {
   Tab,
   Avatar,
   DialogActions,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Popover,
 } from "@mui/material";
 import React, { useState } from "react";
 
@@ -41,6 +50,7 @@ import InputFeildCustom from "../components/InputFeildCustom";
 
 function ProjectsEvents() {
   const [viewType, setViewType] = useState("right");
+  const [viewBy, setViewBy] = useState("right");
   const [expand, setExpand] = useState(true);
 
   // Modal
@@ -54,6 +64,22 @@ function ProjectsEvents() {
   const toggleModal = () => {
     setShowModal(!showModal);
   };
+
+  // EventModal
+  const [eventModal, setEventModal] = useState(false);
+  const toggleEventModal = () => {
+    setEventModal(!eventModal);
+  };
+
+  // Filter
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const open = Boolean(anchorEl);
 
   return (
     <div className="h-100 ">
@@ -272,6 +298,373 @@ function ProjectsEvents() {
           />
         </DialogActions>
       </Dialog>
+
+      <Dialog
+        open={eventModal}
+        maxWidth="md"
+        fullWidth={true}
+        onClose={toggleEventModal}
+      >
+        <Grid
+          container
+          direction={window.innerWidth < 1200 ? "column-reverse" : "row"}
+        >
+          <Grid item xs={12} lg={4}>
+            <Box
+              sx={{
+                backgroundColor: (theme) => theme.palette.primary.main,
+              }}
+              className="p-3 d-flex flex-column gap-2"
+            >
+              <Accordion
+                elevation={0}
+                disableGutters
+                sx={{ borderRadius: 1.5, overflow: "hidden" }}
+              >
+                <AccordionSummary
+                  expandIcon={<ExpandMore color="light" />}
+                  sx={{
+                    backgroundColor: (theme) => theme.palette.secondary.main,
+                    color: (theme) => theme.palette.light.main,
+                  }}
+                >
+                  Comments
+                </AccordionSummary>
+                <AccordionDetails>Hello</AccordionDetails>
+              </Accordion>
+              <Accordion
+                disableGutters
+                elevation={0}
+                sx={{ borderRadius: 1.5, overflow: "hidden" }}
+              >
+                <AccordionSummary
+                  expandIcon={<ExpandMore color="light" />}
+                  sx={{
+                    backgroundColor: (theme) => theme.palette.secondary.main,
+                    color: (theme) => theme.palette.light.main,
+                  }}
+                >
+                  Attachments
+                </AccordionSummary>
+                <AccordionDetails>Attachments</AccordionDetails>
+              </Accordion>
+              <Accordion
+                disableGutters
+                elevation={0}
+                defaultExpanded
+                sx={{ borderRadius: 1.5, overflow: "hidden" }}
+              >
+                <AccordionSummary
+                  expandIcon={<ExpandMore color="light" />}
+                  sx={{
+                    backgroundColor: (theme) => theme.palette.secondary.main,
+                    color: (theme) => theme.palette.light.main,
+                  }}
+                >
+                  Location
+                </AccordionSummary>
+                <AccordionDetails>
+                  <img
+                    src="https://wpmedia.roomsketcher.com/content/uploads/2022/01/06145940/What-is-a-floor-plan-with-dimensions.png"
+                    alt="event-location"
+                    height={"150px"}
+                    width={"100%"}
+                  />
+                </AccordionDetails>
+              </Accordion>
+              <Accordion
+                disableGutters
+                elevation={0}
+                sx={{ borderRadius: 1.5, overflow: "hidden" }}
+              >
+                <AccordionSummary
+                  expandIcon={<ExpandMore color="light" />}
+                  sx={{
+                    backgroundColor: (theme) => theme.palette.secondary.main,
+                    color: (theme) => theme.palette.light.main,
+                  }}
+                >
+                  Details
+                </AccordionSummary>
+              </Accordion>
+              <Box>
+                {[
+                  "Creation Date",
+                  "Creator",
+                  "ID",
+                  "Priority",
+                  "Work Package",
+                  "Type of Event",
+                  "Impact",
+                  "Ranking",
+                  "Related Events",
+                  "Advancement",
+                  "technical Control",
+                  "Internal Verification",
+                  "Quality Control",
+                  "Rating",
+                  "End Date",
+                  "Deadline",
+                  "Duration",
+                  "Lag Cause",
+                ].map((item, i) => (
+                  <Accordion
+                    key={"info-" + i}
+                    disableGutters
+                    elevation={0}
+                    square
+                    sx={{
+                      backgroundColor: "transparent",
+                      borderBottom: "1px solid rgba(0,0,0,0.2)",
+                    }}
+                  >
+                    <AccordionSummary expandIcon={<ExpandMore />}>
+                      {item}
+                    </AccordionSummary>
+                  </Accordion>
+                ))}
+              </Box>
+            </Box>
+          </Grid>
+          <Grid item xs={12} lg={8}>
+            <Box className="w-100" sx={{ overflowX: "hidden" }}>
+              <Grid container className="p-3 " spacing={3}>
+                <Grid item xs={12}>
+                  <div className="d-flex justify-content-end px-2">
+                    <IconButton onClick={toggleEventModal}>
+                      <Close />
+                    </IconButton>
+                  </div>
+                </Grid>
+                <Grid item xs={12}>
+                  <div className="d-flex">
+                    <PinDrop fontSize="large" color="primary" />
+                    <div className="flex-1">
+                      <Typography variant="h5" className="fw-bold">
+                        Event Title
+                      </Typography>
+                      <Box className="w-100 mt-2">
+                        <Typography
+                          className="w-50 d-inline-block text-muted"
+                          sx={{ fontSize: "18px" }}
+                        >
+                          Status
+                        </Typography>
+                        <Typography
+                          className="w-50 d-inline-block  "
+                          sx={{ fontSize: "18px" }}
+                        >
+                          <span className="d-flex align-items-center">
+                            <Circle
+                              fontSize="small"
+                              color="success"
+                              className="me-2"
+                            />
+                            Finished
+                          </span>
+                        </Typography>
+                        <Typography
+                          className="w-50 d-inline-block text-muted"
+                          sx={{ fontSize: "18px" }}
+                        >
+                          Creation Date
+                        </Typography>
+                        <Typography
+                          className="w-50 d-inline-block"
+                          sx={{ fontSize: "18px" }}
+                        >
+                          10 Dec-2023
+                        </Typography>
+                        <Typography
+                          className="w-50 d-inline-block text-muted"
+                          sx={{ fontSize: "18px" }}
+                        >
+                          Creator
+                        </Typography>
+                        <Typography
+                          className="w-50 d-inline-block"
+                          sx={{ fontSize: "18px" }}
+                        >
+                          HashStack
+                        </Typography>
+                        <Typography
+                          className="w-50 d-inline-block text-muted"
+                          sx={{ fontSize: "18px" }}
+                        >
+                          ID
+                        </Typography>
+                        <Typography
+                          className="w-50 d-inline-block"
+                          sx={{ fontSize: "18px" }}
+                        >
+                          72684726
+                        </Typography>
+                      </Box>
+                    </div>
+                  </div>
+                </Grid>
+                <Grid item xs={12}>
+                  <Accordion
+                    disableGutters
+                    elevation={0}
+                    sx={{
+                      backgroundColor: (theme) => theme.palette.secondary.main,
+                      color: (theme) => theme.palette.light.main,
+                    }}
+                  >
+                    <AccordionSummary expandIcon={<ExpandMore color="light" />}>
+                      Details
+                    </AccordionSummary>
+                  </Accordion>
+                  <Typography sx={{ fontSize: "12px" }} className="mt-2 px-1">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Cupiditate inventore, amet necessitatibus fugit aliquid
+                    neque reiciendis modi qui tenetur dolore, minima corporis
+                    optio laudantium a quos labore sint officiis officia dolorem
+                    quaerat. Excepturi unde culpa amet cumque veniam saepe
+                    quaerat iste, impedit facere delectus, repellat molestias.
+                    Quis ipsa laborum, alias reiciendis eligendi facere voluptas
+                    ab. Sequi deserunt sapiente aliquid nisi eum in, adipisci,
+                    officia vitae, laudantium aspernatur possimus commodi.
+                    Repellendus odio temporibus culpa dolore eveniet harum
+                    aperiam, cum vel voluptas sunt nam eum, repellat in ducimus
+                    omnis hic! Iure id iste ea dignissimos vel veniam eaque
+                  </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography className="fw-bold" color={"primary"}>
+                    Comments
+                  </Typography>
+                  <Divider
+                    sx={{ borderColor: (theme) => theme.palette.primary.main }}
+                    className="mb-3"
+                  />
+                  <Box
+                    sx={{ maxHeight: "769px", overflow: "auto" }}
+                    className="mb-3"
+                  >
+                    {[
+                      {
+                        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex fuga dignissimos doloribus laudantium. Nesciunt modi sapiente, fuga molestiae doloremque corrupti ",
+                        date: "4 March 2020",
+                        time: "10:20 pm",
+                        name: "Salman",
+                        avatar:
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8kyeCS-Zb0GCZxuDffniY0NJQ1GCIW2T0FKEMkdEXnXCnQLD435M9HF47cpS3yPj-Sm8&usqp=CAU",
+                        attachments: [
+                          "https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw=",
+                          "https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw=",
+                        ],
+                      },
+                      {
+                        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex fuga dignissimos doloribus laudantium. Nesciunt modi sapiente, fuga molestiae doloremque corrupti ",
+                        date: "4 March 2020",
+                        time: "10:20 pm",
+                        name: "Salman",
+                        avatar:
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8kyeCS-Zb0GCZxuDffniY0NJQ1GCIW2T0FKEMkdEXnXCnQLD435M9HF47cpS3yPj-Sm8&usqp=CAU",
+                        attachments: [],
+                      },
+                      {
+                        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex fuga dignissimos doloribus laudantium. Nesciunt modi sapiente, fuga molestiae doloremque corrupti ",
+                        date: "4 March 2020",
+                        time: "10:20 pm",
+                        name: "Salman",
+                        avatar:
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8kyeCS-Zb0GCZxuDffniY0NJQ1GCIW2T0FKEMkdEXnXCnQLD435M9HF47cpS3yPj-Sm8&usqp=CAU",
+                        attachments: [
+                          "https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw=",
+                          "https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw=",
+                        ],
+                      },
+                    ].map((item, i) => (
+                      <Box className="d-flex py-2">
+                        <Avatar
+                          src={item.avatar}
+                          sx={{ height: "30px", width: "30px" }}
+                          className="me-2"
+                        />
+                        <div>
+                          <div className="flex-1 d-flex justify-content-between">
+                            <div className="div">
+                              <Typography className="fw-bold">
+                                {item.name}
+                              </Typography>
+                              <Typography
+                                sx={{ fontSize: "10px" }}
+                                className="text-muted"
+                              >
+                                {item.time}
+                              </Typography>
+                            </div>
+                            <Typography
+                              className="text-muted"
+                              sx={{ fontSize: "12px" }}
+                            >
+                              {item.date}
+                            </Typography>
+                          </div>
+                          <Typography sx={{ fontSize: "14px" }}>
+                            {item.text}
+                          </Typography>
+                          <div className="d-flex align-items-center gap-2 mt-1">
+                            {item.attachments.length
+                              ? item.attachments.map((attachment, i) => (
+                                  <img
+                                    src={attachment}
+                                    key={"attachment" + i}
+                                    height="100px"
+                                    width="100px"
+                                    style={{ borderRadius: 5 }}
+                                  />
+                                ))
+                              : ""}
+                          </div>
+                        </div>
+                      </Box>
+                    ))}
+                  </Box>
+                  <Box className="d-flex align-items-center">
+                    <Avatar
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8kyeCS-Zb0GCZxuDffniY0NJQ1GCIW2T0FKEMkdEXnXCnQLD435M9HF47cpS3yPj-Sm8&usqp=CAU"
+                      sx={{ width: "30px", height: "30px" }}
+                    />
+                    <Box
+                      className="d-flex align-items-center flex-1 ms-2"
+                      sx={{
+                        bgcolor: (theme) =>
+                          alpha(theme.palette.grey.dark, 0.04),
+                        borderRadius: 1.3,
+                      }}
+                    >
+                      <IconButton
+                        color="primary"
+                        aria-label="upload picture"
+                        component="label"
+                      >
+                        <input hidden accept="image/*" type="file" />
+                        <AttachFile />
+                      </IconButton>
+                      <InputBase
+                        className="mx-1 flex-1"
+                        placeholder="Comment Here"
+                        fullWidth
+                      />
+                      <IconButton
+                        color="primary"
+                        aria-label="upload picture"
+                        component="label"
+                      >
+                        <Send />
+                      </IconButton>
+                    </Box>
+                  </Box>
+                </Grid>
+              </Grid>
+            </Box>
+          </Grid>
+        </Grid>
+      </Dialog>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
           <Typography variant="h5" className="fw-bold">
@@ -284,7 +677,14 @@ function ProjectsEvents() {
               <Typography variant="caption" className="me-2">
                 View By
               </Typography>
-              <ToggleButtonGroup size="small">
+              <ToggleButtonGroup
+                size="small"
+                value={viewBy}
+                exclusive
+                onChange={(e, nextVal) => {
+                  setViewBy(nextVal);
+                }}
+              >
                 <ToggleButton
                   value="left"
                   key="left"
@@ -349,7 +749,7 @@ function ProjectsEvents() {
               <InputBase
                 fullWidth
                 className="ms-2"
-                placeholder="Search project by name, city ...."
+                placeholder="Search project by event ...."
               />
             </Box>
             <ButtonCustom
@@ -357,7 +757,67 @@ function ProjectsEvents() {
               color="secondary"
               label={<FilterList />}
               className="ms-3"
+              onClick={handleClick}
             />
+            <Popover
+              open={open}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              elevation={1}
+            >
+              <Box className="p-3 border">
+                <div
+                  className="d-flex flex-column flex-md-row align-items-center justify-content-between"
+                  style={{ minWidth: "300px" }}
+                >
+                  <Typography>Filters</Typography>
+                  <IconButton onClick={handleClose}>
+                    <Cancel />
+                  </IconButton>
+                </div>
+                <Divider className="w-100 mb-2" />
+                <Stack spacing={2}>
+                  <div className="d-flex align-items-center">
+                    <Typography sx={{ fontSize: "12px" }} className="w-50">
+                      Type Of Event
+                    </Typography>
+                    <InputFeildCustom
+                      select
+                      color="secondary"
+                      textDark
+                      value={1}
+                      border
+                      className="ms-3"
+                      fullWidth
+                    >
+                      <MenuItem value={1}>All</MenuItem>
+                      <MenuItem value={2}>Filter 1</MenuItem>
+                    </InputFeildCustom>
+                  </div>
+                  <div className="d-flex align-items-center">
+                    <Typography sx={{ fontSize: "12px" }} className="w-50">
+                      Category
+                    </Typography>
+                    <InputFeildCustom
+                      select
+                      color="secondary"
+                      textDark
+                      value={1}
+                      border
+                      className="ms-3"
+                      fullWidth
+                    >
+                      <MenuItem value={1}>All</MenuItem>
+                      <MenuItem value={2}>Filter 1</MenuItem>
+                    </InputFeildCustom>
+                  </div>
+                </Stack>
+              </Box>
+            </Popover>
           </div>
         </Grid>
         <Grid item xs={12} md={6}>
@@ -407,7 +867,7 @@ function ProjectsEvents() {
                   <div className="d-flex align-items-center justify-content-between">
                     <div className="d-flex align-items-center">
                       <Typography variant="h5" className="fw-bold">
-                        Problems
+                        {viewBy === "left" ? "Problems" : "Validated"}
                       </Typography>
                       <Chip size="small" label="5" className="ms-1" />
                     </div>
@@ -420,7 +880,9 @@ function ProjectsEvents() {
                   {Array(10)
                     .fill("0")
                     .map((_, i) => (
-                      <EventCard key={"item-" + i} />
+                      <div onClick={toggleEventModal}>
+                        <EventCard key={"item-" + i} />
+                      </div>
                     ))}
                   <ButtonCustom
                     sx={{
@@ -453,7 +915,7 @@ function ProjectsEvents() {
                   <div className="d-flex align-items-center justify-content-between">
                     <div className="d-flex align-items-center">
                       <Typography variant="h5" className="fw-bold">
-                        Risks
+                        {viewBy === "left" ? "Risks" : "Not Started"}
                       </Typography>
                       <Chip size="small" label="5" className="ms-1" />
                     </div>
@@ -466,7 +928,9 @@ function ProjectsEvents() {
                   {Array(10)
                     .fill("0")
                     .map((_, i) => (
-                      <EventCard key={"item-" + i} />
+                      <div onClick={toggleEventModal}>
+                        <EventCard key={"item-" + i} />
+                      </div>
                     ))}
                   <ButtonCustom
                     sx={{
@@ -499,7 +963,7 @@ function ProjectsEvents() {
                   <div className="d-flex align-items-center justify-content-between">
                     <div className="d-flex align-items-center">
                       <Typography variant="h5" className="fw-bold">
-                        Changes
+                        {viewBy === "left" ? "Changes" : "Finished"}
                       </Typography>
                       <Chip size="small" label="5" className="ms-1" />
                     </div>
@@ -512,7 +976,9 @@ function ProjectsEvents() {
                   {Array(10)
                     .fill("0")
                     .map((_, i) => (
-                      <EventCard key={"item-" + i} />
+                      <div onClick={toggleEventModal}>
+                        <EventCard key={"item-" + i} />
+                      </div>
                     ))}
                   <ButtonCustom
                     sx={{
@@ -545,7 +1011,7 @@ function ProjectsEvents() {
                   <div className="d-flex align-items-center justify-content-between">
                     <div className="d-flex align-items-center">
                       <Typography variant="h5" className="fw-bold">
-                        Topics
+                        {viewBy === "left" ? "Topics" : "In Progress "}
                       </Typography>
                       <Chip size="small" label="5" className="ms-1" />
                     </div>
@@ -558,7 +1024,9 @@ function ProjectsEvents() {
                   {Array(10)
                     .fill("0")
                     .map((_, i) => (
-                      <EventCard key={"item-" + i} />
+                      <div onClick={toggleEventModal}>
+                        <EventCard key={"item-" + i} />
+                      </div>
                     ))}
                   <ButtonCustom
                     sx={{
@@ -591,7 +1059,7 @@ function ProjectsEvents() {
                   <div className="d-flex align-items-center justify-content-between">
                     <div className="d-flex align-items-center">
                       <Typography variant="h5" className="fw-bold">
-                        Tasks
+                        {viewBy === "left" ? "Tasks" : "Not Validated"}
                       </Typography>
                       <Chip size="small" label="5" className="ms-1" />
                     </div>
@@ -604,7 +1072,9 @@ function ProjectsEvents() {
                   {Array(10)
                     .fill("0")
                     .map((_, i) => (
-                      <EventCard key={"item-" + i} />
+                      <div onClick={toggleEventModal}>
+                        <EventCard key={"item-" + i} />
+                      </div>
                     ))}
                   <ButtonCustom
                     sx={{
@@ -637,7 +1107,7 @@ function ProjectsEvents() {
                   <div className="d-flex align-items-center justify-content-between">
                     <div className="d-flex align-items-center">
                       <Typography variant="h5" className="fw-bold">
-                        Informations
+                        {viewBy === "left" ? "Information" : "Refused"}
                       </Typography>
                       <Chip size="small" label="5" className="ms-1" />
                     </div>
@@ -650,7 +1120,9 @@ function ProjectsEvents() {
                   {Array(10)
                     .fill("0")
                     .map((_, i) => (
-                      <EventCard key={"item-" + i} />
+                      <div onClick={toggleEventModal}>
+                        <EventCard key={"item-" + i} />
+                      </div>
                     ))}
                   <ButtonCustom
                     sx={{
@@ -696,7 +1168,9 @@ function ProjectsEvents() {
                   {Array(10)
                     .fill("0")
                     .map((_, i) => (
-                      <EventCard key={"item-" + i} />
+                      <div onClick={toggleEventModal}>
+                        <EventCard key={"item-" + i} />
+                      </div>
                     ))}
                   <ButtonCustom
                     sx={{
@@ -750,20 +1224,47 @@ function ProjectsEvents() {
               </Box>
               <Box className=" p-2 pt-0 w-100 h-100">
                 <>
-                  <EventsExpand title={"Problems"} count="5" expand={expand} />
-                  <EventsExpand title={"Tasks"} count="5" expand={expand} />
-                  <EventsExpand title={"Risks"} count="5" expand={expand} />
-                  <EventsExpand title={"Topics"} count="5" expand={expand} />
-                  <EventsExpand title={"Change"} count="5" expand={expand} />
                   <EventsExpand
-                    title={"Information"}
+                    title={viewBy === "left" ? "Problems" : "Validated"}
                     count="5"
                     expand={expand}
+                    onClick={toggleEventModal}
+                  />
+                  <EventsExpand
+                    title={viewBy === "left" ? "Tasks" : "Not Started"}
+                    count="5"
+                    expand={expand}
+                    onClick={toggleEventModal}
+                  />
+                  <EventsExpand
+                    title={viewBy === "left" ? "Risks" : "Finished"}
+                    count="5"
+                    expand={expand}
+                    onClick={toggleEventModal}
+                  />
+                  <EventsExpand
+                    title={viewBy === "left" ? "Topics" : "In Progress"}
+                    count="5"
+                    expand={expand}
+                    onClick={toggleEventModal}
+                  />
+                  <EventsExpand
+                    title={viewBy === "left" ? "Change" : "Not Validated"}
+                    count="5"
+                    expand={expand}
+                    onClick={toggleEventModal}
+                  />
+                  <EventsExpand
+                    title={viewBy === "left" ? "Information" : "Refused"}
+                    count="5"
+                    expand={expand}
+                    onClick={toggleEventModal}
                   />
                   <EventsExpand
                     title={"Requirements"}
                     count="5"
                     expand={expand}
+                    onClick={toggleEventModal}
                   />
                 </>
               </Box>

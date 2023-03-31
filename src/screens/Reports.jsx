@@ -1,6 +1,7 @@
 import {
   Add,
   CalendarMonth,
+  Cancel,
   FilterList,
   GridView,
   IosShare,
@@ -18,15 +19,31 @@ import {
   Checkbox,
   Avatar,
   AvatarGroup,
+  Popover,
+  Divider,
+  IconButton,
+  Stack,
+  MenuItem,
 } from "@mui/material";
 import React, { useState } from "react";
 import { Table } from "react-bootstrap";
 import ButtonCustom from "../components/ButtonCustom";
 import ReportsCards from "../components/ReportsCard";
 import PDFIcon from "../assets/pdf-icon.png";
+import InputFeildCustom from "../components/InputFeildCustom";
 
 function Reports() {
   const [viewType, setViewType] = useState("right");
+
+  // Filter
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const open = Boolean(anchorEl);
   return (
     <div className="h-100 ">
       <Grid container spacing={3} className="pb-4">
@@ -72,7 +89,7 @@ function Reports() {
               <InputBase
                 fullWidth
                 className="ms-2"
-                placeholder="Search Reports by name ...."
+                placeholder="Search report by name ...."
               />
             </Box>
             <ButtonCustom
@@ -80,7 +97,67 @@ function Reports() {
               color="secondary"
               label={<FilterList />}
               className="ms-3"
+              onClick={handleClick}
             />
+            <Popover
+              open={open}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              elevation={1}
+            >
+              <Box className="p-3 border">
+                <div
+                  className="d-flex flex-column flex-md-row align-items-center justify-content-between"
+                  style={{ minWidth: "300px" }}
+                >
+                  <Typography>Filters</Typography>
+                  <IconButton onClick={handleClose}>
+                    <Cancel />
+                  </IconButton>
+                </div>
+                <Divider className="w-100 mb-2" />
+                <Stack spacing={2}>
+                  <div className="d-flex align-items-center">
+                    <Typography sx={{ fontSize: "12px" }} className="w-50">
+                      Type Of Event
+                    </Typography>
+                    <InputFeildCustom
+                      select
+                      color="secondary"
+                      textDark
+                      value={1}
+                      border
+                      className="ms-3"
+                      fullWidth
+                    >
+                      <MenuItem value={1}>All</MenuItem>
+                      <MenuItem value={2}>Filter 1</MenuItem>
+                    </InputFeildCustom>
+                  </div>
+                  <div className="d-flex align-items-center">
+                    <Typography sx={{ fontSize: "12px" }} className="w-50">
+                      Category
+                    </Typography>
+                    <InputFeildCustom
+                      select
+                      color="secondary"
+                      textDark
+                      value={1}
+                      border
+                      className="ms-3"
+                      fullWidth
+                    >
+                      <MenuItem value={1}>All</MenuItem>
+                      <MenuItem value={2}>Filter 1</MenuItem>
+                    </InputFeildCustom>
+                  </div>
+                </Stack>
+              </Box>
+            </Popover>
           </div>
         </Grid>
         <Grid item xs={12} md={6}>
@@ -117,7 +194,7 @@ function Reports() {
           Array(8)
             .fill(0)
             .map((item, i) => (
-              <Grid key={"item" + i} item xs={12} sm={6} md={4} lg={3}>
+              <Grid key={"item" + i} item xs={12} sm={6} md={4} lg={3} xl={2}>
                 <ReportsCards />
               </Grid>
             ))

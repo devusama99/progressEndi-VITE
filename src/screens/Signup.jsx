@@ -32,10 +32,10 @@ function Signup() {
   return (
     <div className="mh-100vh">
       <Grid container className="mh-100vh " justifyContent={"center"}>
-        <Grid item xs={12} md={6}>
-          <Container className="d-flex flex-column  align-items-center justify-content-center gap-3 h-100 img-overlay"></Container>
+        <Grid item xs={12} md={6} xl={8}>
+          <div className="d-flex flex-column  align-items-center justify-content-center gap-3 h-100 img-overlay"></div>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={6} xl={4}>
           <CustomPaper className=" w-100 h-100" elevation={0}>
             <Grid
               container
