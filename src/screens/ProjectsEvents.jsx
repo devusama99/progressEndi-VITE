@@ -47,6 +47,7 @@ import ButtonCustom from "../components/ButtonCustom";
 import EventCard from "../components/EventCard";
 import EventsExpand from "../components/EventsExpand";
 import InputFeildCustom from "../components/InputFeildCustom";
+import { theme } from "../styles/theme";
 
 function ProjectsEvents() {
   const [viewType, setViewType] = useState("right");
@@ -57,10 +58,17 @@ function ProjectsEvents() {
   const [showModal, setShowModal] = useState(false);
   const [viewMore, setViewMore] = useState(false);
   const [tab, setTab] = React.useState(0);
+  const [eventModalTab, setEventModalTab] = React.useState(0);
   const [responsible, setResponsible] = useState([]);
   const handleChange = (event, newValue) => {
     setTab(newValue);
   };
+
+  // EventModalTabs
+  const handleEventModalTab = (event, newValue) => {
+    setEventModalTab(newValue);
+  };
+
   const toggleModal = () => {
     setShowModal(!showModal);
   };
@@ -82,7 +90,7 @@ function ProjectsEvents() {
   const open = Boolean(anchorEl);
 
   return (
-    <div className="h-100 ">
+    <div className="h-100  ">
       <Dialog
         open={showModal}
         fullWidth={true}
@@ -305,365 +313,410 @@ function ProjectsEvents() {
         fullWidth={true}
         onClose={toggleEventModal}
       >
-        <Grid
-          container
-          direction={window.innerWidth < 1200 ? "column-reverse" : "row"}
-        >
-          <Grid item xs={12} lg={4}>
-            <Box
-              sx={{
-                backgroundColor: (theme) => theme.palette.primary.main,
-              }}
-              className="p-3 d-flex flex-column gap-2"
-            >
-              <Accordion
-                elevation={0}
-                disableGutters
-                sx={{ borderRadius: 1.5, overflow: "hidden" }}
-              >
-                <AccordionSummary
-                  expandIcon={<ExpandMore color="light" />}
-                  sx={{
-                    backgroundColor: (theme) => theme.palette.secondary.main,
-                    color: (theme) => theme.palette.light.main,
-                  }}
+        <Box>
+          <Grid
+            container
+            direction={window.innerWidth < 900 ? "column-reverse" : "row"}
+            className="h-100  "
+          >
+            <Grid item xs={12} md={4} className="bg-primary">
+              <Box className="p-3 d-flex flex-column gap-2 h-100">
+                <Accordion
+                  disableGutters
+                  elevation={0}
+                  defaultExpanded
+                  sx={{ borderRadius: 1.5, overflow: "hidden" }}
                 >
-                  Comments
-                </AccordionSummary>
-                <AccordionDetails>Hello</AccordionDetails>
-              </Accordion>
-              <Accordion
-                disableGutters
-                elevation={0}
-                sx={{ borderRadius: 1.5, overflow: "hidden" }}
-              >
-                <AccordionSummary
-                  expandIcon={<ExpandMore color="light" />}
-                  sx={{
-                    backgroundColor: (theme) => theme.palette.secondary.main,
-                    color: (theme) => theme.palette.light.main,
-                  }}
-                >
-                  Attachments
-                </AccordionSummary>
-                <AccordionDetails>Attachments</AccordionDetails>
-              </Accordion>
-              <Accordion
-                disableGutters
-                elevation={0}
-                defaultExpanded
-                sx={{ borderRadius: 1.5, overflow: "hidden" }}
-              >
-                <AccordionSummary
-                  expandIcon={<ExpandMore color="light" />}
-                  sx={{
-                    backgroundColor: (theme) => theme.palette.secondary.main,
-                    color: (theme) => theme.palette.light.main,
-                  }}
-                >
-                  Location
-                </AccordionSummary>
-                <AccordionDetails>
-                  <img
-                    src="https://wpmedia.roomsketcher.com/content/uploads/2022/01/06145940/What-is-a-floor-plan-with-dimensions.png"
-                    alt="event-location"
-                    height={"150px"}
-                    width={"100%"}
-                  />
-                </AccordionDetails>
-              </Accordion>
-              <Accordion
-                disableGutters
-                elevation={0}
-                sx={{ borderRadius: 1.5, overflow: "hidden" }}
-              >
-                <AccordionSummary
-                  expandIcon={<ExpandMore color="light" />}
-                  sx={{
-                    backgroundColor: (theme) => theme.palette.secondary.main,
-                    color: (theme) => theme.palette.light.main,
-                  }}
-                >
-                  Details
-                </AccordionSummary>
-              </Accordion>
-              <Box>
-                {[
-                  "Creation Date",
-                  "Creator",
-                  "ID",
-                  "Priority",
-                  "Work Package",
-                  "Type of Event",
-                  "Impact",
-                  "Ranking",
-                  "Related Events",
-                  "Advancement",
-                  "technical Control",
-                  "Internal Verification",
-                  "Quality Control",
-                  "Rating",
-                  "End Date",
-                  "Deadline",
-                  "Duration",
-                  "Lag Cause",
-                ].map((item, i) => (
-                  <Accordion
-                    key={"info-" + i}
-                    disableGutters
-                    elevation={0}
-                    square
-                    sx={{
-                      backgroundColor: "transparent",
-                      borderBottom: "1px solid rgba(0,0,0,0.2)",
-                    }}
-                  >
-                    <AccordionSummary expandIcon={<ExpandMore />}>
-                      {item}
-                    </AccordionSummary>
-                  </Accordion>
-                ))}
-              </Box>
-            </Box>
-          </Grid>
-          <Grid item xs={12} lg={8}>
-            <Box className="w-100" sx={{ overflowX: "hidden" }}>
-              <Grid container className="p-3 " spacing={3}>
-                <Grid item xs={12}>
-                  <div className="d-flex justify-content-end px-2">
-                    <IconButton onClick={toggleEventModal}>
-                      <Close />
-                    </IconButton>
-                  </div>
-                </Grid>
-                <Grid item xs={12}>
-                  <div className="d-flex">
-                    <PinDrop fontSize="large" color="primary" />
-                    <div className="flex-1">
-                      <Typography variant="h5" className="fw-bold">
-                        Event Title
-                      </Typography>
-                      <Box className="w-100 mt-2">
-                        <Typography
-                          className="w-50 d-inline-block text-muted"
-                          sx={{ fontSize: "18px" }}
-                        >
-                          Status
-                        </Typography>
-                        <Typography
-                          className="w-50 d-inline-block  "
-                          sx={{ fontSize: "18px" }}
-                        >
-                          <span className="d-flex align-items-center">
-                            <Circle
-                              fontSize="small"
-                              color="success"
-                              className="me-2"
-                            />
-                            Finished
-                          </span>
-                        </Typography>
-                        <Typography
-                          className="w-50 d-inline-block text-muted"
-                          sx={{ fontSize: "18px" }}
-                        >
-                          Creation Date
-                        </Typography>
-                        <Typography
-                          className="w-50 d-inline-block"
-                          sx={{ fontSize: "18px" }}
-                        >
-                          10 Dec-2023
-                        </Typography>
-                        <Typography
-                          className="w-50 d-inline-block text-muted"
-                          sx={{ fontSize: "18px" }}
-                        >
-                          Creator
-                        </Typography>
-                        <Typography
-                          className="w-50 d-inline-block"
-                          sx={{ fontSize: "18px" }}
-                        >
-                          HashStack
-                        </Typography>
-                        <Typography
-                          className="w-50 d-inline-block text-muted"
-                          sx={{ fontSize: "18px" }}
-                        >
-                          ID
-                        </Typography>
-                        <Typography
-                          className="w-50 d-inline-block"
-                          sx={{ fontSize: "18px" }}
-                        >
-                          72684726
-                        </Typography>
-                      </Box>
-                    </div>
-                  </div>
-                </Grid>
-                <Grid item xs={12}>
-                  <Accordion
-                    disableGutters
-                    elevation={0}
+                  <AccordionSummary
+                    expandIcon={<ExpandMore color="light" />}
                     sx={{
                       backgroundColor: (theme) => theme.palette.secondary.main,
                       color: (theme) => theme.palette.light.main,
                     }}
                   >
-                    <AccordionSummary expandIcon={<ExpandMore color="light" />}>
-                      Details
-                    </AccordionSummary>
-                  </Accordion>
-                  <Typography sx={{ fontSize: "12px" }} className="mt-2 px-1">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Cupiditate inventore, amet necessitatibus fugit aliquid
-                    neque reiciendis modi qui tenetur dolore, minima corporis
-                    optio laudantium a quos labore sint officiis officia dolorem
-                    quaerat. Excepturi unde culpa amet cumque veniam saepe
-                    quaerat iste, impedit facere delectus, repellat molestias.
-                    Quis ipsa laborum, alias reiciendis eligendi facere voluptas
-                    ab. Sequi deserunt sapiente aliquid nisi eum in, adipisci,
-                    officia vitae, laudantium aspernatur possimus commodi.
-                    Repellendus odio temporibus culpa dolore eveniet harum
-                    aperiam, cum vel voluptas sunt nam eum, repellat in ducimus
-                    omnis hic! Iure id iste ea dignissimos vel veniam eaque
-                  </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                  <Typography className="fw-bold" color={"primary"}>
-                    Comments
-                  </Typography>
-                  <Divider
-                    sx={{ borderColor: (theme) => theme.palette.primary.main }}
-                    className="mb-3"
-                  />
-                  <Box
-                    sx={{ maxHeight: "769px", overflow: "auto" }}
-                    className="mb-3"
-                  >
-                    {[
-                      {
-                        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex fuga dignissimos doloribus laudantium. Nesciunt modi sapiente, fuga molestiae doloremque corrupti ",
-                        date: "4 March 2020",
-                        time: "10:20 pm",
-                        name: "Salman",
-                        avatar:
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8kyeCS-Zb0GCZxuDffniY0NJQ1GCIW2T0FKEMkdEXnXCnQLD435M9HF47cpS3yPj-Sm8&usqp=CAU",
-                        attachments: [
-                          "https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw=",
-                          "https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw=",
-                        ],
-                      },
-                      {
-                        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex fuga dignissimos doloribus laudantium. Nesciunt modi sapiente, fuga molestiae doloremque corrupti ",
-                        date: "4 March 2020",
-                        time: "10:20 pm",
-                        name: "Salman",
-                        avatar:
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8kyeCS-Zb0GCZxuDffniY0NJQ1GCIW2T0FKEMkdEXnXCnQLD435M9HF47cpS3yPj-Sm8&usqp=CAU",
-                        attachments: [],
-                      },
-                      {
-                        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex fuga dignissimos doloribus laudantium. Nesciunt modi sapiente, fuga molestiae doloremque corrupti ",
-                        date: "4 March 2020",
-                        time: "10:20 pm",
-                        name: "Salman",
-                        avatar:
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8kyeCS-Zb0GCZxuDffniY0NJQ1GCIW2T0FKEMkdEXnXCnQLD435M9HF47cpS3yPj-Sm8&usqp=CAU",
-                        attachments: [
-                          "https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw=",
-                          "https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw=",
-                        ],
-                      },
-                    ].map((item, i) => (
-                      <Box className="d-flex py-2">
-                        <Avatar
-                          src={item.avatar}
-                          sx={{ height: "30px", width: "30px" }}
-                          className="me-2"
-                        />
-                        <div>
-                          <div className="flex-1 d-flex justify-content-between">
-                            <div className="div">
-                              <Typography className="fw-bold">
-                                {item.name}
-                              </Typography>
-                              <Typography
-                                sx={{ fontSize: "10px" }}
-                                className="text-muted"
-                              >
-                                {item.time}
-                              </Typography>
-                            </div>
-                            <Typography
-                              className="text-muted"
-                              sx={{ fontSize: "12px" }}
-                            >
-                              {item.date}
-                            </Typography>
-                          </div>
-                          <Typography sx={{ fontSize: "14px" }}>
-                            {item.text}
-                          </Typography>
-                          <div className="d-flex align-items-center gap-2 mt-1">
-                            {item.attachments.length
-                              ? item.attachments.map((attachment, i) => (
-                                  <img
-                                    src={attachment}
-                                    key={"attachment" + i}
-                                    height="100px"
-                                    width="100px"
-                                    style={{ borderRadius: 5 }}
-                                  />
-                                ))
-                              : ""}
-                          </div>
-                        </div>
-                      </Box>
-                    ))}
-                  </Box>
-                  <Box className="d-flex align-items-center">
-                    <Avatar
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8kyeCS-Zb0GCZxuDffniY0NJQ1GCIW2T0FKEMkdEXnXCnQLD435M9HF47cpS3yPj-Sm8&usqp=CAU"
-                      sx={{ width: "30px", height: "30px" }}
+                    Location
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <img
+                      src="https://wpmedia.roomsketcher.com/content/uploads/2022/01/06145940/What-is-a-floor-plan-with-dimensions.png"
+                      alt="event-location"
+                      height={"150px"}
+                      width={"100%"}
                     />
-                    <Box
-                      className="d-flex align-items-center flex-1 ms-2"
+                  </AccordionDetails>
+                </Accordion>
+                <Accordion
+                  disableGutters
+                  elevation={0}
+                  sx={{ borderRadius: 1.5, overflow: "hidden" }}
+                >
+                  <AccordionSummary
+                    expandIcon={<ExpandMore color="light" />}
+                    sx={{
+                      backgroundColor: (theme) => theme.palette.secondary.main,
+                      color: (theme) => theme.palette.light.main,
+                    }}
+                  >
+                    Details
+                  </AccordionSummary>
+                </Accordion>
+                <Box>
+                  {[
+                    "Creation Date",
+                    "Creator",
+                    "ID",
+                    "Priority",
+                    "Work Package",
+                    "Type of Event",
+                    "Impact",
+                    "Ranking",
+                    "Related Events",
+                    "Advancement",
+                    "technical Control",
+                    "Internal Verification",
+                    "Quality Control",
+                    "Rating",
+                    "End Date",
+                    "Deadline",
+                    "Duration",
+                    "Lag Cause",
+                  ].map((item, i) => (
+                    <Accordion
+                      key={"info-" + i}
+                      disableGutters
+                      elevation={0}
+                      square
                       sx={{
-                        bgcolor: (theme) =>
-                          alpha(theme.palette.grey.dark, 0.04),
-                        borderRadius: 1.3,
+                        p: 0,
+                        m: 0,
+                        backgroundColor: "transparent",
+                        borderBottom: "1px solid rgba(0,0,0,0.2)",
+                        "&.MuiAccordion-root": {
+                          height: 40,
+                          m: 0,
+                          p: 0,
+                        },
                       }}
                     >
-                      <IconButton
-                        color="primary"
-                        aria-label="upload picture"
-                        component="label"
+                      <AccordionSummary
+                        expandIcon={<ExpandMore />}
+                        sx={{ fontSize: "14px" }}
                       >
-                        <input hidden accept="image/*" type="file" />
-                        <AttachFile />
+                        {item}
+                      </AccordionSummary>
+                    </Accordion>
+                  ))}
+                </Box>
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={8}>
+              <Box className="w-100" sx={{ overflowX: "hidden" }}>
+                <Grid container className="p-3 " spacing={1}>
+                  <Grid item xs={12}>
+                    <div className="d-flex justify-content-end px-2">
+                      <IconButton onClick={toggleEventModal}>
+                        <Close />
                       </IconButton>
-                      <InputBase
-                        className="mx-1 flex-1"
-                        placeholder="Comment Here"
-                        fullWidth
-                      />
-                      <IconButton
-                        color="primary"
-                        aria-label="upload picture"
-                        component="label"
+                    </div>
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <Accordion
+                      disableGutters
+                      elevation={0}
+                      defaultExpanded
+                      sx={{
+                        backgroundColor: (theme) =>
+                          theme.palette.secondary.main,
+                        color: (theme) => theme.palette.light.main,
+                      }}
+                    >
+                      <AccordionSummary
+                        expandIcon={<ExpandMore color="light" />}
                       >
-                        <Send />
-                      </IconButton>
-                    </Box>
-                  </Box>
+                        Details
+                      </AccordionSummary>
+                      <AccordionDetails
+                        sx={{
+                          background: "white",
+                          color: (theme) => theme.palette.grey.dark,
+                        }}
+                      >
+                        <div className="d-flex ">
+                          <PinDrop fontSize="large" color="primary" />
+                          <div className="flex-1">
+                            <Typography variant="h5" className="fw-bold">
+                              Event Title
+                            </Typography>
+                            <Box className="w-100 mt-2">
+                              <Typography
+                                className="w-50 d-inline-block text-muted"
+                                sx={{ fontSize: "18px" }}
+                              >
+                                Status
+                              </Typography>
+                              <Typography
+                                className="w-50 d-inline-block  "
+                                sx={{ fontSize: "18px" }}
+                              >
+                                <span className="d-flex align-items-center">
+                                  <Circle
+                                    fontSize="small"
+                                    color="success"
+                                    className="me-2"
+                                  />
+                                  Finished
+                                </span>
+                              </Typography>
+                              <Typography
+                                className="w-50 d-inline-block text-muted"
+                                sx={{ fontSize: "18px" }}
+                              >
+                                Creation Date
+                              </Typography>
+                              <Typography
+                                className="w-50 d-inline-block"
+                                sx={{ fontSize: "18px" }}
+                              >
+                                10 Dec-2023
+                              </Typography>
+                              <Typography
+                                className="w-50 d-inline-block text-muted"
+                                sx={{ fontSize: "18px" }}
+                              >
+                                Creator
+                              </Typography>
+                              <Typography
+                                className="w-50 d-inline-block"
+                                sx={{ fontSize: "18px" }}
+                              >
+                                HashStack
+                              </Typography>
+                              <Typography
+                                className="w-50 d-inline-block text-muted"
+                                sx={{ fontSize: "18px" }}
+                              >
+                                ID
+                              </Typography>
+                              <Typography
+                                className="w-50 d-inline-block"
+                                sx={{ fontSize: "18px" }}
+                              >
+                                72684726
+                              </Typography>
+                            </Box>
+                          </div>
+                        </div>
+                        <Typography
+                          sx={{ fontSize: "12px" }}
+                          className="mt-2 px-1"
+                        >
+                          Lorem ipsum dolor sit amet, consectetur adipisicing
+                          elit. Cupiditate inventore, amet necessitatibus fugit
+                          aliquid neque reiciendis modi qui tenetur dolore,
+                          minima corporis optio laudantium a quos labore sint
+                          officiis officia dolorem quaerat. Excepturi unde culpa
+                          amet cumque veniam saepe quaerat iste, impedit facere
+                          delectus, repellat molestias. Quis ipsa laborum, alias
+                          reiciendis eligendi facere voluptas ab. Sequi deserunt
+                          sapiente aliquid nisi eum in, adipisci, officia vitae,
+                          laudantium aspernatur possimus commodi. Repellendus
+                          odio temporibus culpa dolore eveniet harum aperiam,
+                          cum vel voluptas sunt nam eum, repellat in ducimus
+                          omnis hic! Iure id iste ea dignissimos vel veniam
+                          eaque
+                        </Typography>
+                      </AccordionDetails>
+                    </Accordion>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Tabs
+                      value={eventModalTab}
+                      onChange={handleEventModalTab}
+                      variant="scrollable"
+                    >
+                      <Tab label="Comments" className="text-capitalize " />
+                      <Tab label="Attachments" className="text-capitalize " />
+                    </Tabs>
+                    <Divider
+                      sx={{
+                        borderColor: (theme) => theme.palette.primary.main,
+                      }}
+                      className="mb-3"
+                    />
+                    {eventModalTab ? (
+                      <>
+                        <div className="d-flex gap-2 flex-wrap">
+                          <img
+                            src="https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw="
+                            alt=""
+                            style={{
+                              height: 100,
+                              width: 120,
+                              borderRadius: 10,
+                            }}
+                          />
+                          <img
+                            src="https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw="
+                            alt=""
+                            style={{
+                              height: 100,
+                              width: 120,
+                              borderRadius: 10,
+                            }}
+                          />
+                          <img
+                            src="https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw="
+                            alt=""
+                            style={{
+                              height: 100,
+                              width: 120,
+                              borderRadius: 10,
+                            }}
+                          />
+                          <img
+                            src="https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw="
+                            alt=""
+                            style={{
+                              height: 100,
+                              width: 120,
+                              borderRadius: 10,
+                            }}
+                          />
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <Box className="d-flex align-items-center mb-4">
+                          <Avatar
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8kyeCS-Zb0GCZxuDffniY0NJQ1GCIW2T0FKEMkdEXnXCnQLD435M9HF47cpS3yPj-Sm8&usqp=CAU"
+                            sx={{ width: "30px", height: "30px" }}
+                          />
+                          <Box
+                            className="d-flex align-items-center flex-1 ms-2"
+                            sx={{
+                              bgcolor: (theme) =>
+                                alpha(theme.palette.grey.dark, 0.04),
+                              borderRadius: 1.3,
+                            }}
+                          >
+                            <IconButton
+                              color="primary"
+                              aria-label="upload picture"
+                              component="label"
+                            >
+                              <input hidden accept="image/*" type="file" />
+                              <AttachFile />
+                            </IconButton>
+                            <InputBase
+                              className="mx-1 flex-1"
+                              placeholder="Comment Here"
+                              fullWidth
+                            />
+                            <IconButton
+                              color="primary"
+                              aria-label="upload picture"
+                              component="label"
+                            >
+                              <Send />
+                            </IconButton>
+                          </Box>
+                        </Box>
+                        <Box
+                          className=" flex-1"
+                          // sx={{ overflow: "auto", maxHeight: "450px" }}
+                        >
+                          {[
+                            {
+                              text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex fuga dignissimos doloribus laudantium. Nesciunt modi sapiente, fuga molestiae doloremque corrupti ",
+                              date: "4 March 2020",
+                              time: "10:20 pm",
+                              name: "Salman",
+                              avatar:
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8kyeCS-Zb0GCZxuDffniY0NJQ1GCIW2T0FKEMkdEXnXCnQLD435M9HF47cpS3yPj-Sm8&usqp=CAU",
+                              attachments: [
+                                "https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw=",
+                                "https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw=",
+                              ],
+                            },
+                            {
+                              text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex fuga dignissimos doloribus laudantium. Nesciunt modi sapiente, fuga molestiae doloremque corrupti ",
+                              date: "4 March 2020",
+                              time: "10:20 pm",
+                              name: "Salman",
+                              avatar:
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8kyeCS-Zb0GCZxuDffniY0NJQ1GCIW2T0FKEMkdEXnXCnQLD435M9HF47cpS3yPj-Sm8&usqp=CAU",
+                              attachments: [],
+                            },
+                            {
+                              text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex fuga dignissimos doloribus laudantium. Nesciunt modi sapiente, fuga molestiae doloremque corrupti ",
+                              date: "4 March 2020",
+                              time: "10:20 pm",
+                              name: "Salman",
+                              avatar:
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8kyeCS-Zb0GCZxuDffniY0NJQ1GCIW2T0FKEMkdEXnXCnQLD435M9HF47cpS3yPj-Sm8&usqp=CAU",
+                              attachments: [
+                                "https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw=",
+                                "https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw=",
+                              ],
+                            },
+                          ].map((item, i) => (
+                            <Box className="d-flex py-2" key={"Chat-item" + i}>
+                              <Avatar
+                                src={item.avatar}
+                                sx={{ height: "30px", width: "30px" }}
+                                className="me-2"
+                              />
+                              <div>
+                                <div className="flex-1 d-flex justify-content-between">
+                                  <div className="d-flex align-items-center">
+                                    <Typography className="fw-bold">
+                                      {item.name}
+                                    </Typography>
+                                  </div>
+                                  <div className="d-flex flex-column align-items-end">
+                                    <Typography
+                                      className="text-muted"
+                                      sx={{ fontSize: "12px" }}
+                                    >
+                                      {item.date}
+                                    </Typography>
+                                    <Typography
+                                      sx={{ fontSize: "10px" }}
+                                      className="text-muted"
+                                    >
+                                      {item.time}
+                                    </Typography>
+                                  </div>
+                                </div>
+                                <Typography sx={{ fontSize: "14px" }}>
+                                  {item.text}
+                                </Typography>
+                                <div className="d-flex align-items-center gap-2 mt-1">
+                                  {item.attachments.length
+                                    ? item.attachments.map((attachment, i) => (
+                                        <img
+                                          src={attachment}
+                                          key={"attachment" + i}
+                                          height="100px"
+                                          width="100px"
+                                          style={{ borderRadius: 5 }}
+                                        />
+                                      ))
+                                    : ""}
+                                </div>
+                              </div>
+                            </Box>
+                          ))}
+                        </Box>
+                      </>
+                    )}
+                  </Grid>
                 </Grid>
-              </Grid>
-            </Box>
+              </Box>
+            </Grid>
           </Grid>
-        </Grid>
+        </Box>
       </Dialog>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
@@ -851,7 +904,7 @@ function ProjectsEvents() {
               className="d-flex flex-1 w-100 "
               style={{
                 overflowX: "auto",
-                height: "71vh",
+                height: "70vh",
                 overflowY: "hidden",
               }}
             >
@@ -880,26 +933,21 @@ function ProjectsEvents() {
                   {Array(10)
                     .fill("0")
                     .map((_, i) => (
-                      <div onClick={toggleEventModal}>
-                        <EventCard key={"item-" + i} />
+                      <div onClick={toggleEventModal} key={"item-" + i}>
+                        <EventCard />
                       </div>
                     ))}
                   <ButtonCustom
                     sx={{
-                      backgroundColor: (theme) =>
-                        alpha(theme.palette.primary.main, 0.4),
                       height: "40px",
-                      ":hover": {
-                        background: (theme) =>
-                          alpha(theme.palette.primary.main, 0.6),
-                      },
+                      color: (theme) => theme.palette.primary.main,
                     }}
                     label={
                       <Typography className="d-flex align-items-center">
                         <Add className="me-1" /> Add Event
                       </Typography>
                     }
-                    variant="contained"
+                    variant="outlined"
                   />
                 </div>
               </Box>
@@ -928,26 +976,21 @@ function ProjectsEvents() {
                   {Array(10)
                     .fill("0")
                     .map((_, i) => (
-                      <div onClick={toggleEventModal}>
-                        <EventCard key={"item-" + i} />
+                      <div onClick={toggleEventModal} key={"item-" + i}>
+                        <EventCard />
                       </div>
                     ))}
                   <ButtonCustom
                     sx={{
-                      backgroundColor: (theme) =>
-                        alpha(theme.palette.primary.main, 0.4),
                       height: "40px",
-                      ":hover": {
-                        background: (theme) =>
-                          alpha(theme.palette.primary.main, 0.6),
-                      },
+                      color: (theme) => theme.palette.primary.main,
                     }}
                     label={
                       <Typography className="d-flex align-items-center">
                         <Add className="me-1" /> Add Event
                       </Typography>
                     }
-                    variant="contained"
+                    variant="outlined"
                   />
                 </div>
               </Box>
@@ -976,26 +1019,21 @@ function ProjectsEvents() {
                   {Array(10)
                     .fill("0")
                     .map((_, i) => (
-                      <div onClick={toggleEventModal}>
-                        <EventCard key={"item-" + i} />
+                      <div onClick={toggleEventModal} key={"item-" + i}>
+                        <EventCard />
                       </div>
                     ))}
                   <ButtonCustom
                     sx={{
-                      backgroundColor: (theme) =>
-                        alpha(theme.palette.primary.main, 0.4),
                       height: "40px",
-                      ":hover": {
-                        background: (theme) =>
-                          alpha(theme.palette.primary.main, 0.6),
-                      },
+                      color: (theme) => theme.palette.primary.main,
                     }}
                     label={
                       <Typography className="d-flex align-items-center">
                         <Add className="me-1" /> Add Event
                       </Typography>
                     }
-                    variant="contained"
+                    variant="outlined"
                   />
                 </div>
               </Box>
@@ -1024,26 +1062,21 @@ function ProjectsEvents() {
                   {Array(10)
                     .fill("0")
                     .map((_, i) => (
-                      <div onClick={toggleEventModal}>
-                        <EventCard key={"item-" + i} />
+                      <div onClick={toggleEventModal} key={"item-" + i}>
+                        <EventCard />
                       </div>
                     ))}
                   <ButtonCustom
                     sx={{
-                      backgroundColor: (theme) =>
-                        alpha(theme.palette.primary.main, 0.4),
                       height: "40px",
-                      ":hover": {
-                        background: (theme) =>
-                          alpha(theme.palette.primary.main, 0.6),
-                      },
+                      color: (theme) => theme.palette.primary.main,
                     }}
                     label={
                       <Typography className="d-flex align-items-center">
                         <Add className="me-1" /> Add Event
                       </Typography>
                     }
-                    variant="contained"
+                    variant="outlined"
                   />
                 </div>
               </Box>
@@ -1072,26 +1105,21 @@ function ProjectsEvents() {
                   {Array(10)
                     .fill("0")
                     .map((_, i) => (
-                      <div onClick={toggleEventModal}>
-                        <EventCard key={"item-" + i} />
+                      <div onClick={toggleEventModal} key={"item-" + i}>
+                        <EventCard />
                       </div>
                     ))}
                   <ButtonCustom
                     sx={{
-                      backgroundColor: (theme) =>
-                        alpha(theme.palette.primary.main, 0.4),
                       height: "40px",
-                      ":hover": {
-                        background: (theme) =>
-                          alpha(theme.palette.primary.main, 0.6),
-                      },
+                      color: (theme) => theme.palette.primary.main,
                     }}
                     label={
                       <Typography className="d-flex align-items-center">
                         <Add className="me-1" /> Add Event
                       </Typography>
                     }
-                    variant="contained"
+                    variant="outlined"
                   />
                 </div>
               </Box>
@@ -1120,26 +1148,21 @@ function ProjectsEvents() {
                   {Array(10)
                     .fill("0")
                     .map((_, i) => (
-                      <div onClick={toggleEventModal}>
-                        <EventCard key={"item-" + i} />
+                      <div onClick={toggleEventModal} key={"item-" + i}>
+                        <EventCard />
                       </div>
                     ))}
                   <ButtonCustom
                     sx={{
-                      backgroundColor: (theme) =>
-                        alpha(theme.palette.primary.main, 0.4),
                       height: "40px",
-                      ":hover": {
-                        background: (theme) =>
-                          alpha(theme.palette.primary.main, 0.6),
-                      },
+                      color: (theme) => theme.palette.primary.main,
                     }}
                     label={
                       <Typography className="d-flex align-items-center">
                         <Add className="me-1" /> Add Event
                       </Typography>
                     }
-                    variant="contained"
+                    variant="outlined"
                   />
                 </div>
               </Box>
@@ -1168,45 +1191,42 @@ function ProjectsEvents() {
                   {Array(10)
                     .fill("0")
                     .map((_, i) => (
-                      <div onClick={toggleEventModal}>
-                        <EventCard key={"item-" + i} />
+                      <div onClick={toggleEventModal} key={"item-" + i}>
+                        <EventCard />
                       </div>
                     ))}
                   <ButtonCustom
                     sx={{
-                      backgroundColor: (theme) =>
-                        alpha(theme.palette.primary.main, 0.4),
                       height: "40px",
-                      ":hover": {
-                        background: (theme) =>
-                          alpha(theme.palette.primary.main, 0.6),
-                      },
+                      color: (theme) => theme.palette.primary.main,
                     }}
                     label={
                       <Typography className="d-flex align-items-center">
                         <Add className="me-1" /> Add Event
                       </Typography>
                     }
-                    variant="contained"
+                    variant="outlined"
                   />
                 </div>
               </Box>
             </div>
           ) : (
             <div
-              className=" w-100  "
-              style={{
-                overflowX: "auto",
-                height: "71vh",
-                overflowY: "auto",
-              }}
+              // className=" w-100  "
+              style={
+                {
+                  // overflowX: "auto",
+                  // height: "71vh",
+                  // overflowY: "auto",
+                }
+              }
             >
               <Box
                 className="pb-2"
                 sx={{
                   zIndex: 5,
-                  position: "sticky",
-                  top: 0,
+                  // position: "sticky",
+                  // top: 0,
                   background: (theme) => theme.palette.background.default,
                 }}
               >

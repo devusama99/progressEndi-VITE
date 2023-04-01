@@ -8,6 +8,7 @@ import {
 import { Avatar, AvatarGroup, Box, Chip, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
+import ButtonCustom from "./ButtonCustom";
 
 function EventsExpand({ title, count, expand, onClick }) {
   const [show, setExpand] = useState(expand);
@@ -131,18 +132,23 @@ function EventsExpand({ title, count, expand, onClick }) {
                 ))}
             </tbody>
           </Table>
-          <Typography
-            color={"primary"}
-            sx={{ cursor: "pointer" }}
-            className="ms-1"
-          >
-            <Add className="me-1" fontSize="small" />
-            Add Tasks
-          </Typography>
         </>
       ) : (
         ""
       )}
+      <br />
+      <ButtonCustom
+        sx={{
+          height: "40px",
+          color: (theme) => theme.palette.primary.main,
+        }}
+        label={
+          <Typography className="d-flex align-items-center">
+            <Add className="me-1" /> Add Event
+          </Typography>
+        }
+        variant="outlined"
+      />
     </Box>
   );
 }

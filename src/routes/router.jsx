@@ -3,6 +3,7 @@ import Archive from "../screens/Archives";
 import CADViewer from "../screens/CADViewer";
 import Collabrators from "../screens/Collabrators";
 import Documents from "../screens/Documents";
+import HomePage from "../screens/HomePage";
 import IFCViewer from "../screens/IFCViewer";
 import Images from "../screens/Images";
 import MainApp from "../screens/MainApp";
@@ -23,6 +24,10 @@ import VideoTutorials from "../screens/VideoTutorials";
 export const router = createBrowserRouter([
   {
     path: "/",
+    element: <HomePage />,
+  },
+  {
+    path: "/signin",
     element: <SignIn />,
   },
   {
