@@ -41,7 +41,7 @@ $theme-colors: (
 .eventBox {
   min-width: 260px;
   margin: " 10px 10px";
-  overflow-y: hidden;
+  overflow-y: auto;
   position: relative;
   @media only screen and (max-width: 500px) {
     min-width: 38vh;
