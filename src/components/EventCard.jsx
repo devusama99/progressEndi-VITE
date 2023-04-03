@@ -20,32 +20,37 @@ function EventCard() {
         className="p-3"
         elevation={0}
       >
-        <div className="d-flex justify-content-end align-items-center">
-          <Typography className="text-muted me-1" sx={{ fontSize: "12px" }}>
-            Untouched
-          </Typography>
-          <Flare color="primary" />
-        </div>
         <Typography className="my-2" variant="body2">
           A desktop publishing packages and web page editors now use Lorem Ipsum
           as their default model text....
         </Typography>
-        <Chip
-          label="TRI"
-          color="warning"
-          size="small"
-          className="mb-2"
-          sx={{ borderRadius: "1px" }}
-        />
-        <Chip
-          label="ED"
-          color="info"
-          size="small"
-          className="mb-2 ms-2"
-          sx={{ borderRadius: "1px" }}
-        />
-
         <div className="d-flex align-items-center justify-content-between">
+          <div>
+            {" "}
+            <Chip
+              label="TRI"
+              color="warning"
+              size="small"
+              className="mb-2"
+              sx={{ borderRadius: "1px" }}
+            />
+            <Chip
+              label="ED"
+              color="info"
+              size="small"
+              className="mb-2 ms-2"
+              sx={{ borderRadius: "1px" }}
+            />
+          </div>
+          <div className="d-flex justify-content-end align-items-center">
+            <Typography className="text-muted me-1" sx={{ fontSize: "12px" }}>
+              Untouched
+            </Typography>
+            <Flare color="primary" />
+          </div>
+        </div>
+
+        <div className="d-flex align-items-center justify-content-between mt-2">
           <div className="d-flex align-items-center">
             <div className="d-flex align-items-center">
               <Comment

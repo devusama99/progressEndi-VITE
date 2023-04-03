@@ -719,15 +719,15 @@ function ProjectsEvents() {
         </Box>
       </Dialog>
       <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={6} md={6}>
           <Typography variant="h5" className="fw-bold">
             Project Name
           </Typography>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={6} md={6}>
           <div className="d-flex justify-content-end align-items-center">
             <div className="d-flex align-items-center">
-              <Typography variant="caption" className="me-2">
+              <Typography variant="caption" className="me-2 d-none d-md-block">
                 View By
               </Typography>
               <ToggleButtonGroup
@@ -756,41 +756,42 @@ function ProjectsEvents() {
                 </ToggleButton>
               </ToggleButtonGroup>
             </div>
-            <div className="d-flex align-items-center ms-2">
-              <Typography variant="caption" className="me-2">
-                View Type
-              </Typography>
-
-              <ToggleButtonGroup
-                size="small"
-                value={viewType}
-                exclusive
-                onChange={(e, value) => {
-                  setViewType(value);
-                }}
-              >
-                <ToggleButton
-                  value="left"
-                  className="text-capitalize"
-                  sx={{ width: "50px" }}
+            <div className="d-flex justify-content-between align-items-center me-3 d-none d-md-flex">
+              <div className="d-flex align-items-center ms-2">
+                <Typography sx={{ fontSize: "10px" }} className="me-2">
+                  View Type
+                </Typography>
+                <ToggleButtonGroup
+                  size="small"
+                  value={viewType}
+                  exclusive
+                  onChange={(e, value) => {
+                    setViewType(value);
+                  }}
                 >
-                  <Menu />
-                </ToggleButton>
-                <ToggleButton
-                  value="right"
-                  className="text-capitalize"
-                  sx={{ width: "50px" }}
-                >
-                  <GridView />
-                </ToggleButton>
-              </ToggleButtonGroup>
+                  <ToggleButton
+                    value="left"
+                    className="text-capitalize"
+                    sx={{ width: "50px" }}
+                  >
+                    <Menu />
+                  </ToggleButton>
+                  <ToggleButton
+                    value="right"
+                    className="text-capitalize"
+                    sx={{ width: "50px" }}
+                  >
+                    <GridView />
+                  </ToggleButton>
+                </ToggleButtonGroup>
+              </div>
             </div>
           </div>
         </Grid>
         <Grid item xs={12} md={6}>
           <div className="d-flex mb-2 mb-md-0 ">
             <Box
-              className="w-100 p-2 d-flex align-items-center"
+              className="w-100 px-2 d-flex align-items-center"
               sx={{
                 boxShadow: "0px 0px 16px 2px rgba(0, 0, 0, 0.08)",
                 backgroundColor: "white",
@@ -873,7 +874,39 @@ function ProjectsEvents() {
             </Popover>
           </div>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          className="d-flex flex-row align-items-center justify-content-between justify-content-md-end "
+        >
+          <div className="d-flex justify-content-between align-items-center me-3 d-md-none">
+            <div className="d-flex align-items-center ms-2">
+              <ToggleButtonGroup
+                size="small"
+                value={viewType}
+                exclusive
+                onChange={(e, value) => {
+                  setViewType(value);
+                }}
+              >
+                <ToggleButton
+                  value="left"
+                  className="text-capitalize"
+                  sx={{ width: "50px" }}
+                >
+                  <Menu />
+                </ToggleButton>
+                <ToggleButton
+                  value="right"
+                  className="text-capitalize"
+                  sx={{ width: "50px" }}
+                >
+                  <GridView />
+                </ToggleButton>
+              </ToggleButtonGroup>
+            </div>
+          </div>
           <div className="d-flex  justify-content-end ">
             <ButtonCustom
               variant="outlined"
@@ -882,7 +915,7 @@ function ProjectsEvents() {
               color="secondary"
               label={
                 <Typography className="d-flex align-items-center">
-                  <IosShare fontSize="small" className="me-1" /> Export
+                  <IosShare fontSize="small" />
                 </Typography>
               }
             />
@@ -892,7 +925,7 @@ function ProjectsEvents() {
               onClick={toggleModal}
               label={
                 <Typography className="d-flex align-items-center">
-                  <Add className="me-1" /> Add Event
+                  <Add />
                 </Typography>
               }
             />

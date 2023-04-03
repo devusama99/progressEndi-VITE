@@ -176,7 +176,7 @@ function Plans() {
         <Grid item xs={12} md={6}>
           <div className="d-flex mb-2 mb-md-0 ">
             <Box
-              className="w-100 p-2 d-flex align-items-center"
+              className="w-100 px-2 d-flex align-items-center"
               sx={{
                 boxShadow: "0px 0px 16px 2px rgba(0, 0, 0, 0.08)",
                 backgroundColor: "white",
