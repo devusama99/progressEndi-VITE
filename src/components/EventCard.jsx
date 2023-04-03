@@ -29,7 +29,7 @@ function EventCard() {
             {" "}
             <Chip
               label="TRI"
-              color="warning"
+              color="primary"
               size="small"
               className="mb-2"
               sx={{ borderRadius: "1px" }}

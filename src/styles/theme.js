@@ -9,7 +9,7 @@ export const theme = createTheme({
       default: "#fbfbfb",
     },
     primary: {
-      main: "#F7990C",
+      main: "#FFB800",
     },
     primaryLight: {
       main: "fef8ee",
