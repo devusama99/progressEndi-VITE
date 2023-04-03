@@ -16,7 +16,6 @@ function EventCard() {
           boxShadow: "0px 0px 50px rgba(0, 0, 0, 0.05)",
           borderRadius: "10px",
           cursor: "pointer",
-          width: 250,
         }}
         className="p-3"
         elevation={0}
