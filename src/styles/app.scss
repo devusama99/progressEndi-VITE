@@ -43,7 +43,7 @@ $theme-colors: (
   margin: " 10px 10px";
   overflow-y: hidden;
   position: relative;
-  @media only screen and (max-width: 400px) {
+  @media only screen and (max-width: 500px) {
     min-width: 38vh;
   }
 }
