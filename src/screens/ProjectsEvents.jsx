@@ -756,7 +756,7 @@ function ProjectsEvents() {
                 </ToggleButton>
               </ToggleButtonGroup>
             </div>
-            <div className="d-flex justify-content-between align-items-center me-3 d-none d-md-flex">
+            <div className="d-flex justify-content-between align-items-center  d-none d-md-flex">
               <div className="d-flex align-items-center ms-2">
                 <Typography sx={{ fontSize: "10px" }} className="me-2">
                   View Type
