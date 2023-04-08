@@ -2,6 +2,7 @@ import { Close, FileDownload } from "@mui/icons-material";
 import {
   alpha,
   Card,
+  Checkbox,
   Chip,
   Dialog,
   DialogTitle,
@@ -67,8 +68,10 @@ function DocumentCard() {
           overflow: "hidden",
         }}
         elevation={0}
-        onClick={toggleViewDoc}
       >
+        <div className="d-flex justify-content-end">
+          <Checkbox />
+        </div>
         <div className="d-flex align-items-center justify-content-center flex-column ">
           <Box
             sx={{ height: "200px", overflow: "hidden", position: "relative" }}
@@ -82,11 +85,9 @@ function DocumentCard() {
               src={docThumbnail ? docThumbnail.toDataURL() : PDFIcon}
               alt="pdf"
               width={docThumbnail ? "100%" : "30px"}
+              onClick={toggleViewDoc}
             />
           </Box>
-          <Typography className="mt-2">
-            License Agreement Document.pdf
-          </Typography>
         </div>
         <Divider
           className="mt-3"
@@ -96,9 +97,7 @@ function DocumentCard() {
           }}
         />
         <div className="p-3 ">
-          <Typography className="text-muted mt-3" variant="caption">
-            Project Name | Service Name | Package Name
-          </Typography>
+          <Typography className="fw-bold">Document Name</Typography>
 
           <div className="d-flex align-items-center justify-content-end mt-1">
             <FileDownload fontSize="small" className="me-2" />

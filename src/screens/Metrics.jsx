@@ -80,7 +80,7 @@ function Metrics() {
               color="secondary"
               label={
                 <Typography className="d-flex align-items-center">
-                  <IosShare fontSize="small" className="me-1" /> Export
+                  <IosShare fontSize="small" />
                 </Typography>
               }
             />

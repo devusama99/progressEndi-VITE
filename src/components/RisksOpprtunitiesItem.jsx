@@ -143,6 +143,9 @@ function RisksOpprtunitiesItem({ item, GRAPH }) {
                               <span key={"name" + i}>{ite[0]}</span>
                             ))}
                           </Typography>
+                          <Typography>
+                            {Math.floor(Math.random() * 100)}
+                          </Typography>
                         </div>
                       </CustomBox>
                     </div>
@@ -174,10 +177,29 @@ function RisksOpprtunitiesItem({ item, GRAPH }) {
           <Typography
             className={item.width > 1 ? "text-end w-100" : "text-center w-100"}
             variant="body2"
+            sx={{
+              color:
+                item.bg !== "#FFF500" &&
+                item.bg !== "#FFB800" &&
+                item.bg !== "#9FC6FF" &&
+                item.bg !== "transparent"
+                  ? "#fff"
+                  : "#000",
+            }}
           >
             {item.main}
           </Typography>
-          <Typography sx={{ fontSize: "12px" }} className="text-muted">
+          <Typography
+            sx={{
+              fontSize: "12px",
+              color:
+                item.bg !== "#FFF500" &&
+                item.bg !== "#FFB800" &&
+                item.bg !== "#9FC6FF"
+                  ? "#fff"
+                  : "#000",
+            }}
+          >
             {item.bg === "transparent" ? "" : " 9999"}
           </Typography>
         </div>

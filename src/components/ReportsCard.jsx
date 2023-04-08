@@ -28,7 +28,6 @@ function ReportsCards() {
       </div>
       <div className="d-flex align-items-center justify-content-center flex-column py-5">
         <img src={PDFIcon} alt="pdf" width={"30px"} />
-        <Typography className="mt-2">License Agreement Document.pdf</Typography>
       </div>
       <Divider
         className="my-3"
@@ -37,11 +36,9 @@ function ReportsCards() {
         }}
       />
       <div>
-        <Typography className="text-muted mt-3" variant="caption">
-          Project Name | Service Name | Package Name
-        </Typography>
+        <Typography className="mt-2">License Agreement Document.pdf</Typography>
 
-        <div className="d-flex align-items-center justify-content-end mt-1">
+        <div className="d-flex align-items-center justify-content-end mt-2">
           <FileDownload fontSize="small" className="me-2" />
           <Chip
             label="PDF"

@@ -189,10 +189,12 @@ function Timeline() {
             </Popover>
           </div>
         </Grid>
+        <Grid item xs={12} overflow="hidden">
+          <div className="h-100" style={{ overflowX: "auto" }}>
+            <TimelineChart series={DATA} />
+          </div>
+        </Grid>
       </Grid>
-      <div className="h-100">
-        <TimelineChart series={DATA} />
-      </div>
     </>
   );
 }

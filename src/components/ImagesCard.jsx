@@ -38,7 +38,7 @@ function ImagesCard() {
           cursor: "pointer",
           overflow: "hidden",
         }}
-        className="d-flex flex-column align-items-center p-3"
+        className="d-flex flex-column align-items-start p-3"
         elevation={0}
         onClick={toggleShowImage}
       >
@@ -49,10 +49,9 @@ function ImagesCard() {
           height={"200px"}
           style={{ borderRadius: "10px" }}
         />
-        <div>
-          <Typography className="fw-bold mt-3">Image Name</Typography>
-          <Typography className="text-muted " variant="caption">
-            Project Name | Service Name | Package Name
+        <div className="d-flex justify-content-start">
+          <Typography className="fw-bold mt-3 text-start ">
+            Event Title
           </Typography>
         </div>
       </Card>

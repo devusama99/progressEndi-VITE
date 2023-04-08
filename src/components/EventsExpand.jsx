@@ -141,7 +141,9 @@ function EventsExpand({ title, count, expand, onClick }) {
         sx={{
           height: "40px",
           color: (theme) => theme.palette.primary.main,
+          maxWidth: "550px",
         }}
+        fullWidth
         label={
           <Typography className="d-flex align-items-center">
             <Add className="me-1" /> Add Event

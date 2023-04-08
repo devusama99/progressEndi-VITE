@@ -19,7 +19,7 @@ function RisksOpportunitiesEvent() {
       }}
     >
       <Grid container>
-        <Grid item xs={5} sm={3} md={2}>
+        <Grid item xs={7}>
           <div>
             <Typography sx={{ fontSize: "12px" }}>Event Title</Typography>
             <Typography className="text-muted" sx={{ fontSize: "10px" }}>
@@ -27,25 +27,22 @@ function RisksOpportunitiesEvent() {
             </Typography>
           </div>
         </Grid>
+
         <Grid
           item
           xs
-          className="d-flex align-items-center justify-content-center"
+          className="d-none d-md-flex align-items-center justify-content-end"
         >
           <Chip
             color="primary"
             sx={{ borderRadius: 1 }}
             size="small"
             label="Low"
+            className="me-2"
           />
-        </Grid>
-        <Grid
-          item
-          xs
-          className="d-flex align-items-center justify-content-center"
-        >
           <AvatarGroup
             max={4}
+            className="me-2"
             componentsProps={{
               additionalAvatar: {
                 sx: {
@@ -81,28 +78,16 @@ function RisksOpportunitiesEvent() {
               src="https://xsgames.co/randomusers/assets/avatars/male/76.jpg"
             ></Avatar>
           </AvatarGroup>
-        </Grid>
-        <Grid
-          item
-          xs
-          className="d-none d-sm-flex align-items-center justify-content-center"
-        >
-          <div className="d-flex align-items-center">
-            <Comment sx={{ fontSize: "12px" }} />
-            <Typography className="ms-1" sx={{ fontSize: "12px" }}>
-              12 Comments
+          <div className="d-flex align-items-center me-2">
+            <Comment sx={{ fontSize: "14px" }} />
+            <Typography className="ms-1" sx={{ fontSize: "14px" }}>
+              12
             </Typography>
           </div>
-        </Grid>
-        <Grid
-          item
-          xs
-          className="d-none d-md-flex align-items-center justify-content-center justify-content-center"
-        >
           <div className="d-flex align-items-center">
-            <Folder sx={{ fontSize: "12px" }} />
-            <Typography className="ms-1" sx={{ fontSize: "12px" }}>
-              5 Files
+            <Folder sx={{ fontSize: "14px" }} />
+            <Typography className="ms-1" sx={{ fontSize: "14px" }}>
+              5
             </Typography>
           </div>
         </Grid>

@@ -47,33 +47,12 @@ function Reports() {
   return (
     <div className="h-100 ">
       <Grid container spacing={3} className="pb-4">
-        <Grid item xs={6}>
+        <Grid item xs={12}>
           <Typography variant="h5" className="fw-bold">
             Reports
           </Typography>
         </Grid>
-        <Grid item xs={6}>
-          <div className="d-flex justify-content-end align-items-center">
-            <div className="d-flex align-items-center ms-2">
-              <Typography variant="caption" className="me-2">
-                View Type
-              </Typography>
-              <ToggleButtonGroup
-                size="small"
-                value={viewType}
-                exclusive
-                onChange={(e, val) => setViewType(val)}
-              >
-                <ToggleButton value="left" key="left">
-                  <Menu />
-                </ToggleButton>
-                <ToggleButton value="right" key="left">
-                  <GridView />
-                </ToggleButton>
-              </ToggleButtonGroup>
-            </div>
-          </div>
-        </Grid>
+
         <Grid item xs={12} md={6}>
           <div className="d-flex mb-2 mb-md-0 ">
             <Box
@@ -161,27 +140,52 @@ function Reports() {
           </div>
         </Grid>
         <Grid item xs={12} md={6}>
-          <div className="d-flex  justify-content-end ">
-            <ButtonCustom
-              variant="outlined"
-              textDark
-              className="me-2"
-              color="secondary"
-              label={
-                <Typography className="d-flex align-items-center">
-                  <IosShare fontSize="small" className="me-1" /> Export
+          <div className="d-flex align-items-center justify-content-between justify-content-md-end">
+            <div className="d-flex justify-content-end align-items-center me-3">
+              <div className="d-flex align-items-center ms-2">
+                <Typography
+                  variant="caption"
+                  className="me-2 d-none d-md-block"
+                >
+                  View Type
                 </Typography>
-              }
-            />
-            <ButtonCustom
-              variant="contained"
-              color="secondary"
-              label={
-                <Typography className="d-flex align-items-center">
-                  <Add className="me-1" /> Add Report
-                </Typography>
-              }
-            />
+                <ToggleButtonGroup
+                  size="small"
+                  value={viewType}
+                  exclusive
+                  onChange={(e, val) => setViewType(val)}
+                >
+                  <ToggleButton value="left" key="left">
+                    <Menu />
+                  </ToggleButton>
+                  <ToggleButton value="right" key="left">
+                    <GridView />
+                  </ToggleButton>
+                </ToggleButtonGroup>
+              </div>
+            </div>
+            <div className="d-flex  justify-content-end ">
+              <ButtonCustom
+                variant="outlined"
+                textDark
+                className="me-2"
+                color="secondary"
+                label={
+                  <Typography className="d-flex align-items-center">
+                    <IosShare fontSize="small" />
+                  </Typography>
+                }
+              />
+              <ButtonCustom
+                variant="contained"
+                color="secondary"
+                label={
+                  <Typography className="d-flex align-items-center">
+                    <Add />
+                  </Typography>
+                }
+              />
+            </div>
           </div>
         </Grid>
         <Grid item xs={12}>

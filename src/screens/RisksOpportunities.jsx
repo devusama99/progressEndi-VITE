@@ -552,8 +552,7 @@ function RisksOpportunities() {
               color="secondary"
               label={
                 <Typography>
-                  <Add className="me-1" />
-                  Add
+                  <Add />
                 </Typography>
               }
               variant={"contained"}
@@ -576,7 +575,7 @@ function RisksOpportunities() {
             className="fw-bold text-uppercase"
             sx={{
               position: "absolute",
-              transform: "rotate(270deg) translate(0%,30%) ",
+              transform: "rotate(270deg) translate(20%,150%) ",
               top: "50%",
               left: "0px",
             }}
