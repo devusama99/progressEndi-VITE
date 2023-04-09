@@ -199,7 +199,7 @@ function Projects() {
               onClick={toggleModal}
               label={
                 <Typography>
-                  <Add className="me-1" /> Add Project
+                  <Add />
                 </Typography>
               }
             />

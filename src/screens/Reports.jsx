@@ -5,6 +5,7 @@ import {
   FilterList,
   GridView,
   IosShare,
+  KeyboardTab,
   Menu,
   Search,
 } from "@mui/icons-material";
@@ -24,6 +25,13 @@ import {
   IconButton,
   Stack,
   MenuItem,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  Button,
+  DialogActions,
+  RadioGroup,
+  Radio,
 } from "@mui/material";
 import React, { useState } from "react";
 import { Table } from "react-bootstrap";
@@ -44,8 +52,176 @@ function Reports() {
     setAnchorEl(null);
   };
   const open = Boolean(anchorEl);
+
+  const [showModal, setShowModal] = useState(false);
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
   return (
     <div className="h-100 ">
+      <Dialog
+        open={showModal}
+        maxWidth="sm"
+        fullWidth={true}
+        onClose={toggleModal}
+      >
+        <DialogTitle>
+          <Box className="d-flex align-items-start justify-content-between">
+            <div>
+              <Typography variant="h6" className="fw-bold">
+                Generate Reports
+              </Typography>
+              <Typography className="text-muted">
+                Add report details here
+              </Typography>
+            </div>
+            <IconButton onClick={toggleModal}>
+              <Cancel />
+            </IconButton>
+          </Box>
+        </DialogTitle>
+        <DialogContent>
+          <Typography className="fw-bold">Things to include</Typography>
+          <div className="d-flex alig-items-center flex-wrap">
+            <FormControlLabel
+              control={<Checkbox checked disabled />}
+              label="Event title"
+            />
+            <FormControlLabel
+              control={<Checkbox checked />}
+              label="Event description"
+            />
+            <FormControlLabel
+              control={<Checkbox checked />}
+              label="Creator name"
+            />
+            <FormControlLabel
+              control={<Checkbox checked />}
+              label="Creator ID"
+            />
+            <FormControlLabel
+              control={<Checkbox checked />}
+              label="Created date"
+            />
+            <FormControlLabel
+              control={<Checkbox checked />}
+              label="Event start date"
+            />
+            <FormControlLabel
+              control={<Checkbox checked />}
+              label="Event start date"
+            />
+            <FormControlLabel control={<Checkbox checked />} label="Category" />
+            <FormControlLabel control={<Checkbox checked />} label="Package" />
+            <FormControlLabel
+              control={<Checkbox checked />}
+              label="Classification"
+            />
+            <FormControlLabel control={<Checkbox checked />} label="Priority" />
+            <FormControlLabel control={<Checkbox checked />} label="Event ID" />
+            <FormControlLabel
+              control={<Checkbox checked />}
+              label="Event plan view"
+            />
+            <FormControlLabel control={<Checkbox checked />} label="Pictures" />
+            <FormControlLabel
+              control={<Checkbox checked />}
+              label="Event progress"
+            />
+            <FormControlLabel control={<Checkbox checked />} label="Event QC" />
+            <FormControlLabel control={<Checkbox checked />} label="Comments" />
+          </div>
+          <Typography className="fw-bold my-2">Types to include</Typography>
+
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={6}>
+              <InputFeildCustom label="Event Type" select fullWidth border>
+                <MenuItem>All</MenuItem>
+                <MenuItem>Tasks</MenuItem>
+                <MenuItem>Risks</MenuItem>
+                <MenuItem>Hazards</MenuItem>
+              </InputFeildCustom>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <InputFeildCustom label="Category" select fullWidth border>
+                <MenuItem>All</MenuItem>
+              </InputFeildCustom>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <InputFeildCustom label="Class" select fullWidth border>
+                <MenuItem>All</MenuItem>
+              </InputFeildCustom>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <InputFeildCustom label="Impact" select fullWidth border>
+                <MenuItem>All</MenuItem>
+              </InputFeildCustom>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <InputFeildCustom label="Priority" select fullWidth border>
+                <MenuItem>All</MenuItem>
+              </InputFeildCustom>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <InputFeildCustom label="Users" select fullWidth border>
+                <MenuItem>All</MenuItem>
+              </InputFeildCustom>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <InputFeildCustom label="Progress Type" select fullWidth border>
+                <MenuItem>All</MenuItem>
+              </InputFeildCustom>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <InputFeildCustom label="QC Type" select fullWidth border>
+                <MenuItem>All</MenuItem>
+              </InputFeildCustom>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <InputFeildCustom label="QA Type" select fullWidth border>
+                <MenuItem>All</MenuItem>
+              </InputFeildCustom>
+            </Grid>
+          </Grid>
+          <Typography className="fw-bold my-2 mt-3">View Type</Typography>
+          <RadioGroup
+            row
+            aria-labelledby="demo-row-radio-buttons-group-label"
+            name="row-radio-buttons-group"
+            value={"classic"}
+          >
+            <FormControlLabel
+              value="classic"
+              control={<Radio />}
+              label="Classic view"
+            />
+            <FormControlLabel
+              value="list"
+              control={<Radio />}
+              label="List view"
+            />
+          </RadioGroup>
+        </DialogContent>
+        <DialogActions>
+          <ButtonCustom
+            label="cancel"
+            textDark
+            variant="outlined"
+            color="secondary"
+            sx={{ width: "100px" }}
+            onClick={() => {
+              toggleModal();
+              setPlanFile(null);
+            }}
+          />
+          <ButtonCustom
+            label="Add"
+            variant="contained"
+            color="secondary"
+            sx={{ width: "100px" }}
+          />
+        </DialogActions>
+      </Dialog>
       <Grid container spacing={3} className="pb-4">
         <Grid item xs={12}>
           <Typography variant="h5" className="fw-bold">
@@ -179,6 +355,7 @@ function Reports() {
               <ButtonCustom
                 variant="contained"
                 color="secondary"
+                onClick={() => toggleModal()}
                 label={
                   <Typography className="d-flex align-items-center">
                     <Add />

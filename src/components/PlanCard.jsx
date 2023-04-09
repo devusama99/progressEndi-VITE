@@ -49,7 +49,7 @@ function PlanCard() {
             elit. Asperiores, ex.
           </Typography>
 
-          <div className="d-flex align-items-center justify-content-end">
+          <div className="d-flex align-items-center justify-content-end mt-2">
             <FileDownload fontSize="small" className="me-2" />
             <Chip
               label="PDF"

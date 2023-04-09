@@ -167,6 +167,7 @@ function RisksOpprtunitiesItem({ item, GRAPH }) {
         }}
         onClick={() => {
           setActiveItem(item.id);
+          setType(item.type);
           toggleModal();
         }}
       >

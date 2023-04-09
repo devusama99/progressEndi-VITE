@@ -43,7 +43,7 @@ import {
   AccordionDetails,
   Popover,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 import ButtonCustom from "../components/ButtonCustom";
 import EventCard from "../components/EventCard";
@@ -52,6 +52,7 @@ import InputFeildCustom from "../components/InputFeildCustom";
 import { theme } from "../styles/theme";
 
 function ProjectsEvents() {
+  const importXls = useRef();
   const [viewType, setViewType] = useState("right");
   const [viewBy, setViewBy] = useState("right");
   const [expand, setExpand] = useState(true);
@@ -166,6 +167,21 @@ function ProjectsEvents() {
               ""
             )}
             <div className="d-flex justify-content-end">
+              <Typography
+                color={"primary"}
+                variant="caption"
+                onClick={() => importXls.current.click()}
+                className="pe-2"
+                sx={{
+                  cursor: "pointer",
+                  ":hover": {
+                    textDecoration: "underline",
+                  },
+                }}
+              >
+                Import
+                <input type={"file"} hidden ref={importXls} />
+              </Typography>
               <Typography
                 color={"primary"}
                 variant="caption"
@@ -315,409 +331,388 @@ function ProjectsEvents() {
         fullWidth={true}
         onClose={toggleEventModal}
       >
-        <Box>
-          <Grid
-            container
-            direction={window.innerWidth < 900 ? "column-reverse" : "row"}
-            className="h-100  "
-          >
-            <Grid item xs={12} md={4} className="bg-primary">
-              <Box className="p-3 d-flex flex-column gap-2 h-100">
-                <Accordion
-                  disableGutters
-                  elevation={0}
-                  defaultExpanded
-                  sx={{ borderRadius: 1.5, overflow: "hidden" }}
+        <Box sx={{ height: "92vh", overflowY: "hidden" }} className="d-flex">
+          <Box className="bg-primary h-100 w-30" sx={{ overflow: "auto" }}>
+            <Box className="p-3 d-flex flex-column gap-2 h-100">
+              <Accordion
+                disableGutters
+                elevation={0}
+                defaultExpanded
+                sx={{ borderRadius: 1.5, overflow: "hidden" }}
+              >
+                <AccordionSummary
+                  expandIcon={<ExpandMore color="light" />}
+                  sx={{
+                    backgroundColor: (theme) => theme.palette.secondary.main,
+                    color: (theme) => theme.palette.light.main,
+                  }}
                 >
-                  <AccordionSummary
-                    expandIcon={<ExpandMore color="light" />}
+                  Location
+                </AccordionSummary>
+                <AccordionDetails
+                  className="d-flex justify-content-center"
+                  sx={{ overflow: "hidden" }}
+                >
+                  <img
+                    src="https://wpmedia.roomsketcher.com/content/uploads/2022/01/06145940/What-is-a-floor-plan-with-dimensions.png"
+                    alt="event-location"
+                    height={"180px"}
+                  />
+                </AccordionDetails>
+              </Accordion>
+              <Accordion
+                disableGutters
+                elevation={0}
+                sx={{ borderRadius: 1.5, overflow: "hidden" }}
+              >
+                <AccordionSummary
+                  expandIcon={<ExpandMore color="light" />}
+                  sx={{
+                    backgroundColor: (theme) => theme.palette.secondary.main,
+                    color: (theme) => theme.palette.light.main,
+                  }}
+                >
+                  Details
+                </AccordionSummary>
+              </Accordion>
+              <Box sx={{ overflow: "auto" }}>
+                {[
+                  "Creation Date",
+                  "Creator",
+                  "ID",
+                  "Priority",
+                  "Work Package",
+                  "Type of Event",
+                  "Impact",
+                  "Ranking",
+                  "Related Events",
+                  "Advancement",
+                  "technical Control",
+                  "Internal Verification",
+                  "Quality Control",
+                  "Rating",
+                  "End Date",
+                  "Deadline",
+                  "Duration",
+                  "Lag Cause",
+                ].map((item, i) => (
+                  <Accordion
+                    key={"info-" + i}
+                    disableGutters
+                    elevation={0}
+                    square
                     sx={{
-                      backgroundColor: (theme) => theme.palette.secondary.main,
-                      color: (theme) => theme.palette.light.main,
+                      p: 0,
+                      m: 0,
+                      backgroundColor: "transparent",
+                      borderBottom: "1px solid rgba(0,0,0,0.2)",
+                      "&.MuiAccordion-root": {
+                        height: 40,
+                        m: 0,
+                        p: 0,
+                      },
                     }}
                   >
-                    Location
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <img
-                      src="https://wpmedia.roomsketcher.com/content/uploads/2022/01/06145940/What-is-a-floor-plan-with-dimensions.png"
-                      alt="event-location"
-                      height={"150px"}
-                      width={"100%"}
+                    <AccordionSummary
+                      expandIcon={<ExpandMore />}
+                      sx={{ fontSize: "14px" }}
+                    >
+                      {item}
+                    </AccordionSummary>
+                  </Accordion>
+                ))}
+              </Box>
+            </Box>
+          </Box>
+          <Box className="h-100 w-70 p-3" sx={{ overflow: "auto" }}>
+            <div className="d-flex justify-content-between px-2">
+              <div className="d-flex align-items-center">
+                <PinDrop fontSize="large" color="primary" />
+                <Typography variant="h5" className="fw-bold">
+                  Event Title
+                </Typography>
+              </div>
+              <IconButton onClick={toggleEventModal}>
+                <Close />
+              </IconButton>
+            </div>
+
+            <Accordion
+              disableGutters
+              elevation={0}
+              defaultExpanded
+              className="mt-3"
+              sx={{
+                backgroundColor: (theme) => theme.palette.secondary.main,
+                color: (theme) => theme.palette.light.main,
+              }}
+            >
+              <AccordionSummary expandIcon={<ExpandMore color="light" />}>
+                Details
+              </AccordionSummary>
+              <AccordionDetails
+                sx={{
+                  background: "white",
+                  color: (theme) => theme.palette.grey.dark,
+                }}
+              >
+                <div className="d-flex ">
+                  <div className="flex-1">
+                    <Box className="w-100 mt-2">
+                      <Typography
+                        className="w-50 d-inline-block text-muted"
+                        sx={{ fontSize: "18px" }}
+                      >
+                        Status
+                      </Typography>
+                      <Typography
+                        className="w-50 d-inline-block  "
+                        sx={{ fontSize: "18px" }}
+                      >
+                        <span className="d-flex align-items-center">
+                          <Circle
+                            fontSize="small"
+                            color="success"
+                            className="me-2"
+                          />
+                          Finished
+                        </span>
+                      </Typography>
+                      <Typography
+                        className="w-50 d-inline-block text-muted"
+                        sx={{ fontSize: "18px" }}
+                      >
+                        Creation Date
+                      </Typography>
+                      <Typography
+                        className="w-50 d-inline-block"
+                        sx={{ fontSize: "18px" }}
+                      >
+                        10 Dec-2023
+                      </Typography>
+                      <Typography
+                        className="w-50 d-inline-block text-muted"
+                        sx={{ fontSize: "18px" }}
+                      >
+                        Creator
+                      </Typography>
+                      <Typography
+                        className="w-50 d-inline-block"
+                        sx={{ fontSize: "18px" }}
+                      >
+                        HashStack
+                      </Typography>
+                      <Typography
+                        className="w-50 d-inline-block text-muted"
+                        sx={{ fontSize: "18px" }}
+                      >
+                        ID
+                      </Typography>
+                      <Typography
+                        className="w-50 d-inline-block"
+                        sx={{ fontSize: "18px" }}
+                      >
+                        72684726
+                      </Typography>
+                    </Box>
+                  </div>
+                </div>
+                <Typography sx={{ fontSize: "12px" }} className="mt-2 px-1">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Cupiditate inventore, amet necessitatibus fugit aliquid neque
+                  reiciendis modi qui tenetur dolore, minima corporis optio
+                  laudantium a quos labore sint officiis officia dolorem
+                  quaerat. Excepturi unde culpa amet cumque veniam saepe quaerat
+                  iste, impedit facere delectus, repellat molestias. Quis ipsa
+                  laborum, alias reiciendis eligendi facere voluptas ab. Sequi
+                  deserunt sapiente aliquid nisi eum in, adipisci, officia
+                  vitae, laudantium aspernatur possimus commodi. Repellendus
+                  odio temporibus culpa dolore eveniet harum aperiam, cum vel
+                  voluptas sunt nam eum, repellat in ducimus omnis hic! Iure id
+                  iste ea dignissimos vel veniam eaque
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+
+            <Tabs
+              value={eventModalTab}
+              onChange={handleEventModalTab}
+              variant="scrollable"
+            >
+              <Tab label="Comments" className="text-capitalize " />
+              <Tab label="Attachments" className="text-capitalize " />
+            </Tabs>
+            <Divider
+              sx={{
+                borderColor: (theme) => theme.palette.primary.main,
+              }}
+              className="mb-3"
+            />
+
+            {eventModalTab ? (
+              <>
+                <div className="d-flex gap-2 flex-wrap">
+                  <img
+                    src="https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw="
+                    alt=""
+                    style={{
+                      height: 100,
+                      width: 120,
+                      borderRadius: 10,
+                    }}
+                  />
+                  <img
+                    src="https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw="
+                    alt=""
+                    style={{
+                      height: 100,
+                      width: 120,
+                      borderRadius: 10,
+                    }}
+                  />
+                  <img
+                    src="https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw="
+                    alt=""
+                    style={{
+                      height: 100,
+                      width: 120,
+                      borderRadius: 10,
+                    }}
+                  />
+                  <img
+                    src="https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw="
+                    alt=""
+                    style={{
+                      height: 100,
+                      width: 120,
+                      borderRadius: 10,
+                    }}
+                  />
+                </div>
+              </>
+            ) : (
+              <>
+                <Box className="d-flex align-items-center mb-4">
+                  <Avatar
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8kyeCS-Zb0GCZxuDffniY0NJQ1GCIW2T0FKEMkdEXnXCnQLD435M9HF47cpS3yPj-Sm8&usqp=CAU"
+                    sx={{ width: "30px", height: "30px" }}
+                  />
+                  <Box
+                    className="d-flex align-items-center flex-1 ms-2"
+                    sx={{
+                      bgcolor: (theme) => alpha(theme.palette.grey.dark, 0.04),
+                      borderRadius: 1.3,
+                    }}
+                  >
+                    <IconButton
+                      color="primary"
+                      aria-label="upload picture"
+                      component="label"
+                    >
+                      <input hidden accept="image/*" type="file" />
+                      <AttachFile />
+                    </IconButton>
+                    <InputBase
+                      className="mx-1 flex-1"
+                      placeholder="Comment Here"
+                      fullWidth
                     />
-                  </AccordionDetails>
-                </Accordion>
-                <Accordion
-                  disableGutters
-                  elevation={0}
-                  sx={{ borderRadius: 1.5, overflow: "hidden" }}
-                >
-                  <AccordionSummary
-                    expandIcon={<ExpandMore color="light" />}
-                    sx={{
-                      backgroundColor: (theme) => theme.palette.secondary.main,
-                      color: (theme) => theme.palette.light.main,
-                    }}
-                  >
-                    Details
-                  </AccordionSummary>
-                </Accordion>
+                    <IconButton
+                      color="primary"
+                      aria-label="upload picture"
+                      component="label"
+                    >
+                      <Send />
+                    </IconButton>
+                  </Box>
+                </Box>
                 <Box>
                   {[
-                    "Creation Date",
-                    "Creator",
-                    "ID",
-                    "Priority",
-                    "Work Package",
-                    "Type of Event",
-                    "Impact",
-                    "Ranking",
-                    "Related Events",
-                    "Advancement",
-                    "technical Control",
-                    "Internal Verification",
-                    "Quality Control",
-                    "Rating",
-                    "End Date",
-                    "Deadline",
-                    "Duration",
-                    "Lag Cause",
+                    {
+                      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex fuga dignissimos doloribus laudantium. Nesciunt modi sapiente, fuga molestiae doloremque corrupti ",
+                      date: "4 March 2020",
+                      time: "10:20 pm",
+                      name: "Salman",
+                      avatar:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8kyeCS-Zb0GCZxuDffniY0NJQ1GCIW2T0FKEMkdEXnXCnQLD435M9HF47cpS3yPj-Sm8&usqp=CAU",
+                      attachments: [
+                        "https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw=",
+                        "https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw=",
+                      ],
+                    },
+                    {
+                      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex fuga dignissimos doloribus laudantium. Nesciunt modi sapiente, fuga molestiae doloremque corrupti ",
+                      date: "4 March 2020",
+                      time: "10:20 pm",
+                      name: "Salman",
+                      avatar:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8kyeCS-Zb0GCZxuDffniY0NJQ1GCIW2T0FKEMkdEXnXCnQLD435M9HF47cpS3yPj-Sm8&usqp=CAU",
+                      attachments: [],
+                    },
+                    {
+                      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex fuga dignissimos doloribus laudantium. Nesciunt modi sapiente, fuga molestiae doloremque corrupti ",
+                      date: "4 March 2020",
+                      time: "10:20 pm",
+                      name: "Salman",
+                      avatar:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8kyeCS-Zb0GCZxuDffniY0NJQ1GCIW2T0FKEMkdEXnXCnQLD435M9HF47cpS3yPj-Sm8&usqp=CAU",
+                      attachments: [
+                        "https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw=",
+                        "https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw=",
+                      ],
+                    },
                   ].map((item, i) => (
-                    <Accordion
-                      key={"info-" + i}
-                      disableGutters
-                      elevation={0}
-                      square
-                      sx={{
-                        p: 0,
-                        m: 0,
-                        backgroundColor: "transparent",
-                        borderBottom: "1px solid rgba(0,0,0,0.2)",
-                        "&.MuiAccordion-root": {
-                          height: 40,
-                          m: 0,
-                          p: 0,
-                        },
-                      }}
-                    >
-                      <AccordionSummary
-                        expandIcon={<ExpandMore />}
-                        sx={{ fontSize: "14px" }}
-                      >
-                        {item}
-                      </AccordionSummary>
-                    </Accordion>
-                  ))}
-                </Box>
-              </Box>
-            </Grid>
-            <Grid item xs={12} md={8}>
-              <Box className="w-100" sx={{ overflowX: "hidden" }}>
-                <Grid container className="p-3 " spacing={1}>
-                  <Grid item xs={12}>
-                    <div className="d-flex justify-content-end px-2">
-                      <IconButton onClick={toggleEventModal}>
-                        <Close />
-                      </IconButton>
-                    </div>
-                  </Grid>
-
-                  <Grid item xs={12}>
-                    <Accordion
-                      disableGutters
-                      elevation={0}
-                      defaultExpanded
-                      sx={{
-                        backgroundColor: (theme) =>
-                          theme.palette.secondary.main,
-                        color: (theme) => theme.palette.light.main,
-                      }}
-                    >
-                      <AccordionSummary
-                        expandIcon={<ExpandMore color="light" />}
-                      >
-                        Details
-                      </AccordionSummary>
-                      <AccordionDetails
-                        sx={{
-                          background: "white",
-                          color: (theme) => theme.palette.grey.dark,
-                        }}
-                      >
-                        <div className="d-flex ">
-                          <PinDrop fontSize="large" color="primary" />
-                          <div className="flex-1">
-                            <Typography variant="h5" className="fw-bold">
-                              Event Title
+                    <Box className="d-flex py-2" key={"Chat-item" + i}>
+                      <Avatar
+                        src={item.avatar}
+                        sx={{ height: "30px", width: "30px" }}
+                        className="me-2"
+                      />
+                      <div>
+                        <div className="flex-1 d-flex justify-content-between">
+                          <div className="d-flex align-items-center">
+                            <Typography className="fw-bold">
+                              {item.name}
                             </Typography>
-                            <Box className="w-100 mt-2">
-                              <Typography
-                                className="w-50 d-inline-block text-muted"
-                                sx={{ fontSize: "18px" }}
-                              >
-                                Status
-                              </Typography>
-                              <Typography
-                                className="w-50 d-inline-block  "
-                                sx={{ fontSize: "18px" }}
-                              >
-                                <span className="d-flex align-items-center">
-                                  <Circle
-                                    fontSize="small"
-                                    color="success"
-                                    className="me-2"
-                                  />
-                                  Finished
-                                </span>
-                              </Typography>
-                              <Typography
-                                className="w-50 d-inline-block text-muted"
-                                sx={{ fontSize: "18px" }}
-                              >
-                                Creation Date
-                              </Typography>
-                              <Typography
-                                className="w-50 d-inline-block"
-                                sx={{ fontSize: "18px" }}
-                              >
-                                10 Dec-2023
-                              </Typography>
-                              <Typography
-                                className="w-50 d-inline-block text-muted"
-                                sx={{ fontSize: "18px" }}
-                              >
-                                Creator
-                              </Typography>
-                              <Typography
-                                className="w-50 d-inline-block"
-                                sx={{ fontSize: "18px" }}
-                              >
-                                HashStack
-                              </Typography>
-                              <Typography
-                                className="w-50 d-inline-block text-muted"
-                                sx={{ fontSize: "18px" }}
-                              >
-                                ID
-                              </Typography>
-                              <Typography
-                                className="w-50 d-inline-block"
-                                sx={{ fontSize: "18px" }}
-                              >
-                                72684726
-                              </Typography>
-                            </Box>
+                          </div>
+                          <div className="d-flex flex-column align-items-end">
+                            <Typography
+                              className="text-muted"
+                              sx={{ fontSize: "12px" }}
+                            >
+                              {item.date}
+                            </Typography>
+                            <Typography
+                              sx={{ fontSize: "10px" }}
+                              className="text-muted"
+                            >
+                              {item.time}
+                            </Typography>
                           </div>
                         </div>
-                        <Typography
-                          sx={{ fontSize: "12px" }}
-                          className="mt-2 px-1"
-                        >
-                          Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit. Cupiditate inventore, amet necessitatibus fugit
-                          aliquid neque reiciendis modi qui tenetur dolore,
-                          minima corporis optio laudantium a quos labore sint
-                          officiis officia dolorem quaerat. Excepturi unde culpa
-                          amet cumque veniam saepe quaerat iste, impedit facere
-                          delectus, repellat molestias. Quis ipsa laborum, alias
-                          reiciendis eligendi facere voluptas ab. Sequi deserunt
-                          sapiente aliquid nisi eum in, adipisci, officia vitae,
-                          laudantium aspernatur possimus commodi. Repellendus
-                          odio temporibus culpa dolore eveniet harum aperiam,
-                          cum vel voluptas sunt nam eum, repellat in ducimus
-                          omnis hic! Iure id iste ea dignissimos vel veniam
-                          eaque
+                        <Typography sx={{ fontSize: "14px" }}>
+                          {item.text}
                         </Typography>
-                      </AccordionDetails>
-                    </Accordion>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Tabs
-                      value={eventModalTab}
-                      onChange={handleEventModalTab}
-                      variant="scrollable"
-                    >
-                      <Tab label="Comments" className="text-capitalize " />
-                      <Tab label="Attachments" className="text-capitalize " />
-                    </Tabs>
-                    <Divider
-                      sx={{
-                        borderColor: (theme) => theme.palette.primary.main,
-                      }}
-                      className="mb-3"
-                    />
-                    {eventModalTab ? (
-                      <>
-                        <div className="d-flex gap-2 flex-wrap">
-                          <img
-                            src="https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw="
-                            alt=""
-                            style={{
-                              height: 100,
-                              width: 120,
-                              borderRadius: 10,
-                            }}
-                          />
-                          <img
-                            src="https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw="
-                            alt=""
-                            style={{
-                              height: 100,
-                              width: 120,
-                              borderRadius: 10,
-                            }}
-                          />
-                          <img
-                            src="https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw="
-                            alt=""
-                            style={{
-                              height: 100,
-                              width: 120,
-                              borderRadius: 10,
-                            }}
-                          />
-                          <img
-                            src="https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw="
-                            alt=""
-                            style={{
-                              height: 100,
-                              width: 120,
-                              borderRadius: 10,
-                            }}
-                          />
+                        <div className="d-flex align-items-center gap-2 mt-1">
+                          {item.attachments.length
+                            ? item.attachments.map((attachment, i) => (
+                                <img
+                                  src={attachment}
+                                  key={"attachment" + i}
+                                  height="100px"
+                                  width="100px"
+                                  style={{ borderRadius: 5 }}
+                                />
+                              ))
+                            : ""}
                         </div>
-                      </>
-                    ) : (
-                      <>
-                        <Box className="d-flex align-items-center mb-4">
-                          <Avatar
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8kyeCS-Zb0GCZxuDffniY0NJQ1GCIW2T0FKEMkdEXnXCnQLD435M9HF47cpS3yPj-Sm8&usqp=CAU"
-                            sx={{ width: "30px", height: "30px" }}
-                          />
-                          <Box
-                            className="d-flex align-items-center flex-1 ms-2"
-                            sx={{
-                              bgcolor: (theme) =>
-                                alpha(theme.palette.grey.dark, 0.04),
-                              borderRadius: 1.3,
-                            }}
-                          >
-                            <IconButton
-                              color="primary"
-                              aria-label="upload picture"
-                              component="label"
-                            >
-                              <input hidden accept="image/*" type="file" />
-                              <AttachFile />
-                            </IconButton>
-                            <InputBase
-                              className="mx-1 flex-1"
-                              placeholder="Comment Here"
-                              fullWidth
-                            />
-                            <IconButton
-                              color="primary"
-                              aria-label="upload picture"
-                              component="label"
-                            >
-                              <Send />
-                            </IconButton>
-                          </Box>
-                        </Box>
-                        <Box
-                          className=" flex-1"
-                          // sx={{ overflow: "auto", maxHeight: "450px" }}
-                        >
-                          {[
-                            {
-                              text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex fuga dignissimos doloribus laudantium. Nesciunt modi sapiente, fuga molestiae doloremque corrupti ",
-                              date: "4 March 2020",
-                              time: "10:20 pm",
-                              name: "Salman",
-                              avatar:
-                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8kyeCS-Zb0GCZxuDffniY0NJQ1GCIW2T0FKEMkdEXnXCnQLD435M9HF47cpS3yPj-Sm8&usqp=CAU",
-                              attachments: [
-                                "https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw=",
-                                "https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw=",
-                              ],
-                            },
-                            {
-                              text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex fuga dignissimos doloribus laudantium. Nesciunt modi sapiente, fuga molestiae doloremque corrupti ",
-                              date: "4 March 2020",
-                              time: "10:20 pm",
-                              name: "Salman",
-                              avatar:
-                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8kyeCS-Zb0GCZxuDffniY0NJQ1GCIW2T0FKEMkdEXnXCnQLD435M9HF47cpS3yPj-Sm8&usqp=CAU",
-                              attachments: [],
-                            },
-                            {
-                              text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex fuga dignissimos doloribus laudantium. Nesciunt modi sapiente, fuga molestiae doloremque corrupti ",
-                              date: "4 March 2020",
-                              time: "10:20 pm",
-                              name: "Salman",
-                              avatar:
-                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8kyeCS-Zb0GCZxuDffniY0NJQ1GCIW2T0FKEMkdEXnXCnQLD435M9HF47cpS3yPj-Sm8&usqp=CAU",
-                              attachments: [
-                                "https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw=",
-                                "https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw=",
-                              ],
-                            },
-                          ].map((item, i) => (
-                            <Box className="d-flex py-2" key={"Chat-item" + i}>
-                              <Avatar
-                                src={item.avatar}
-                                sx={{ height: "30px", width: "30px" }}
-                                className="me-2"
-                              />
-                              <div>
-                                <div className="flex-1 d-flex justify-content-between">
-                                  <div className="d-flex align-items-center">
-                                    <Typography className="fw-bold">
-                                      {item.name}
-                                    </Typography>
-                                  </div>
-                                  <div className="d-flex flex-column align-items-end">
-                                    <Typography
-                                      className="text-muted"
-                                      sx={{ fontSize: "12px" }}
-                                    >
-                                      {item.date}
-                                    </Typography>
-                                    <Typography
-                                      sx={{ fontSize: "10px" }}
-                                      className="text-muted"
-                                    >
-                                      {item.time}
-                                    </Typography>
-                                  </div>
-                                </div>
-                                <Typography sx={{ fontSize: "14px" }}>
-                                  {item.text}
-                                </Typography>
-                                <div className="d-flex align-items-center gap-2 mt-1">
-                                  {item.attachments.length
-                                    ? item.attachments.map((attachment, i) => (
-                                        <img
-                                          src={attachment}
-                                          key={"attachment" + i}
-                                          height="100px"
-                                          width="100px"
-                                          style={{ borderRadius: 5 }}
-                                        />
-                                      ))
-                                    : ""}
-                                </div>
-                              </div>
-                            </Box>
-                          ))}
-                        </Box>
-                      </>
-                    )}
-                  </Grid>
-                </Grid>
-              </Box>
-            </Grid>
-          </Grid>
+                      </div>
+                    </Box>
+                  ))}
+                </Box>
+              </>
+            )}
+          </Box>
         </Box>
       </Dialog>
       <Grid container spacing={3}>

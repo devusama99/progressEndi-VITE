@@ -237,7 +237,7 @@ function Images() {
               color="secondary"
               label={
                 <Typography className="d-flex align-items-center">
-                  <IosShare fontSize="small" className="me-1" /> Export
+                  <IosShare fontSize="small" />
                 </Typography>
               }
             />
@@ -247,7 +247,7 @@ function Images() {
               onClick={toggleModal}
               label={
                 <Typography className="d-flex align-items-center">
-                  <Add className="me-1" /> Add Image
+                  <Add />
                 </Typography>
               }
             />

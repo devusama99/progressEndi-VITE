@@ -1,5 +1,6 @@
-import { Attachment, Comment, Flare } from "@mui/icons-material";
+import { Attachment, Circle, Comment, Flare } from "@mui/icons-material";
 import { Avatar, AvatarGroup, Card, Chip, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 import React from "react";
 import { useNavigate } from "react-router";
 import EventsModal from "./EventsModal";
@@ -24,30 +25,36 @@ function EventCard() {
           A desktop publishing packages and web page editors now use Lorem Ipsum
           as their default model text....
         </Typography>
-        <div className="d-flex align-items-center justify-content-between">
-          <div>
-            {" "}
+        <div className="d-flex align-items-center justify-content-between mb-2">
+          <div className="d-flex align-items-center gap-2">
             <Chip
               label="TRI"
               color="primary"
               size="small"
-              className="mb-2"
               sx={{ borderRadius: "1px" }}
             />
             <Chip
               label="ED"
               color="info"
               size="small"
-              className="mb-2 ms-2"
               sx={{ borderRadius: "1px" }}
             />
+            <Box
+              sx={{
+                height: 18,
+                width: 18,
+                backgroundColor: (theme) =>
+                  [
+                    theme.palette.error.main,
+                    theme.palette.info.main,
+                    theme.palette.primary.main,
+                  ][Math.floor(Math.random() * (2 - 0 + 1) + 0)],
+                borderRadius: "50%",
+              }}
+            />
           </div>
-          <div className="d-flex justify-content-end align-items-center">
-            <Typography className="text-muted me-1" sx={{ fontSize: "12px" }}>
-              Untouched
-            </Typography>
-            <Flare color="primary" />
-          </div>
+
+          <Flare color="primary" />
         </div>
 
         <div className="d-flex align-items-center justify-content-between mt-2">
@@ -59,13 +66,13 @@ function EventCard() {
                 className="text-muted"
               />
               <Typography className="text-muted ms-1" variant="body2">
-                Comments
+                {Math.floor(Math.random() * 10)}
               </Typography>
             </div>
             <div className="d-flex align-items-center ms-1">
               <Attachment fontSize="small" className="text-muted" />
               <Typography className="text-muted ms-1" variant="body2">
-                Files
+                {Math.floor(Math.random() * 10)}
               </Typography>
             </div>
           </div>

@@ -37,6 +37,12 @@ $theme-colors: (
     background-color: rgba($color: #000000, $alpha: 0.3);
   }
 }
+.w-30 {
+  width: 30%;
+}
+.w-70 {
+  width: 70%;
+}
 
 .eventBox {
   min-width: 260px;

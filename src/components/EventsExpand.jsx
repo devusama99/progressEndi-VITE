@@ -19,7 +19,7 @@ function EventsExpand({ title, count, expand, onClick }) {
   return (
     <Box className="p-2 w-100 mb-3">
       <Typography
-        className="fw-bold d-inline-block"
+        className="fw-bold d-inline-block mb-2"
         sx={{ cursor: "pointer" }}
         onClick={() => setExpand(!show)}
       >
