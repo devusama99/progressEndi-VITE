@@ -7,7 +7,10 @@ export default defineConfig({
   server: {
     port: 3000,
   },
-   build: {
+  build: {
     outDir: "./build",
+  },
+  optimizeDeps: {
+    exclude: ["react-custom-scrollbars"],
   },
 });

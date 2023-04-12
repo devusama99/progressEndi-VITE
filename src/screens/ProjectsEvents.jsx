@@ -49,7 +49,9 @@ import ButtonCustom from "../components/ButtonCustom";
 import EventCard from "../components/EventCard";
 import EventsExpand from "../components/EventsExpand";
 import InputFeildCustom from "../components/InputFeildCustom";
-import { theme } from "../styles/theme";
+import ProgressIcon from "../assets/progress_icon.png";
+import TypeIcon from "../assets/type_icon.png";
+import { MacScrollbar } from "mac-scrollbar";
 
 function ProjectsEvents() {
   const importXls = useRef();
@@ -331,15 +333,10 @@ function ProjectsEvents() {
         fullWidth={true}
         onClose={toggleEventModal}
       >
-        <Box sx={{ height: "92vh", overflowY: "hidden" }} className="d-flex">
-          <Box className="bg-primary h-100 w-30" sx={{ overflow: "auto" }}>
+        <Box className="d-flex flex-column-reverse flex-md-row eventModalBox">
+          <Box className="bg-primary h-100 w-30">
             <Box className="p-3 d-flex flex-column gap-2 h-100">
-              <Accordion
-                disableGutters
-                elevation={0}
-                defaultExpanded
-                sx={{ borderRadius: 1.5, overflow: "hidden" }}
-              >
+              <Accordion disableGutters elevation={0}>
                 <AccordionSummary
                   expandIcon={<ExpandMore color="light" />}
                   sx={{
@@ -360,11 +357,7 @@ function ProjectsEvents() {
                   />
                 </AccordionDetails>
               </Accordion>
-              <Accordion
-                disableGutters
-                elevation={0}
-                sx={{ borderRadius: 1.5, overflow: "hidden" }}
-              >
+              <Accordion disableGutters elevation={0}>
                 <AccordionSummary
                   expandIcon={<ExpandMore color="light" />}
                   sx={{
@@ -375,8 +368,9 @@ function ProjectsEvents() {
                   Details
                 </AccordionSummary>
               </Accordion>
-              <Box sx={{ overflow: "auto" }}>
+              <Box className="eventModalDetailsBox">
                 {[
+                  "Status",
                   "Creation Date",
                   "Creator",
                   "ID",
@@ -440,7 +434,6 @@ function ProjectsEvents() {
             <Accordion
               disableGutters
               elevation={0}
-              defaultExpanded
               className="mt-3"
               sx={{
                 backgroundColor: (theme) => theme.palette.secondary.main,
@@ -448,7 +441,7 @@ function ProjectsEvents() {
               }}
             >
               <AccordionSummary expandIcon={<ExpandMore color="light" />}>
-                Details
+                Description
               </AccordionSummary>
               <AccordionDetails
                 sx={{
@@ -456,67 +449,6 @@ function ProjectsEvents() {
                   color: (theme) => theme.palette.grey.dark,
                 }}
               >
-                <div className="d-flex ">
-                  <div className="flex-1">
-                    <Box className="w-100 mt-2">
-                      <Typography
-                        className="w-50 d-inline-block text-muted"
-                        sx={{ fontSize: "18px" }}
-                      >
-                        Status
-                      </Typography>
-                      <Typography
-                        className="w-50 d-inline-block  "
-                        sx={{ fontSize: "18px" }}
-                      >
-                        <span className="d-flex align-items-center">
-                          <Circle
-                            fontSize="small"
-                            color="success"
-                            className="me-2"
-                          />
-                          Finished
-                        </span>
-                      </Typography>
-                      <Typography
-                        className="w-50 d-inline-block text-muted"
-                        sx={{ fontSize: "18px" }}
-                      >
-                        Creation Date
-                      </Typography>
-                      <Typography
-                        className="w-50 d-inline-block"
-                        sx={{ fontSize: "18px" }}
-                      >
-                        10 Dec-2023
-                      </Typography>
-                      <Typography
-                        className="w-50 d-inline-block text-muted"
-                        sx={{ fontSize: "18px" }}
-                      >
-                        Creator
-                      </Typography>
-                      <Typography
-                        className="w-50 d-inline-block"
-                        sx={{ fontSize: "18px" }}
-                      >
-                        HashStack
-                      </Typography>
-                      <Typography
-                        className="w-50 d-inline-block text-muted"
-                        sx={{ fontSize: "18px" }}
-                      >
-                        ID
-                      </Typography>
-                      <Typography
-                        className="w-50 d-inline-block"
-                        sx={{ fontSize: "18px" }}
-                      >
-                        72684726
-                      </Typography>
-                    </Box>
-                  </div>
-                </div>
                 <Typography sx={{ fontSize: "12px" }} className="mt-2 px-1">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   Cupiditate inventore, amet necessitatibus fugit aliquid neque
@@ -551,7 +483,7 @@ function ProjectsEvents() {
 
             {eventModalTab ? (
               <>
-                <div className="d-flex gap-2 flex-wrap">
+                <div className="d-flex justify-content-center gap-2 flex-wrap">
                   <img
                     src="https://media.istockphoto.com/id/981344368/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?s=612x612&w=0&k=20&c=x7MIYaIxnLUKhKrh-GqwrjZpB_aBJu9M4pbcX2zDHVw="
                     alt=""
@@ -860,18 +792,18 @@ function ProjectsEvents() {
                 <ToggleButton
                   value="left"
                   key="left"
-                  className="text-capitalize "
-                  sx={{ width: "70px" }}
+                  className="text-capitalize"
+                  sx={{ width: "60px" }}
                 >
-                  Progress
+                  <img src={TypeIcon} alt="type-icon" height={20} />
                 </ToggleButton>
                 <ToggleButton
                   value="right"
                   key="right"
-                  className="text-capitalize"
+                  className="text-capitalize "
                   sx={{ width: "60px" }}
                 >
-                  Type
+                  <img src={ProgressIcon} alt="progress-icon" height={20} />
                 </ToggleButton>
               </ToggleButtonGroup>
             </div>
@@ -1010,6 +942,7 @@ function ProjectsEvents() {
                   />
                 </div>
               </Box>
+
               <Box className="eventBox p-2 pt-0">
                 <Box
                   sx={{

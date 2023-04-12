@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import React from "react";
 import { Card } from "react-bootstrap";
@@ -30,8 +30,15 @@ function VideoTutorials() {
       <Typography className="fw-bold text-uppercase mt-4 mb-3">
         related
       </Typography>
-      <Slick>
-        <div className="pe-2" style={{ maxWidth: "280px" }}>
+      <Grid container spacing={3}>
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          md={4}
+          lg={3}
+          className="d-flex.align-items-center justify-content-center"
+        >
           <Card style={{ overflow: "hidden" }}>
             <ReactPlayer
               controls
@@ -42,56 +49,160 @@ function VideoTutorials() {
               }
             />
           </Card>
-        </div>
-        <div className="pe-2">
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          md={4}
+          lg={3}
+          className="d-flex.align-items-center justify-content-center"
+        >
           <Card style={{ overflow: "hidden" }}>
             <ReactPlayer
               controls
               height={170}
-              width={280}
+              width={"100%"}
               url={
-                "https://www.youtube.com/watch?v=J2UwI6FDs-k&ab_channel=Salesforce"
+                "https://www.youtube.com/watch?v=W-f6F2gxrl4&ab_channel=NodeApp"
               }
             />
           </Card>
-        </div>
-        <div className="pe-2">
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          md={4}
+          lg={3}
+          className="d-flex.align-items-center justify-content-center"
+        >
           <Card style={{ overflow: "hidden" }}>
             <ReactPlayer
               controls
               height={170}
-              width={280}
+              width={"100%"}
               url={
-                "https://www.youtube.com/watch?v=EUfzHKBvkeY&ab_channel=IndraIbrahim"
+                "https://www.youtube.com/watch?v=W-f6F2gxrl4&ab_channel=NodeApp"
               }
             />
           </Card>
-        </div>
-        <div className="pe-2">
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          md={4}
+          lg={3}
+          className="d-flex.align-items-center justify-content-center"
+        >
           <Card style={{ overflow: "hidden" }}>
             <ReactPlayer
               controls
               height={170}
-              width={280}
+              width={"100%"}
               url={
-                "https://www.youtube.com/watch?v=vLMo5CY0skU&ab_channel=JoeKeane"
+                "https://www.youtube.com/watch?v=W-f6F2gxrl4&ab_channel=NodeApp"
               }
             />
           </Card>
-        </div>
-        <div className="pe-2">
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          md={4}
+          lg={3}
+          className="d-flex.align-items-center justify-content-center"
+        >
           <Card style={{ overflow: "hidden" }}>
             <ReactPlayer
               controls
               height={170}
-              width={280}
+              width={"100%"}
               url={
-                "https://www.youtube.com/watch?v=bPzDzsOBv5o&ab_channel=Non-FunctionalClub"
+                "https://www.youtube.com/watch?v=W-f6F2gxrl4&ab_channel=NodeApp"
               }
             />
           </Card>
-        </div>
-      </Slick>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          md={4}
+          lg={3}
+          className="d-flex.align-items-center justify-content-center"
+        >
+          <Card style={{ overflow: "hidden" }}>
+            <ReactPlayer
+              controls
+              height={170}
+              width={"100%"}
+              url={
+                "https://www.youtube.com/watch?v=W-f6F2gxrl4&ab_channel=NodeApp"
+              }
+            />
+          </Card>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          md={4}
+          lg={3}
+          className="d-flex.align-items-center justify-content-center"
+        >
+          <Card style={{ overflow: "hidden" }}>
+            <ReactPlayer
+              controls
+              height={170}
+              width={"100%"}
+              url={
+                "https://www.youtube.com/watch?v=W-f6F2gxrl4&ab_channel=NodeApp"
+              }
+            />
+          </Card>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          md={4}
+          lg={3}
+          className="d-flex.align-items-center justify-content-center"
+        >
+          <Card style={{ overflow: "hidden" }}>
+            <ReactPlayer
+              controls
+              height={170}
+              width={"100%"}
+              url={
+                "https://www.youtube.com/watch?v=W-f6F2gxrl4&ab_channel=NodeApp"
+              }
+            />
+          </Card>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          md={4}
+          lg={3}
+          className="d-flex.align-items-center justify-content-center"
+        >
+          <Card style={{ overflow: "hidden" }}>
+            <ReactPlayer
+              controls
+              height={170}
+              width={"100%"}
+              url={
+                "https://www.youtube.com/watch?v=W-f6F2gxrl4&ab_channel=NodeApp"
+              }
+            />
+          </Card>
+        </Grid>
+      </Grid>
     </Container>
   );
 }

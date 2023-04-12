@@ -26,6 +26,7 @@ import {
   Close,
   FilterList,
   IosShare,
+  List,
   Menu,
   Search,
 } from "@mui/icons-material";
@@ -74,15 +75,11 @@ function IFCViewer() {
     sceneModel.on("loaded", function () {
       viewer.cameraFlight.flyTo(sceneModel);
     });
-    new NavCubePlugin(viewer, {
-      canvasId: "myNavCubeCanvas",
-      visible: true,
-      size: 200,
-      alignment: "bottomRight",
-      bottomMargin: 100,
-      rightMargin: 10,
-    });
-    // }
+    // new NavCubePlugin(viewer, {
+    //   canvasId: "myNavCubeCanvas",
+    //   visible: true,
+    //   alignment: "bottomRight",
+    // });
   }, []);
 
   // Filter
@@ -98,8 +95,8 @@ function IFCViewer() {
   const [treeviewMenu, setTreeviewMenu] = useState(false);
 
   return (
-    <div className="h-100" style={{ maxHeight: "73vh" }}>
-      <Grid container spacing={3} id="head">
+    <div className="h-100  " style={{ maxHeight: "73vh" }}>
+      <Grid container spacing={3}>
         <Grid item xs={12}>
           <Typography variant="h5" className="fw-bold">
             IFC Viewer
@@ -227,22 +224,18 @@ function IFCViewer() {
           </div>
         </Grid>
       </Grid>
-      <Grid container className="mt-3 h-100 ">
-        <Grid item xs={12} className="h-100 ">
-          <Box className=" h-100" sx={{ position: "relative" }}>
-            <canvas
-              id="myCanvas"
-              className="w-100 h-100 "
-              style={{ width: "50px" }}
-            ></canvas>
+      <Grid container className="mt-3 h-100 " overflow={"hidden"}>
+        <Grid item xs={12} className="h-100  ">
+          <Box className=" h-100 " sx={{ position: "relative" }}>
+            <canvas id="myCanvas" className="w-100 h-100 "></canvas>
             <canvas
               id="myNavCubeCanvas"
               style={{
                 position: "absolute",
-                bottom: -20,
-                right: -90,
-                height: 200,
-                width: 300,
+                bottom: 0,
+                right: 0,
+                height: 100,
+                width: 100,
                 // zIndex: 200000,
               }}
             ></canvas>
@@ -259,10 +252,11 @@ function IFCViewer() {
                   setTreeviewMenu(!treeviewMenu);
                 }}
               >
-                {treeviewMenu ? <Close /> : <Menu />}
+                {treeviewMenu ? <Close /> : <List />}
               </IconButton>
             </div>
             <div
+              className="IFCMenu"
               style={{
                 position: "absolute",
                 top: 40,
@@ -271,7 +265,7 @@ function IFCViewer() {
                 width: treeviewMenu ? 400 : 0,
                 // display: treeviewMenu ? "block" : "none",
                 opacity: treeviewMenu ? 1 : 0,
-                backgroundColor: "rgba(0, 0, 0, 0.2)",
+                backgroundColor: "rgba(197, 198, 199, 1)",
                 padding: 10,
                 paddingTop: 20,
                 overflow: "hidden",
