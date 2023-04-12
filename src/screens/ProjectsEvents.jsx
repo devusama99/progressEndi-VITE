@@ -51,7 +51,6 @@ import EventsExpand from "../components/EventsExpand";
 import InputFeildCustom from "../components/InputFeildCustom";
 import ProgressIcon from "../assets/progress_icon.png";
 import TypeIcon from "../assets/type_icon.png";
-import { MacScrollbar } from "mac-scrollbar";
 
 function ProjectsEvents() {
   const importXls = useRef();
