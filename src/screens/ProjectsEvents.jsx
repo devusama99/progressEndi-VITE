@@ -332,10 +332,7 @@ function ProjectsEvents() {
         fullWidth={true}
         onClose={toggleEventModal}
       >
-        <Box
-          className="d-flex flex-column-reverse flex-md-row eventModalBox"
-          sx={{ overflow: "hidden" }}
-        >
+        <Box className="d-flex flex-column-reverse flex-md-row eventModalBox">
           <Box className="bg-primary h-100 w-30">
             <Box className="p-3 d-flex flex-column gap-2 h-100">
               <Accordion disableGutters elevation={0}>
@@ -795,7 +792,7 @@ function ProjectsEvents() {
                   value="left"
                   key="left"
                   className="text-capitalize"
-                  sx={{ width: "60px" }}
+                  sx={{ width: "40px" }}
                 >
                   <img src={TypeIcon} alt="type-icon" height={20} />
                 </ToggleButton>
@@ -803,7 +800,7 @@ function ProjectsEvents() {
                   value="right"
                   key="right"
                   className="text-capitalize "
-                  sx={{ width: "60px" }}
+                  sx={{ width: "40px" }}
                 >
                   <img src={ProgressIcon} alt="progress-icon" height={20} />
                 </ToggleButton>

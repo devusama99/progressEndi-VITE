@@ -40,8 +40,10 @@ $theme-colors: (
 
 .eventModalBox {
   height: 92vh;
+  overflow-y: hidden;
   @media only screen and (max-width: 500px) {
     height: 100%;
+    overflow: auto;
   }
 }
 .eventModalDetailsBox {
@@ -61,6 +63,7 @@ $theme-colors: (
   width: 70%;
   @media only screen and (max-width: 500px) {
     width: 100%;
+    min-height: 780px;
   }
 }
 
@@ -132,25 +135,27 @@ td {
   }
 }
 
-/* width */
-::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
-}
+@media only screen and (min-width: 500px) {
+  /* width */
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0);
-}
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
+  }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: rgba($color: #000, $alpha: 0.07);
-  border-radius: 10px;
-}
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba($color: #000, $alpha: 0.07);
+    border-radius: 10px;
+  }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: rgba($color: #000, $alpha: 0.2);
-  transition: all 0.2s ease-out;
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba($color: #000, $alpha: 0.2);
+    transition: all 0.2s ease-out;
+  }
 }
