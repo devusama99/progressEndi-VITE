@@ -1,9 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import Archive from "../screens/Archives";
+import CADFiles from "../screens/CADFiles";
 import CADViewer from "../screens/CADViewer";
 import Collabrators from "../screens/Collabrators";
 import Documents from "../screens/Documents";
 import HomePage from "../screens/HomePage";
+import IFCfiles from "../screens/IFCFiles";
 import IFCViewer from "../screens/IFCViewer";
 import Images from "../screens/Images";
 import MainApp from "../screens/MainApp";
@@ -94,10 +96,18 @@ export const router = createBrowserRouter([
       },
       {
         path: "ifc",
+        element: <IFCfiles />,
+      },
+      {
+        path: "ifc/:id",
         element: <IFCViewer />,
       },
       {
         path: "cad",
+        element: <CADFiles />,
+      },
+      {
+        path: "cad/:id",
         element: <CADViewer />,
       },
       {

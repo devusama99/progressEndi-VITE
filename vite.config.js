@@ -10,7 +10,7 @@ export default defineConfig({
   build: {
     outDir: "./build",
   },
-  optimizeDeps: {
-    exclude: ["react-custom-scrollbars"],
-  },
+  // optimizeDeps: {
+  //   exclude: ["react-forge-viewer"],
+  // },
 });
