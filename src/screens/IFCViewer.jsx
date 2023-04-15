@@ -127,7 +127,7 @@ function IFCViewer() {
                 bottom: 0,
                 left: 0,
                 width: treeviewMenu ? 400 : 0,
-                // display: treeviewMenu ? "block" : "none",
+                display: treeviewMenu ? "block" : "none",
                 opacity: treeviewMenu ? 1 : 0,
                 backgroundColor: "rgba(197, 198, 199, 1)",
                 padding: 10,
