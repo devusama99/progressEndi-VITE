@@ -42,44 +42,70 @@ function IFCViewer() {
   };
 
   useEffect(() => {
-    // console.log(IFCfile);
-    // if (IFCfile) {
+    if (window.innerWidth < 600) {
+      viewer = new Viewer({
+        canvasId: "myCanvas",
+        transparent: true,
+      });
+      viewer.camera.eye = [1, 2.855, 27.018];
+      viewer.camera.look = [4.4, 3.724, 8.899];
+      viewer.camera.up = [-0.018, 0.999, 0.039];
 
-    // const Viewer = window.Viewer;
+      new TreeViewPlugin(viewer, {
+        containerElement: document.getElementById("treeViewContainer"),
+        autoExpandDepth: 4, // Initially expand the root tree node
+      });
 
-    viewer = new Viewer({
-      canvasId: "myCanvas",
-      transparent: true,
-    });
-    viewer.camera.eye = [1, 2.855, 27.018];
-    viewer.camera.look = [4.4, 3.724, 8.899];
-    viewer.camera.up = [-0.018, 0.999, 0.039];
+      const webIFCLoader = new WebIFCLoaderPlugin(viewer, {
+        wasmPath: "https://cdn.jsdelivr.net/npm/@xeokit/xeokit-sdk/dist/",
+      });
 
-    new TreeViewPlugin(viewer, {
-      containerElement: document.getElementById("treeViewContainer"),
-      autoExpandDepth: 4, // Initially expand the root tree node
-    });
+      const sceneModel = webIFCLoader.load({
+        src: "/IFC.ifc",
+        edges: true,
+        //   rotation: [90, 0, 0],
+        scale: [0.5, 0.5, 0.5],
+        origin: [1, 1, 1],
+      });
 
-    const webIFCLoader = new WebIFCLoaderPlugin(viewer, {
-      wasmPath: "https://cdn.jsdelivr.net/npm/@xeokit/xeokit-sdk/dist/",
-    });
+      sceneModel.on("loaded", function () {
+        viewer.cameraFlight.flyTo(sceneModel);
+      });
+    } else {
+      viewer = new Viewer({
+        canvasId: "myCanvas",
+        transparent: true,
+      });
+      viewer.camera.eye = [1, 2.855, 27.018];
+      viewer.camera.look = [4.4, 3.724, 8.899];
+      viewer.camera.up = [-0.018, 0.999, 0.039];
 
-    const sceneModel = webIFCLoader.load({
-      src: "/IFC.ifc",
-      edges: true,
-      //   rotation: [90, 0, 0],
-      scale: [0.5, 0.5, 0.5],
-      origin: [1, 1, 1],
-    });
+      new TreeViewPlugin(viewer, {
+        containerElement: document.getElementById("treeViewContainer"),
+        autoExpandDepth: 4, // Initially expand the root tree node
+      });
 
-    sceneModel.on("loaded", function () {
-      viewer.cameraFlight.flyTo(sceneModel);
-    });
-    // new NavCubePlugin(viewer, {
-    //   canvasId: "myNavCubeCanvas",
-    //   visible: true,
-    //   alignment: "bottomRight",
-    // });
+      const webIFCLoader = new WebIFCLoaderPlugin(viewer, {
+        wasmPath: "https://cdn.jsdelivr.net/npm/@xeokit/xeokit-sdk/dist/",
+      });
+
+      const sceneModel = webIFCLoader.load({
+        src: "/IFC.ifc",
+        edges: true,
+        //   rotation: [90, 0, 0],
+        scale: [0.5, 0.5, 0.5],
+        origin: [1, 1, 1],
+      });
+
+      sceneModel.on("loaded", function () {
+        viewer.cameraFlight.flyTo(sceneModel);
+      });
+      new NavCubePlugin(viewer, {
+        canvasId: "myNavCubeCanvas",
+        visible: true,
+        alignment: "bottomRight",
+      });
+    }
   }, []);
 
   // Filter
@@ -91,7 +117,11 @@ function IFCViewer() {
       <Grid container className="mt-3 h-100 " overflow={"hidden"}>
         <Grid item xs={12} className="h-100  ">
           <Box className=" h-100 " sx={{ position: "relative" }}>
-            <canvas id="myCanvas" className="w-100 h-100 "></canvas>
+            <canvas
+              id="myCanvas"
+              className="w-100 h-100 "
+              style={{ minHeight: "70vh" }}
+            ></canvas>
             <canvas
               id="myNavCubeCanvas"
               style={{
