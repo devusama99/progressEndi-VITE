@@ -15,7 +15,16 @@ import ButtonCustom from "../components/ButtonCustom";
 import service1 from "../assets/service-1.png";
 import service2 from "../assets/service-2.png";
 import service3 from "../assets/service-3.png";
-import { Circle } from "@mui/icons-material";
+import {
+  Circle,
+  Facebook,
+  FacebookOutlined,
+  LinkedIn,
+  Mail,
+  Phone,
+  PinDrop,
+  Twitter,
+} from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import GatherProjects from "../assets/gather_projects.png";
 import WorkQuality from "../assets/work_quality.png";
@@ -24,6 +33,7 @@ import SuccessProject from "../assets/success_project.png";
 import Collab1 from "../assets/collab1.png";
 import Collab2 from "../assets/collab2.png";
 import ReactPlayer from "react-player";
+import InputFeildCustom from "../components/InputFeildCustom";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -31,9 +41,65 @@ function HomePage() {
     <div>
       <Grid container>
         <Grid item xs={12}>
-          <AppBar color="light" elevation={1} position="fixed">
-            <Toolbar className="d-flex justify-content-end">
-              <Button onClick={() => navigate("/signin")}>Sign in</Button>
+          <AppBar
+            color="light"
+            elevation={1}
+            position="fixed"
+            className="d-flex justify-content-end"
+          >
+            <Toolbar className="d-flex justify-content-between">
+              <Typography variant="h6" className="fw-bold" color={"primary"}>
+                ProgressEndi
+              </Typography>
+              <Box className="d-flex align-items-center justify-content-center">
+                <Button
+                  onClick={() => navigate("/signin")}
+                  className="text-capitalize fw-bold"
+                >
+                  Welcome
+                </Button>
+                <Button
+                  onClick={() => navigate("/signin")}
+                  className="text-capitalize fw-bold"
+                >
+                  Solutions
+                </Button>
+                <Button
+                  onClick={() => navigate("/signin")}
+                  className="text-capitalize fw-bold"
+                >
+                  Clients
+                </Button>
+                <Button
+                  onClick={() => navigate("/signin")}
+                  className="text-capitalize fw-bold"
+                >
+                  Services
+                </Button>
+                <Button
+                  onClick={() => navigate("/signin")}
+                  className="text-capitalize fw-bold"
+                >
+                  Contact
+                </Button>
+                <Button
+                  onClick={() => navigate("/signin")}
+                  className="text-capitalize fw-bold"
+                >
+                  About
+                </Button>
+              </Box>
+              <Button
+                onClick={() => navigate("/signin")}
+                className="text-capitalize fw-bold"
+                variant="contained"
+                disableElevation
+                sx={{
+                  color: (theme) => theme.palette.light.main,
+                }}
+              >
+                Sign in
+              </Button>
             </Toolbar>
           </AppBar>
         </Grid>
@@ -681,6 +747,144 @@ function HomePage() {
               </Typography>
             </div>
           </Stack>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Box
+            sx={{ backgroundColor: (theme) => theme.palette.primary.main }}
+            className="p-5 w-100"
+          >
+            <Typography
+              variant="h4"
+              className="fw-bold text-uppercase mb-5"
+              sx={{
+                position: "relative",
+                ":before": {
+                  content: "' '",
+                  position: "absolute",
+
+                  bottom: -15,
+                  backgroundColor: (theme) => theme.palette.grey.dark,
+                  width: "60px",
+                  height: "5px",
+                  left: "0px",
+                },
+              }}
+            >
+              Contact Us
+            </Typography>
+            <Stack gap={3} direction={"row"} className="w-100 ">
+              <InputFeildCustom fullWidth placeholder="Name" />
+              <InputFeildCustom fullWidth placeholder="Email" />
+            </Stack>
+            <InputFeildCustom
+              className="mt-3"
+              fullWidth
+              placeholder="Message"
+              multiline
+              rows={4}
+            />
+            <Box className="d-flex align-items-center justify-content-end mt-3">
+              <ButtonCustom
+                variant="outlined"
+                color="secondary"
+                label="Send Message"
+                sx={{
+                  borderColor: (theme) => theme.palette.light.main,
+                  borderRadius: 0,
+                }}
+                className="fw-bold"
+              />
+            </Box>
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Box
+            sx={{ backgroundColor: (theme) => theme.palette.secondary.main }}
+            className=" w-100 h-100 d-flex flex-column"
+          >
+            <Stack
+              gap={3}
+              direction={"row"}
+              className="w-100 p-4 "
+              justifyContent={"center"}
+            >
+              <FacebookOutlined
+                sx={{
+                  fontSize: 30,
+                  color: (theme) => theme.palette.light.main,
+                  cursor: "pointer",
+                }}
+              />
+              <Twitter
+                sx={{
+                  fontSize: 30,
+                  color: (theme) => theme.palette.light.main,
+                  cursor: "pointer",
+                }}
+              />
+              <LinkedIn
+                sx={{
+                  fontSize: 30,
+                  color: (theme) => theme.palette.light.main,
+                  cursor: "pointer",
+                }}
+              />
+            </Stack>
+
+            <Box
+              className="d-flex flex-column align-items-start gap-3  mt-3 p-5 "
+              sx={{
+                height: "100%",
+                backgroundColor: (theme) => theme.palette.light.main,
+              }}
+            >
+              <Typography
+                className="d-flex align-items-center"
+                sx={{
+                  color: (theme) => theme.palette.grey.main,
+                  fontSize: 16,
+                }}
+              >
+                <PinDrop
+                  className="me-2"
+                  sx={{
+                    fontSize: 25,
+                  }}
+                />{" "}
+                Lorem ipsum dolor sit amet consectetur adipisicing.
+              </Typography>
+              <Typography
+                className="d-flex align-items-center"
+                sx={{
+                  color: (theme) => theme.palette.grey.main,
+                  fontSize: 16,
+                }}
+              >
+                <Phone
+                  className="me-2"
+                  sx={{
+                    fontSize: 25,
+                  }}
+                />{" "}
+                +00 123 456 78
+              </Typography>
+              <Typography
+                className="d-flex align-items-center"
+                sx={{
+                  color: (theme) => theme.palette.grey.main,
+                  fontSize: 16,
+                }}
+              >
+                <Mail
+                  className="me-2"
+                  sx={{
+                    fontSize: 25,
+                  }}
+                />{" "}
+                constractioninc@gmail.com
+              </Typography>
+            </Box>
+          </Box>
         </Grid>
       </Grid>
     </div>
