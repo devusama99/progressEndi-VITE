@@ -114,7 +114,7 @@ function IFCViewer() {
 
   return (
     <div className="h-100  " style={{ maxHeight: "85vh" }}>
-      <Grid container className="mt-3 h-100 " overflow={"hidden"}>
+      <Grid container className=" h-100 " overflow={"hidden"}>
         <Grid item xs={12} className="h-100  ">
           <Box className=" h-100 " sx={{ position: "relative" }}>
             <canvas

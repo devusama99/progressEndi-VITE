@@ -16,23 +16,23 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
   //   backgroundColor: alpha(theme.palette.primary.main, 0.2),
 }));
 
-function Signin() {
+function UpdatePassword() {
   const [actionDisabled, setActionDisabled] = useState(false);
   const navigate = useNavigate();
 
-  const signIn = (e) => {
+  const updatePassword = (e) => {
     e.preventDefault();
     setActionDisabled(true);
     setTimeout(() => {
       setActionDisabled(false);
-      navigate("/pricing");
+      navigate("/app");
     }, 3000);
   };
 
   return (
     <div className="mh-100vh">
       <Grid container className="mh-100vh " justifyContent={"center"}>
-        <Grid item xs={12} md={6} xl={8} className="m-p p-0 bg-primary">
+        <Grid item xs={12} md={6} xl={8}>
           <div className="d-flex flex-column  align-items-center justify-content-center gap-3 h-100 img-overlay"></div>
         </Grid>
         <Grid item xs={12} md={6} xl={4}>
@@ -48,51 +48,31 @@ function Signin() {
               >
                 <div className=" w-100 p-4 py-5">
                   <Typography variant="h5" className="mb-4 fw-bold">
-                    Login
+                    Update Password
                   </Typography>
                   <Typography className="mb-4 fw-light " variant="body2">
-                    Enter your Email and Password to login to your existing
-                    account.
+                    Enter a new password.
                   </Typography>
                   <form
-                    onSubmit={signIn}
+                    onSubmit={updatePassword}
                     className="w-100 d-flex flex-column gap-3"
                   >
                     <InputFeildCustom
-                      id="email"
-                      fullWidth
-                      border
-                      label="Email"
-                    />
-
-                    <InputFeildCustom
-                      id="password"
-                      type={"password"}
                       fullWidth
                       border
                       label="Password"
+                      type="password"
                     />
-                    <div className="d-flex align-items-center justify-content-between">
-                      <FormControlLabel
-                        control={<Checkbox size="small" defaultChecked />}
-                        label="Remember me"
-                      />
-
-                      <Typography
-                        color="primary"
-                        sx={{ cursor: "pointer" }}
-                        onClick={() => {
-                          navigate("/forgetPassword");
-                        }}
-                      >
-                        Forget password ?
-                      </Typography>
-                    </div>
-
+                    <InputFeildCustom
+                      fullWidth
+                      border
+                      label="Confirm Password"
+                      type="password"
+                    />
                     <ButtonCustom
                       size="large"
                       variant="contained"
-                      label="Sign in"
+                      label="Continue"
                       type="submit"
                       disabled={actionDisabled}
                       loading={actionDisabled ? 1 : 0}
@@ -114,4 +94,4 @@ function Signin() {
   );
 }
 
-export default Signin;
+export default UpdatePassword;

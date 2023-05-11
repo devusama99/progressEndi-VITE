@@ -46,13 +46,14 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
       maxWidth: `calc(100% - ${open ? 220 : drawerWidth}px)`,
     },
     width: "100%",
+    paddingRight: theme.spacing(3),
     padding: theme.spacing(3),
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
     marginLeft: 0,
-    maxHeight: "95vh",
+    maxHeight: "98vh",
   })
 );
 
@@ -81,6 +82,9 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   // paddingTop: theme.spacing(2),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
+  margin: 0,
+  padding: 0,
+  height: "40px",
   justifyContent: "flex-end",
 }));
 
@@ -246,7 +250,7 @@ export default function ProjectView() {
         open={mobileview ? open : true}
         onClose={toggleDrawer}
       >
-        <DrawerHeader className="d-flex flex-column align-items-center mt-5 px-3">
+        <DrawerHeader className="d-flex flex-column align-items-center mt-5 pt-5 px-3">
           <img src={logo} alt="logo" className="mt-1 mb-3" />
           <IconButton
             onClick={toggleDrawer}

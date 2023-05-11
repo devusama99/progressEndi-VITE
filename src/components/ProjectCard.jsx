@@ -71,17 +71,19 @@ function ProjectCard() {
         style={{ borderRadius: "10px" }}
       /> */}
       <Carousel controls={false} interval={null}>
-        {new Array(Math.floor(Math.random() * 10 + 1)).fill(0).map((item) => (
-          <Carousel.Item>
-            <img
-              src="https://media.istockphoto.com/id/1267010934/photo/experienced-engineer-explaining-the-problems-in-construction-works-development-after-recession.jpg?s=612x612&w=0&k=20&c=kSbguQRPqhgKgYzy-P-e1ScLXBXWszQn1JimPfE4aWk="
-              alt="project-1"
-              width="100%"
-              height={"150px"}
-              style={{ borderRadius: "10px" }}
-            />
-          </Carousel.Item>
-        ))}
+        {new Array(Math.floor(Math.random() * 10 + 1))
+          .fill(0)
+          .map((item, i) => (
+            <Carousel.Item key={`img-${i}`}>
+              <img
+                src="https://media.istockphoto.com/id/1267010934/photo/experienced-engineer-explaining-the-problems-in-construction-works-development-after-recession.jpg?s=612x612&w=0&k=20&c=kSbguQRPqhgKgYzy-P-e1ScLXBXWszQn1JimPfE4aWk="
+                alt="project-1"
+                width="100%"
+                height={"150px"}
+                style={{ borderRadius: "10px" }}
+              />
+            </Carousel.Item>
+          ))}
       </Carousel>
       <div onClick={() => navigate("/app/1")}>
         <Typography className="fw-bold mt-4" sx={{ lineHeight: 0.5 }}>

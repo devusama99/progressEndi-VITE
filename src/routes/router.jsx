@@ -22,6 +22,9 @@ import Signup from "../screens/Signup";
 import TimeAndCost from "../screens/TimeAndCost";
 import Timeline from "../screens/Timeline";
 import VideoTutorials from "../screens/VideoTutorials";
+import ForgetPassword from "../screens/ForgetPAssword";
+import UpdatePassword from "../screens/UpdatePassword";
+import Pricing from "../screens/Pricing";
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +38,18 @@ export const router = createBrowserRouter([
   {
     path: "/signup",
     element: <Signup />,
+  },
+  {
+    path: "/forgetPassword",
+    element: <ForgetPassword />,
+  },
+  {
+    path: "/updatePassword",
+    element: <UpdatePassword />,
+  },
+  {
+    path: "/pricing",
+    element: <Pricing />,
   },
   {
     path: "/app",

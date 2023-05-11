@@ -34,6 +34,7 @@ import Collab1 from "../assets/collab1.png";
 import Collab2 from "../assets/collab2.png";
 import ReactPlayer from "react-player";
 import InputFeildCustom from "../components/InputFeildCustom";
+import ProjectsImg from "../assets/projects.jpeg";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -398,25 +399,21 @@ function HomePage() {
           <Box className="d-flex align-items-center flex-wrap justify-content-center gap-4">
             {[
               {
-                img: "https://visilean.com/wp-content/uploads/2021/07/Blog-image-.jpg",
                 heading: "Site Management",
                 description:
                   "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur rem tempore laborum ad. Itaque asperiores dignissimos ipsum dolorem quis eveniet eaque beatae, nostrum consectetur. In eos minima placeat autem architecto.ß",
               },
               {
-                img: "https://visilean.com/wp-content/uploads/2021/07/Blog-image-.jpg",
                 heading: "Site Management Events",
                 description:
                   "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur rem tempore laborum ad. Itaque asperiores dignissimos ipsum dolorem quis eveniet eaque beatae, nostrum consectetur. In eos minima placeat autem architecto.ß",
               },
               {
-                img: "https://visilean.com/wp-content/uploads/2021/07/Blog-image-.jpg",
                 heading: "Facilitate Exchanges",
                 description:
                   "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur rem tempore laborum ad. Itaque asperiores dignissimos ipsum dolorem quis eveniet eaque beatae, nostrum consectetur. In eos minima placeat autem architecto.ß",
               },
               {
-                img: "https://visilean.com/wp-content/uploads/2021/07/Blog-image-.jpg",
                 heading: "Points of Attention",
                 description:
                   "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur rem tempore laborum ad. Itaque asperiores dignissimos ipsum dolorem quis eveniet eaque beatae, nostrum consectetur. In eos minima placeat autem architecto.ß",
@@ -429,7 +426,7 @@ function HomePage() {
                 }}
               >
                 <img
-                  src={item.img}
+                  src={ProjectsImg}
                   alt="project-img"
                   width={250}
                   height={200}
