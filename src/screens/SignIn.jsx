@@ -25,7 +25,7 @@ function Signin() {
     setActionDisabled(true);
     setTimeout(() => {
       setActionDisabled(false);
-      navigate("/pricing");
+      navigate("/app");
     }, 3000);
   };
 

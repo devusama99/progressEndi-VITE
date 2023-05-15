@@ -6,7 +6,9 @@ export default class PieChart extends React.Component {
     super(props);
 
     this.state = {
-      series: [44, 55, 13, 43],
+      series: this.props.series
+        ? this.props.series
+        : [44, 55, 13, 43, 60, 33, 15],
       options: {
         legend: {
           position: "bottom",
@@ -28,12 +30,30 @@ export default class PieChart extends React.Component {
             colors: ["#fff"],
           },
         },
-        colors: ["#1b1d2a", "#9eb801", "#f7980c", "#d32f2f"],
+        colors: [
+          "#1b1d2a",
+          "#9eb801",
+          "#f7980c",
+          "#d32f2f",
+          "#40a0fc",
+          "#ff8c9a",
+          "#a897e2",
+        ],
         chart: {
           // width: 380,
           type: "pie",
         },
-        labels: ["Not Started", "Completed", "In Progress", "Halted"],
+        labels: this.props.labels
+          ? this.props.labels
+          : [
+              "Validated",
+              "Not Started",
+              "Finished",
+              "In Progress",
+              "Not Validated",
+              "Refused",
+              "Requirements",
+            ],
         responsive: [
           {
             breakpoint: 480,

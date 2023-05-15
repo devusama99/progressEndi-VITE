@@ -11,7 +11,7 @@ export default class TimelineChart extends React.Component {
 
       options: {
         chart: {
-          height: 800,
+          height: 300,
           type: "rangeBar",
 
           toolbar: {
@@ -53,7 +53,7 @@ export default class TimelineChart extends React.Component {
           bar: {
             horizontal: true,
             borderRadius: 5,
-            barHeight: "30",
+            barHeight: "80%",
 
             // distributed: true,
             dataLabels: {
@@ -162,6 +162,7 @@ export default class TimelineChart extends React.Component {
           options={this.state.options}
           series={this.state.series}
           type="rangeBar"
+          height={this.state.series.length * 350}
         />
       </div>
     );

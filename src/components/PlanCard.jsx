@@ -35,7 +35,7 @@ function PlanCard() {
         />
         <div className="p-3 py-1 pb-2">
           <Typography className="fw-bold mt-3 d-flex align-items-center">
-            Plan Name{" "}
+            Event
             <Chip
               label={Math.floor(Math.random() * 10)}
               color="primary"

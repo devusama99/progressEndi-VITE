@@ -25,7 +25,7 @@ function Signup() {
     setActionDisabled(true);
     setTimeout(() => {
       setActionDisabled(false);
-      navigate("/");
+      navigate("/signin");
     }, 3000);
   };
 
@@ -110,7 +110,7 @@ function Signup() {
                   </form>
                   <div className="d-flex align-items-center mt-3">
                     <Typography>Already have an account? </Typography>
-                    <Link to="/" className="text-decoration-none ms-1">
+                    <Link to="/signin" className="text-decoration-none ms-1">
                       <Typography color={"primary"}>Signin</Typography>
                     </Link>
                   </div>

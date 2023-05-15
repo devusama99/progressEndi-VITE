@@ -4,6 +4,13 @@ import { Box } from "@mui/system";
 import React from "react";
 import { useNavigate } from "react-router";
 import EventsModal from "./EventsModal";
+import Event1 from "../assets/event-icons/1.png";
+import Event2 from "../assets/event-icons/2.png";
+import Event3 from "../assets/event-icons/3.png";
+import Event4 from "../assets/event-icons/4.png";
+import Event5 from "../assets/event-icons/5.png";
+import Event6 from "../assets/event-icons/6.png";
+import Event7 from "../assets/event-icons/7.png";
 
 function EventCard() {
   const navigate = useNavigate();
@@ -54,7 +61,15 @@ function EventCard() {
             />
           </div>
 
-          <Flare color="primary" />
+          <img
+            src={
+              [Event1, Event2, Event3, Event4, Event5, Event6, Event7][
+                Math.floor(Math.random() * (6 - 1 + 1) + 1)
+              ]
+            }
+            alt="event-icon"
+            width={22}
+          />
         </div>
 
         <div className="d-flex align-items-center justify-content-between mt-2">

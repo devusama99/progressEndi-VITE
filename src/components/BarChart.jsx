@@ -43,12 +43,12 @@ export default class BarChart extends React.Component {
         },
         xaxis: {
           categories: [
-            "Class 1",
-            "Class 2",
-            "Class 3",
-            "Class 4",
-            "Class 5",
-            "Class 6",
+            "Package 1",
+            "Package 2",
+            "Package 3",
+            "Package 4",
+            "Package 5",
+            "Package 6",
           ],
           axisTicks: {
             show: false,

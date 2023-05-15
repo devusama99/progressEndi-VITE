@@ -300,30 +300,10 @@ function Metrics() {
                 className="mb-2 fw-bold"
                 sx={{ fontSize: "14px", opacity: 0.75 }}
               >
-                Events Per Service
+                Events Per Performance
               </Typography>
               <div className="d-flex align-items-center justify-content-center w-100 h-100">
                 <DonutChart />
-              </div>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={6} lg={4}>
-            <Card
-              elevation={0}
-              sx={{
-                backgroundColor: (theme) => theme.palette.light.main,
-                boxShadow: "0px 0px 50px rgba(0, 0, 0, 0.07)",
-              }}
-              className="p-3 h-100 d-flex flex-column align-items-start justify-content-start"
-            >
-              <Typography
-                className="mb-2 fw-bold"
-                sx={{ fontSize: "14px", opacity: 0.75 }}
-              >
-                Events Per Collaborator
-              </Typography>
-              <div className="d-flex align-items-center justify-content-center w-100 h-100">
-                <PolarAreaChart />
               </div>
             </Card>
           </Grid>
@@ -343,6 +323,26 @@ function Metrics() {
                 Events Per Class
               </Typography>
               <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                <PolarAreaChart />
+              </div>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={6} lg={4}>
+            <Card
+              elevation={0}
+              sx={{
+                backgroundColor: (theme) => theme.palette.light.main,
+                boxShadow: "0px 0px 50px rgba(0, 0, 0, 0.07)",
+              }}
+              className="p-3 h-100 d-flex flex-column align-items-start justify-content-start"
+            >
+              <Typography
+                className="mb-2 fw-bold"
+                sx={{ fontSize: "14px", opacity: 0.75 }}
+              >
+                Events Per Package
+              </Typography>
+              <div className="d-flex align-items-center justify-content-center w-100 h-100">
                 <BarChart />
               </div>
             </Card>
@@ -360,10 +360,30 @@ function Metrics() {
                 className="mb-2 fw-bold"
                 sx={{ fontSize: "14px", opacity: 0.75 }}
               >
-                Events Per Category
+                Events Per Priority
               </Typography>
               <div className="d-flex align-items-center justify-content-center w-100 h-100">
                 <DonutChart />
+              </div>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={6} lg={4}>
+            <Card
+              elevation={0}
+              sx={{
+                backgroundColor: (theme) => theme.palette.light.main,
+                boxShadow: "0px 0px 50px rgba(0, 0, 0, 0.07)",
+              }}
+              className="p-3 h-100 d-flex flex-column align-items-start justify-content-start"
+            >
+              <Typography
+                className="mb-2 fw-bold"
+                sx={{ fontSize: "14px", opacity: 0.75 }}
+              >
+                Projects Deley
+              </Typography>
+              <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                <PieChart series={[40, 30]} labels={["On Time", "Delayed"]} />
               </div>
             </Card>
           </Grid>
@@ -400,7 +420,7 @@ function Metrics() {
                 className="mb-2 fw-bold"
                 sx={{ fontSize: "14px", opacity: 0.75 }}
               >
-                Events By Priority
+                Events By Category
               </Typography>
               <div className="d-flex flex-column gap-2  justify-content-center w-100 h-100">
                 {Array(5)
@@ -504,7 +524,9 @@ function Metrics() {
               >
                 Projects Per Package
               </Typography>
-              <DonutChart />
+              <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                <BarChart />
+              </div>
             </Card>
           </Grid>
           <Grid item xs={12} md={6} lg={4}>

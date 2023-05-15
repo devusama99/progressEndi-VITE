@@ -137,7 +137,7 @@ function EventsExpand({ title, count, expand, onClick }) {
         ""
       )}
       <br />
-      <ButtonCustom
+      {/* <ButtonCustom
         sx={{
           height: "40px",
           color: (theme) => theme.palette.primary.main,
@@ -150,7 +150,7 @@ function EventsExpand({ title, count, expand, onClick }) {
           </Typography>
         }
         variant="outlined"
-      />
+      /> */}
     </Box>
   );
 }

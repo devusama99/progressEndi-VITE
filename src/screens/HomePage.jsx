@@ -3,8 +3,11 @@ import {
   AppBar,
   Box,
   Button,
+  Container,
   Divider,
   Grid,
+  List,
+  ListItem,
   Rating,
   Stack,
   Toolbar,
@@ -16,6 +19,7 @@ import service1 from "../assets/service-1.png";
 import service2 from "../assets/service-2.png";
 import service3 from "../assets/service-3.png";
 import {
+  CheckBoxRounded,
   Circle,
   Facebook,
   FacebookOutlined,
@@ -35,6 +39,7 @@ import Collab2 from "../assets/collab2.png";
 import ReactPlayer from "react-player";
 import InputFeildCustom from "../components/InputFeildCustom";
 import ProjectsImg from "../assets/projects.jpeg";
+import { Card } from "react-bootstrap";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -564,10 +569,15 @@ function HomePage() {
             container
             justifyContent={"center"}
             spacing={3}
-            className="my-3 my-md-5"
+            className="my-3 my-md-5 "
           >
-            <Grid item xs={12} sm={8} md={6}>
-              <img src={SuccessProject} alt="success-project" width="100%" />
+            <Grid
+              item
+              xs={12}
+              md={11}
+              className="d-flex justify-content-center"
+            >
+              <img src={SuccessProject} alt="success-project" width="80%" />
             </Grid>
             <Grid item xs={12}>
               <Typography
@@ -622,6 +632,212 @@ function HomePage() {
               ))}
           </Grid>
         </Grid>
+        <Container maxWidth="md" className="mt-5">
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <Typography variant="h3" sx={{ fontWeight: "bold" }}>
+                We have got a plan that's perfect for you
+              </Typography>
+              <div className="d-flex justify-content-center mt-3">
+                <ButtonCustom
+                  label="Monthly Billing"
+                  variant="contained"
+                  color="secondary"
+                  className=" fw-bold"
+                />
+                <ButtonCustom
+                  label="Annual Billing"
+                  variant="outlined"
+                  textDark
+                  color="secondary"
+                  className="ms-3 fw-bold"
+                />
+              </div>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <Card
+                className="p-3 "
+                sx={{
+                  boxShadow: "0px 0px 17px rgba(0, 0, 0, 0.15)",
+                }}
+              >
+                <Typography variant="h6" className="fw-bold">
+                  Enterprise Plan
+                </Typography>
+                <Typography
+                  variant="h3"
+                  className="fw-bold d-flex align-items-end justify-content-start my-3"
+                >
+                  $40{" "}
+                  <span
+                    style={{
+                      fontSize: "12px",
+                      marginBottom: "8px",
+                      marginLeft: "8px",
+                      fontWeight: "normal",
+                    }}
+                  >
+                    Per Month
+                  </span>
+                </Typography>
+                <ButtonCustom
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  label="Get Started"
+                  className="fw-bold"
+                  onClick={() => {
+                    navigate("/signup");
+                  }}
+                />
+                <Divider className="my-4" />
+                <Box>
+                  <Typography variant="h6" className="fw-bold">
+                    Features
+                  </Typography>
+                  <Typography>Everything in our free plan plus.</Typography>
+                  <List className="mt-3">
+                    {Array(6)
+                      .fill("0")
+                      .map((item, i) => (
+                        <ListItem
+                          key={"feature" + i}
+                          className="d-flex m-0 p-0 py-1"
+                        >
+                          <CheckBoxRounded sx={{ color: "green" }} />
+                          <Typography className="mx-2">
+                            Access to basic features
+                          </Typography>
+                        </ListItem>
+                      ))}
+                  </List>
+                </Box>
+              </Card>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <Card
+                className="p-3 bg-secondary text-light"
+                sx={{
+                  boxShadow: "0px 0px 17px rgba(0, 0, 0, 0.15)",
+                  backgroundColor: "red",
+                  color: (theme) => theme.palette.light.main,
+                }}
+              >
+                <Typography variant="h6" className="fw-bold">
+                  Enterprise Plan
+                </Typography>
+                <Typography
+                  variant="h3"
+                  className="fw-bold d-flex align-items-end justify-content-start my-3"
+                >
+                  $40{" "}
+                  <span
+                    style={{
+                      fontSize: "12px",
+                      marginBottom: "8px",
+                      marginLeft: "8px",
+                      fontWeight: "normal",
+                    }}
+                  >
+                    Per Month
+                  </span>
+                </Typography>
+                <ButtonCustom
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  label="Get Started"
+                  className="fw-bold"
+                  onClick={() => {
+                    navigate("/signup");
+                  }}
+                />
+                <Divider className="my-4" />
+                <Box>
+                  <Typography variant="h6" className="fw-bold">
+                    Features
+                  </Typography>
+                  <Typography>Everything in our free plan plus.</Typography>
+                  <List className="mt-3">
+                    {Array(6)
+                      .fill("0")
+                      .map((item, i) => (
+                        <ListItem
+                          key={"feature" + i}
+                          className="d-flex m-0 p-0 py-1"
+                        >
+                          <CheckBoxRounded sx={{ color: "green" }} />
+                          <Typography className="mx-2">
+                            Access to basic features
+                          </Typography>
+                        </ListItem>
+                      ))}
+                  </List>
+                </Box>
+              </Card>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <Card
+                className="p-3 "
+                sx={{
+                  boxShadow: "0px 0px 17px rgba(0, 0, 0, 0.15)",
+                }}
+              >
+                <Typography variant="h6" className="fw-bold">
+                  Enterprise Plan
+                </Typography>
+                <Typography
+                  variant="h3"
+                  className="fw-bold d-flex align-items-end justify-content-start my-3"
+                >
+                  $40{" "}
+                  <span
+                    style={{
+                      fontSize: "12px",
+                      marginBottom: "8px",
+                      marginLeft: "8px",
+                      fontWeight: "normal",
+                    }}
+                  >
+                    Per Month
+                  </span>
+                </Typography>
+                <ButtonCustom
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  label="Get Started"
+                  className="fw-bold"
+                  onClick={() => {
+                    navigate("/signup");
+                  }}
+                />
+                <Divider className="my-4" />
+                <Box>
+                  <Typography variant="h6" className="fw-bold">
+                    Features
+                  </Typography>
+                  <Typography>Everything in our free plan plus.</Typography>
+                  <List className="mt-3">
+                    {Array(6)
+                      .fill("0")
+                      .map((item, i) => (
+                        <ListItem
+                          key={"feature" + i}
+                          className="d-flex m-0 p-0 py-1"
+                        >
+                          <CheckBoxRounded sx={{ color: "green" }} />
+                          <Typography className="mx-2">
+                            Access to basic features
+                          </Typography>
+                        </ListItem>
+                      ))}
+                  </List>
+                </Box>
+              </Card>
+            </Grid>
+          </Grid>
+        </Container>
         <Grid
           item
           xs={12}

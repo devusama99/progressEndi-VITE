@@ -154,7 +154,7 @@ function Projects() {
                 <Stack spacing={2}>
                   <div className="d-flex align-items-center">
                     <Typography sx={{ fontSize: "12px" }} className="w-50">
-                      Type Of Event
+                      Progress State
                     </Typography>
                     <InputFeildCustom
                       select
@@ -167,11 +167,13 @@ function Projects() {
                     >
                       <MenuItem value={1}>All</MenuItem>
                       <MenuItem value={2}>Filter 1</MenuItem>
+                      <MenuItem value={3}>Filter 2</MenuItem>
+                      <MenuItem value={4}>Filter 3</MenuItem>
                     </InputFeildCustom>
                   </div>
                   <div className="d-flex align-items-center">
                     <Typography sx={{ fontSize: "12px" }} className="w-50">
-                      Category
+                      Country
                     </Typography>
                     <InputFeildCustom
                       select
@@ -184,6 +186,46 @@ function Projects() {
                     >
                       <MenuItem value={1}>All</MenuItem>
                       <MenuItem value={2}>Filter 1</MenuItem>
+                      <MenuItem value={3}>Filter 2</MenuItem>
+                      <MenuItem value={4}>Filter 3</MenuItem>
+                    </InputFeildCustom>
+                  </div>
+                  <div className="d-flex align-items-center">
+                    <Typography sx={{ fontSize: "12px" }} className="w-50">
+                      City
+                    </Typography>
+                    <InputFeildCustom
+                      select
+                      color="secondary"
+                      textDark
+                      value={1}
+                      border
+                      className="ms-3"
+                      fullWidth
+                    >
+                      <MenuItem value={1}>All</MenuItem>
+                      <MenuItem value={2}>Filter 1</MenuItem>
+                      <MenuItem value={3}>Filter 2</MenuItem>
+                      <MenuItem value={4}>Filter 3</MenuItem>
+                    </InputFeildCustom>
+                  </div>
+                  <div className="d-flex align-items-center">
+                    <Typography sx={{ fontSize: "12px" }} className="w-50">
+                      Project Manager
+                    </Typography>
+                    <InputFeildCustom
+                      select
+                      color="secondary"
+                      textDark
+                      value={1}
+                      border
+                      className="ms-3"
+                      fullWidth
+                    >
+                      <MenuItem value={1}>All</MenuItem>
+                      <MenuItem value={2}>Filter 1</MenuItem>
+                      <MenuItem value={3}>Filter 2</MenuItem>
+                      <MenuItem value={4}>Filter 3</MenuItem>
                     </InputFeildCustom>
                   </div>
                 </Stack>

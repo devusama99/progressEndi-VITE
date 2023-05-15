@@ -431,7 +431,35 @@ function TimeAndCost() {
           </Grid>
         )}
 
-        <Grid item xs={12}>
+        <Grid
+          item
+          xs={12}
+          className={
+            view === 1
+              ? "d-flex justify-content-between align-items-center"
+              : ""
+          }
+        >
+          {view === 1 ? (
+            <>
+              <div className="d-flex flex-column align-items-end">
+                <Typography variant="h6" className="fw-bold text-capitalize">
+                  Cost of work left
+                </Typography>
+                <Typography variant="h6" className="fw-bold">
+                  $23,000
+                </Typography>
+              </div>
+              <div className="d-flex flex-column align-items-end">
+                <Typography variant="h6" className="fw-bold text-capitalize">
+                  Cost of work Done
+                </Typography>
+                <Typography variant="h6" className="fw-bold">
+                  $20,000
+                </Typography>
+              </div>
+            </>
+          ) : null}
           <div className="d-flex flex-column align-items-end">
             <Typography variant="h6" className="fw-bold">
               Estimated Total {view % 2 === 0 ? "Time" : "Cost"}

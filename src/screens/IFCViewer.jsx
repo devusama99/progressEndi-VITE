@@ -113,14 +113,14 @@ function IFCViewer() {
   const [treeviewMenu, setTreeviewMenu] = useState(false);
 
   return (
-    <div className="h-100  " style={{ maxHeight: "85vh" }}>
-      <Grid container className=" h-100 " overflow={"hidden"}>
+    <div style={{ minHeight: "90vh" }}>
+      <Grid container className=" h-100">
         <Grid item xs={12} className="h-100  ">
           <Box className=" h-100 " sx={{ position: "relative" }}>
             <canvas
               id="myCanvas"
               className="w-100 h-100 "
-              style={{ minHeight: "70vh" }}
+              style={{ minHeight: "90vh" }}
             ></canvas>
             <canvas
               id="myNavCubeCanvas"
@@ -145,6 +145,9 @@ function IFCViewer() {
                 onClick={() => {
                   setTreeviewMenu(!treeviewMenu);
                 }}
+                style={{
+                  zIndex: 100,
+                }}
               >
                 {treeviewMenu ? <Close /> : <List />}
               </IconButton>
@@ -153,7 +156,7 @@ function IFCViewer() {
               className="IFCMenu"
               style={{
                 position: "absolute",
-                top: 40,
+                top: 0,
                 bottom: 0,
                 left: 0,
                 width: treeviewMenu ? 400 : 0,
@@ -161,15 +164,13 @@ function IFCViewer() {
                 opacity: treeviewMenu ? 1 : 0,
                 backgroundColor: "rgba(197, 198, 199, 0.6)",
                 padding: 10,
-                paddingTop: 20,
                 overflow: "hidden",
                 transition: "all 0.2s linear",
-                borderRadius: 10,
               }}
             >
               <div
                 id="treeViewContainer"
-                className="h-100"
+                className="h-100 pt-4"
                 style={{ overflow: "auto" }}
               ></div>
             </div>

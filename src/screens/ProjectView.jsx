@@ -36,30 +36,24 @@ import {
 } from "@mui/icons-material";
 import { Tooltip } from "@mui/material";
 
-const drawerWidth = window.innerWidth > 900 ? 60 : 0;
+const Main = styled("main", { open })(({ theme, open, drawerWidth }) => ({
+  flexGrow: 1,
 
-const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
-  ({ theme, open }) => ({
-    flexGrow: 1,
+  width: `calc(100% - ${open ? 220 : 60}px)`,
 
-    [theme.breakpoints.up("md")]: {
-      maxWidth: `calc(100% - ${open ? 220 : drawerWidth}px)`,
-    },
-    width: "100%",
-    paddingRight: theme.spacing(3),
-    padding: theme.spacing(3),
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
-    maxHeight: "98vh",
-  })
-);
+  // paddingRight: theme.spacing(3),
+  // paddingLeft: theme.spacing(3),
+  transition: theme.transitions.create("margin", {
+    easing: theme.transitions.easing.easeOut,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+  marginLeft: 0,
+  maxHeight: "98vh",
+}));
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
+})(({ theme, open, drawerWidth }) => ({
   zIndex: 1,
   transition: theme.transitions.create(["margin", "width"], {
     easing: theme.transitions.easing.sharp,
@@ -89,6 +83,9 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export default function ProjectView() {
+  const [drawerWidth, setDrawerWidth] = React.useState(
+    window.innerWidth > 900 ? 60 : 0
+  );
   const [open, setOpen] = React.useState(false);
   const [activeItem, setActiveItem] = React.useState("");
   const history = useLocation();
@@ -178,14 +175,14 @@ export default function ProjectView() {
       name: "IFC Viewer",
       link: "ifc",
       icon: (
-        <ViewInArOutlined color={activeItem === "ifc" ? "primary" : "light"} />
+        <ThreeDRotation color={activeItem === "ifc" ? "primary" : "light"} />
       ),
     },
     {
       name: "CAD Viewer",
       link: "cad",
       icon: (
-        <ThreeDRotation color={activeItem === "cad" ? "primary" : "light"} />
+        <ViewInArOutlined color={activeItem === "cad" ? "primary" : "light"} />
       ),
     },
   ];
@@ -205,8 +202,19 @@ export default function ProjectView() {
     navigate(temp.join("/"));
   };
 
+  const [IFC, setIFC] = React.useState(false);
+
+  function isIFC() {
+    const path = history.pathname.split("/");
+    if (path[path.length - 2] === "ifc") setIFC(true);
+    else setIFC(false);
+    if (path[path.length - 2] === "cad") setIFC(true);
+    else setIFC(false);
+  }
+
   useEffect(() => {
     setActiveItem(history.pathname.split("/")[3]);
+    isIFC();
   }, [history.pathname]);
 
   const [mobileview, setMobileView] = React.useState(false);
@@ -214,8 +222,13 @@ export default function ProjectView() {
     if (window.innerWidth > 900) setMobileView(false);
     else setMobileView(true);
     window.addEventListener("resize", () => {
-      if (window.innerWidth > 900) setMobileView(false);
-      else setMobileView(true);
+      if (window.innerWidth > 900) {
+        setMobileView(false);
+        setDrawerWidth(60);
+      } else {
+        setMobileView(true);
+        setDrawerWidth(0);
+      }
     });
   }, []);
 
@@ -224,8 +237,8 @@ export default function ProjectView() {
       <CssBaseline />
       <AppBar position="fixed" open={true} elevation={0}>
         <Toolbar>
-          <div className="d-flex justify-content-between justify-content-md-end w-100">
-            <IconButton onClick={toggleDrawer} className="d-md-none">
+          <div className="d-flex justify-content-between justify-content-lg-end w-100">
+            <IconButton onClick={toggleDrawer} className="d-lg-none">
               <Menu />
             </IconButton>
             <AccountMenu />
@@ -301,7 +314,9 @@ export default function ProjectView() {
 
       <Main open={open}>
         <DrawerHeader />
-        <Outlet />
+        <div className={!IFC ? "m-3 p-2" : ""}>
+          <Outlet />
+        </div>
       </Main>
     </Box>
   );

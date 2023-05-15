@@ -79,8 +79,10 @@ function ProjectsEvents() {
 
   // EventModal
   const [eventModal, setEventModal] = useState(false);
+  const [details, setDetails] = useState(true);
   const toggleEventModal = () => {
     setEventModal(!eventModal);
+    setDetails(true);
   };
 
   // Filter
@@ -134,6 +136,32 @@ function ProjectsEvents() {
             <InputFeildCustom select label="Category" size="small" border>
               <MenuItem value={1}> Category 1</MenuItem>
             </InputFeildCustom>
+            <InputFeildCustom select label="Class" size="small" border>
+              <MenuItem value={1}> Class 1</MenuItem>
+            </InputFeildCustom>
+            <InputFeildCustom select label="Package" size="small" border>
+              <MenuItem value={1}> Package 1</MenuItem>
+            </InputFeildCustom>
+            <InputFeildCustom
+              size="small"
+              border
+              type="date"
+              label="Start Date"
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+
+            <InputFeildCustom
+              label="End Date"
+              size="small"
+              border
+              type="date"
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+
             {viewMore ? (
               <>
                 <InputFeildCustom label="Advancement" size="small" border />
@@ -332,10 +360,10 @@ function ProjectsEvents() {
         fullWidth={true}
         onClose={toggleEventModal}
       >
-        <Box className="d-flex flex-column-reverse flex-md-row eventModalBox">
-          <Box className="bg-primary h-100 w-30">
+        <Box className="d-flex flex-column flex-md-row eventModalBox">
+          <Box className="bg-primary h-100 w-30 order-2 order-md-1">
             <Box className="p-3 d-flex flex-column gap-2 h-100">
-              <Accordion disableGutters elevation={0}>
+              <Accordion disableGutters elevation={0} defaultExpanded>
                 <AccordionSummary
                   expandIcon={<ExpandMore color="light" />}
                   sx={{
@@ -356,7 +384,14 @@ function ProjectsEvents() {
                   />
                 </AccordionDetails>
               </Accordion>
-              <Accordion disableGutters elevation={0}>
+              <Accordion
+                expanded={details}
+                disableGutters
+                elevation={0}
+                onChange={() => {
+                  setDetails(!details);
+                }}
+              >
                 <AccordionSummary
                   expandIcon={<ExpandMore color="light" />}
                   sx={{
@@ -367,57 +402,66 @@ function ProjectsEvents() {
                   Details
                 </AccordionSummary>
               </Accordion>
-              <Box className="eventModalDetailsBox">
-                {[
-                  "Status",
-                  "Creation Date",
-                  "Creator",
-                  "ID",
-                  "Priority",
-                  "Work Package",
-                  "Type of Event",
-                  "Impact",
-                  "Ranking",
-                  "Related Events",
-                  "Advancement",
-                  "technical Control",
-                  "Internal Verification",
-                  "Quality Control",
-                  "Rating",
-                  "End Date",
-                  "Deadline",
-                  "Duration",
-                  "Lag Cause",
-                ].map((item, i) => (
-                  <Accordion
-                    key={"info-" + i}
-                    disableGutters
-                    elevation={0}
-                    square
-                    sx={{
-                      p: 0,
-                      m: 0,
-                      backgroundColor: "transparent",
-                      borderBottom: "1px solid rgba(0,0,0,0.2)",
-                      "&.MuiAccordion-root": {
-                        height: 40,
-                        m: 0,
+              {details ? (
+                <Box className="eventModalDetailsBox">
+                  {[
+                    "Status",
+                    "Creation Date",
+                    "Creator",
+                    "ID",
+                    "Priority",
+                    "Work Package",
+                    "Type of Event",
+                    "Impact",
+                    "Ranking",
+                    "Related Events",
+                    "Advancement",
+                    "Technical Control",
+                    "Internal Verification",
+                    "Quality Control",
+                    "Rating",
+                    "End Date",
+                    "Deadline",
+                    "Duration",
+                    "Lag Cause",
+                  ].map((item, i) => (
+                    <Accordion
+                      key={"info-" + i}
+                      elevation={0}
+                      defaultExpanded={details}
+                      disableGutters
+                      square
+                      sx={{
                         p: 0,
-                      },
-                    }}
-                  >
-                    <AccordionSummary
-                      expandIcon={<ExpandMore />}
-                      sx={{ fontSize: "14px" }}
+                        m: 0,
+                        backgroundColor: "transparent",
+                        borderBottom: "1px solid rgba(0,0,0,0.2)",
+                        "&.MuiAccordion-root": {
+                          // height: 40,
+                          m: 0,
+                          p: 0,
+                        },
+                      }}
                     >
-                      {item}
-                    </AccordionSummary>
-                  </Accordion>
-                ))}
-              </Box>
+                      <AccordionSummary
+                        expandIcon={<ExpandMore />}
+                        sx={{ fontSize: "14px" }}
+                      >
+                        {item}
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Typography variant="caption">{item}</Typography>
+                      </AccordionDetails>
+                    </Accordion>
+                  ))}
+                </Box>
+              ) : null}
             </Box>
           </Box>
-          <Box className="h-100 w-70 p-3" sx={{ overflow: "auto" }}>
+          <Box
+            className="h-100  order-1 order-md-2 w-70 p-3"
+            sx={{ overflow: "auto" }}
+          >
             <div className="d-flex justify-content-between px-2">
               <div className="d-flex align-items-center">
                 <PinDrop fontSize="large" color="primary" />
@@ -715,11 +759,13 @@ function ProjectsEvents() {
                     >
                       <MenuItem value={1}>All</MenuItem>
                       <MenuItem value={2}>Filter 1</MenuItem>
+                      <MenuItem value={3}>Filter 2</MenuItem>
+                      <MenuItem value={4}>Filter 3</MenuItem>
                     </InputFeildCustom>
                   </div>
                   <div className="d-flex align-items-center">
                     <Typography sx={{ fontSize: "12px" }} className="w-50">
-                      Category
+                      Event Status
                     </Typography>
                     <InputFeildCustom
                       select
@@ -732,6 +778,69 @@ function ProjectsEvents() {
                     >
                       <MenuItem value={1}>All</MenuItem>
                       <MenuItem value={2}>Filter 1</MenuItem>
+                      <MenuItem value={2}>Filter 1</MenuItem>
+                      <MenuItem value={3}>Filter 2</MenuItem>
+                      <MenuItem value={4}>Filter 3</MenuItem>
+                    </InputFeildCustom>
+                  </div>
+                  <div className="d-flex align-items-center">
+                    <Typography sx={{ fontSize: "12px" }} className="w-50">
+                      Priority
+                    </Typography>
+                    <InputFeildCustom
+                      select
+                      color="secondary"
+                      textDark
+                      value={1}
+                      border
+                      className="ms-3"
+                      fullWidth
+                    >
+                      <MenuItem value={1}>All</MenuItem>
+                      <MenuItem value={2}>Filter 1</MenuItem>
+                      <MenuItem value={2}>Filter 1</MenuItem>
+                      <MenuItem value={3}>Filter 2</MenuItem>
+                      <MenuItem value={4}>Filter 3</MenuItem>
+                    </InputFeildCustom>
+                  </div>
+                  <div className="d-flex align-items-center">
+                    <Typography sx={{ fontSize: "12px" }} className="w-50">
+                      Impact
+                    </Typography>
+                    <InputFeildCustom
+                      select
+                      color="secondary"
+                      textDark
+                      value={1}
+                      border
+                      className="ms-3"
+                      fullWidth
+                    >
+                      <MenuItem value={1}>All</MenuItem>
+                      <MenuItem value={2}>Filter 1</MenuItem>
+                      <MenuItem value={2}>Filter 1</MenuItem>
+                      <MenuItem value={3}>Filter 2</MenuItem>
+                      <MenuItem value={4}>Filter 3</MenuItem>
+                    </InputFeildCustom>
+                  </div>
+                  <div className="d-flex align-items-center">
+                    <Typography sx={{ fontSize: "12px" }} className="w-50">
+                      Work Category
+                    </Typography>
+                    <InputFeildCustom
+                      select
+                      color="secondary"
+                      textDark
+                      value={1}
+                      border
+                      className="ms-3"
+                      fullWidth
+                    >
+                      <MenuItem value={1}>All</MenuItem>
+                      <MenuItem value={2}>Filter 1</MenuItem>
+                      <MenuItem value={2}>Filter 1</MenuItem>
+                      <MenuItem value={3}>Filter 2</MenuItem>
+                      <MenuItem value={4}>Filter 3</MenuItem>
                     </InputFeildCustom>
                   </div>
                 </Stack>
@@ -743,7 +852,7 @@ function ProjectsEvents() {
           item
           xs={12}
           md={6}
-          className="d-flex flex-row align-items-center justify-content-between justify-content-md-end "
+          className="d-flex flex-row align-items-center justify-content-between justify-content-sm-end "
         >
           <div className="d-flex justify-content-end align-items-center me-3 d-md-flex">
             <div className="d-flex align-items-center d-md-none">
@@ -764,7 +873,7 @@ function ProjectsEvents() {
                   className="text-capitalize "
                   sx={{ width: "40px" }}
                 >
-                  <Downloading />
+                  <img src={TypeIcon} alt="type-icon" height={20} />
                 </ToggleButton>
                 <ToggleButton
                   value="right"
@@ -772,7 +881,7 @@ function ProjectsEvents() {
                   className="text-capitalize"
                   sx={{ width: "40px" }}
                 >
-                  <Title />
+                  <img src={ProgressIcon} alt="progress-icon" height={20} />
                 </ToggleButton>
               </ToggleButtonGroup>
             </div>

@@ -6,7 +6,7 @@ export default class MultipleRadialChart extends React.Component {
     super(props);
 
     this.state = {
-      series: [44, 55, 67, 83],
+      series: [44, 55, 67, 83, 73],
       options: {
         chart: {
           height: 350,
@@ -29,7 +29,13 @@ export default class MultipleRadialChart extends React.Component {
             },
           },
         },
-        labels: ["Quality 1", "Quality 2", "Quality 3", "Quality 4"],
+        labels: [
+          "Quality 1",
+          "Quality 2",
+          "Quality 3",
+          "Quality 4",
+          "Quality 5",
+        ],
       },
     };
   }
