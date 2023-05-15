@@ -22,7 +22,7 @@ import Signup from "../screens/Signup";
 import TimeAndCost from "../screens/TimeAndCost";
 import Timeline from "../screens/Timeline";
 import VideoTutorials from "../screens/VideoTutorials";
-import ForgetPassword from "../screens/ForgetPAssword";
+import ForgetPassword from "../screens/ForgetPassword";
 import UpdatePassword from "../screens/UpdatePassword";
 import Pricing from "../screens/Pricing";
 
