@@ -19,6 +19,8 @@ import { Box } from "@mui/system";
 import ButtonCustom from "../components/ButtonCustom";
 import ProjectCard from "../components/ProjectCard";
 import InputFeildCustom from "../components/InputFeildCustom";
+import SelectForm from "../components/Select";
+import SelectCustom from "../components/SelectCustom";
 
 function Projects() {
   // Modal
@@ -136,7 +138,11 @@ function Projects() {
               onClose={handleClose}
               anchorOrigin={{
                 vertical: "bottom",
-                horizontal: "left",
+                horizontal: "right",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
               }}
               elevation={1}
             >
@@ -156,10 +162,9 @@ function Projects() {
                     <Typography sx={{ fontSize: "12px" }} className="w-50">
                       Progress State
                     </Typography>
-                    <InputFeildCustom
+
+                    <SelectCustom
                       select
-                      color="secondary"
-                      textDark
                       value={1}
                       border
                       className="ms-3"
@@ -169,64 +174,40 @@ function Projects() {
                       <MenuItem value={2}>Filter 1</MenuItem>
                       <MenuItem value={3}>Filter 2</MenuItem>
                       <MenuItem value={4}>Filter 3</MenuItem>
-                    </InputFeildCustom>
+                    </SelectCustom>
                   </div>
                   <div className="d-flex align-items-center">
                     <Typography sx={{ fontSize: "12px" }} className="w-50">
                       Country
                     </Typography>
-                    <InputFeildCustom
-                      select
-                      color="secondary"
-                      textDark
-                      value={1}
-                      border
-                      className="ms-3"
-                      fullWidth
-                    >
+                    <SelectCustom value={1} className="ms-3" fullWidth>
                       <MenuItem value={1}>All</MenuItem>
                       <MenuItem value={2}>Filter 1</MenuItem>
                       <MenuItem value={3}>Filter 2</MenuItem>
                       <MenuItem value={4}>Filter 3</MenuItem>
-                    </InputFeildCustom>
+                    </SelectCustom>
                   </div>
                   <div className="d-flex align-items-center">
                     <Typography sx={{ fontSize: "12px" }} className="w-50">
                       City
                     </Typography>
-                    <InputFeildCustom
-                      select
-                      color="secondary"
-                      textDark
-                      value={1}
-                      border
-                      className="ms-3"
-                      fullWidth
-                    >
+                    <SelectCustom value={1} className="ms-3" fullWidth>
                       <MenuItem value={1}>All</MenuItem>
                       <MenuItem value={2}>Filter 1</MenuItem>
                       <MenuItem value={3}>Filter 2</MenuItem>
                       <MenuItem value={4}>Filter 3</MenuItem>
-                    </InputFeildCustom>
+                    </SelectCustom>
                   </div>
                   <div className="d-flex align-items-center">
                     <Typography sx={{ fontSize: "12px" }} className="w-50">
                       Project Manager
                     </Typography>
-                    <InputFeildCustom
-                      select
-                      color="secondary"
-                      textDark
-                      value={1}
-                      border
-                      className="ms-3"
-                      fullWidth
-                    >
+                    <SelectCustom value={1} className="ms-3" fullWidth>
                       <MenuItem value={1}>All</MenuItem>
                       <MenuItem value={2}>Filter 1</MenuItem>
                       <MenuItem value={3}>Filter 2</MenuItem>
                       <MenuItem value={4}>Filter 3</MenuItem>
-                    </InputFeildCustom>
+                    </SelectCustom>
                   </div>
                 </Stack>
               </Box>

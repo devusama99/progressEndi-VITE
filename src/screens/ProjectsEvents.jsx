@@ -51,6 +51,7 @@ import EventsExpand from "../components/EventsExpand";
 import InputFeildCustom from "../components/InputFeildCustom";
 import ProgressIcon from "../assets/progress_icon.png";
 import TypeIcon from "../assets/type_icon.png";
+import SelectCustom from "../components/SelectCustom";
 
 function ProjectsEvents() {
   const importXls = useRef();
@@ -728,7 +729,11 @@ function ProjectsEvents() {
               onClose={handleClose}
               anchorOrigin={{
                 vertical: "bottom",
-                horizontal: "left",
+                horizontal: "right",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
               }}
               elevation={1}
             >
@@ -748,100 +753,56 @@ function ProjectsEvents() {
                     <Typography sx={{ fontSize: "12px" }} className="w-50">
                       Type Of Event
                     </Typography>
-                    <InputFeildCustom
-                      select
-                      color="secondary"
-                      textDark
-                      value={1}
-                      border
-                      className="ms-3"
-                      fullWidth
-                    >
+                    <SelectCustom value={1} className="ms-3" fullWidth>
                       <MenuItem value={1}>All</MenuItem>
                       <MenuItem value={2}>Filter 1</MenuItem>
                       <MenuItem value={3}>Filter 2</MenuItem>
                       <MenuItem value={4}>Filter 3</MenuItem>
-                    </InputFeildCustom>
+                    </SelectCustom>
                   </div>
                   <div className="d-flex align-items-center">
                     <Typography sx={{ fontSize: "12px" }} className="w-50">
                       Event Status
                     </Typography>
-                    <InputFeildCustom
-                      select
-                      color="secondary"
-                      textDark
-                      value={1}
-                      border
-                      className="ms-3"
-                      fullWidth
-                    >
+                    <SelectCustom value={1} border className="ms-3" fullWidth>
                       <MenuItem value={1}>All</MenuItem>
-                      <MenuItem value={2}>Filter 1</MenuItem>
                       <MenuItem value={2}>Filter 1</MenuItem>
                       <MenuItem value={3}>Filter 2</MenuItem>
                       <MenuItem value={4}>Filter 3</MenuItem>
-                    </InputFeildCustom>
+                    </SelectCustom>
                   </div>
                   <div className="d-flex align-items-center">
                     <Typography sx={{ fontSize: "12px" }} className="w-50">
                       Priority
                     </Typography>
-                    <InputFeildCustom
-                      select
-                      color="secondary"
-                      textDark
-                      value={1}
-                      border
-                      className="ms-3"
-                      fullWidth
-                    >
+                    <SelectCustom value={1} border className="ms-3" fullWidth>
                       <MenuItem value={1}>All</MenuItem>
-                      <MenuItem value={2}>Filter 1</MenuItem>
                       <MenuItem value={2}>Filter 1</MenuItem>
                       <MenuItem value={3}>Filter 2</MenuItem>
                       <MenuItem value={4}>Filter 3</MenuItem>
-                    </InputFeildCustom>
+                    </SelectCustom>
                   </div>
                   <div className="d-flex align-items-center">
                     <Typography sx={{ fontSize: "12px" }} className="w-50">
                       Impact
                     </Typography>
-                    <InputFeildCustom
-                      select
-                      color="secondary"
-                      textDark
-                      value={1}
-                      border
-                      className="ms-3"
-                      fullWidth
-                    >
+                    <SelectCustom value={1} border className="ms-3" fullWidth>
                       <MenuItem value={1}>All</MenuItem>
-                      <MenuItem value={2}>Filter 1</MenuItem>
                       <MenuItem value={2}>Filter 1</MenuItem>
                       <MenuItem value={3}>Filter 2</MenuItem>
                       <MenuItem value={4}>Filter 3</MenuItem>
-                    </InputFeildCustom>
+                    </SelectCustom>
                   </div>
                   <div className="d-flex align-items-center">
                     <Typography sx={{ fontSize: "12px" }} className="w-50">
                       Work Category
                     </Typography>
-                    <InputFeildCustom
-                      select
-                      color="secondary"
-                      textDark
-                      value={1}
-                      border
-                      className="ms-3"
-                      fullWidth
-                    >
+                    <SelectCustom value={1} border className="ms-3" fullWidth>
                       <MenuItem value={1}>All</MenuItem>
-                      <MenuItem value={2}>Filter 1</MenuItem>
                       <MenuItem value={2}>Filter 1</MenuItem>
                       <MenuItem value={3}>Filter 2</MenuItem>
                       <MenuItem value={4}>Filter 3</MenuItem>
-                    </InputFeildCustom>
+                    </SelectCustom>
                   </div>
                 </Stack>
               </Box>

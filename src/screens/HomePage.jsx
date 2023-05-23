@@ -5,15 +5,19 @@ import {
   Button,
   Container,
   Divider,
+  Drawer,
   Grid,
+  IconButton,
   List,
   ListItem,
+  MenuItem,
+  Paper,
   Rating,
   Stack,
   Toolbar,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import ButtonCustom from "../components/ButtonCustom";
 import service1 from "../assets/service-1.png";
 import service2 from "../assets/service-2.png";
@@ -25,6 +29,7 @@ import {
   FacebookOutlined,
   LinkedIn,
   Mail,
+  Menu,
   Phone,
   PinDrop,
   Twitter,
@@ -42,9 +47,44 @@ import ProjectsImg from "../assets/projects.jpeg";
 import { Card } from "react-bootstrap";
 
 function HomePage() {
+  const [show, setShow] = useState(false);
   const navigate = useNavigate();
+  const [drawer, setDrawer] = useState(false);
+  function toggleDrawer() {
+    setDrawer(!drawer);
+  }
   return (
     <div>
+      {/* <Drawer anchor={"left"} open={drawer} onClose={toggleDrawer}>
+        <div className="d-flex flex-column h-100 justify-content-between m-2">
+          <List sx={{ minWidth: 250 }} className="d-flex flex-column mt-3">
+            <MenuItem
+              active
+              color="primary"
+              className="p-3"
+              sx={{ fontSize: 16 }}
+            >
+              Welcome
+            </MenuItem>
+            <MenuItem className="p-3" sx={{ fontSize: 16 }}>
+              Solutions
+            </MenuItem>
+            <MenuItem className="p-3" sx={{ fontSize: 16 }}>
+              Clients
+            </MenuItem>
+            <MenuItem className="p-3" sx={{ fontSize: 16 }}>
+              Services
+            </MenuItem>
+            <MenuItem className="p-3" sx={{ fontSize: 16 }}>
+              Contact
+            </MenuItem>
+            <MenuItem className="p-3" sx={{ fontSize: 16 }}>
+              About
+            </MenuItem>
+          </List>
+          <ButtonCustom label="Sign In" fullWidth variant="contained" />
+        </div>
+      </Drawer>
       <Grid container>
         <Grid item xs={12}>
           <AppBar
@@ -54,10 +94,17 @@ function HomePage() {
             className="d-flex justify-content-end"
           >
             <Toolbar className="d-flex justify-content-between">
-              <Typography variant="h6" className="fw-bold" color={"primary"}>
+              <Typography
+                variant="h6"
+                className="fw-bold d-flex align-items-center"
+                color={"primary"}
+              >
+                <IconButton onClick={toggleDrawer} className="d-md-none me-2">
+                  <Menu />
+                </IconButton>
                 ProgressEndi
               </Typography>
-              <Box className="d-flex align-items-center justify-content-center">
+              <Box className="d-none d-md-flex align-items-center justify-content-center">
                 <Button
                   onClick={() => navigate("/signin")}
                   className="text-capitalize fw-bold"
@@ -97,7 +144,7 @@ function HomePage() {
               </Box>
               <Button
                 onClick={() => navigate("/signin")}
-                className="text-capitalize fw-bold"
+                className="text-capitalize fw-bold d-none d-md-flex"
                 variant="contained"
                 disableElevation
                 sx={{
@@ -295,10 +342,10 @@ function HomePage() {
                     <div className="d-flex align-items-start w-100">
                       <Circle color="primary" />
                       <div className="ms-2">
-                        <Typography className="fw-bold mb-2">
+                        <Typography className="fw-bold mb-2" variant="h6">
                           Professional Approach
                         </Typography>
-                        <Typography variant="caption">
+                        <Typography>
                           Lorem ipsum dolot amet, consectetur adipiscing elit,
                           sed do eiusmod tempor ever since the 1500s.
                         </Typography>
@@ -309,10 +356,10 @@ function HomePage() {
                     <div className="d-flex align-items-start w-100">
                       <Circle color="primary" />
                       <div className="ms-2">
-                        <Typography className="fw-bold mb-2">
+                        <Typography className="fw-bold mb-2" variant="h6">
                           Client Satisfaction
                         </Typography>
-                        <Typography variant="caption">
+                        <Typography>
                           Lorem ipsum dolot amet, consectetur adipiscing elit,
                           sed do eiusmod tempor ever since the 1500s.
                         </Typography>
@@ -323,10 +370,10 @@ function HomePage() {
                     <div className="d-flex align-items-start w-100">
                       <Circle color="primary" />
                       <div className="ms-2">
-                        <Typography className="fw-bold mb-2">
+                        <Typography className="fw-bold mb-2" variant="h6">
                           Awareness
                         </Typography>
-                        <Typography variant="caption">
+                        <Typography>
                           Lorem ipsum dolot amet, consectetur adipiscing elit,
                           sed do eiusmod tempor ever since the 1500s.
                         </Typography>
@@ -337,10 +384,10 @@ function HomePage() {
                     <div className="d-flex align-items-start w-100">
                       <Circle color="primary" />
                       <div className="ms-2">
-                        <Typography className="fw-bold mb-2">
+                        <Typography className="fw-bold mb-2" variant="h6">
                           Progress
                         </Typography>
-                        <Typography variant="caption">
+                        <Typography>
                           Lorem ipsum dolot amet, consectetur adipiscing elit,
                           sed do eiusmod tempor ever since the 1500s.
                         </Typography>
@@ -577,8 +624,97 @@ function HomePage() {
               md={11}
               className="d-flex justify-content-center"
             >
-              <img src={SuccessProject} alt="success-project" width="80%" />
+              <div className="d-flex">
+                <div style={{ marginRight: "90px" }} className="mt-4">
+                  <div className="project_key d-flex flex-column align-items-end mb-3">
+                    <Typography variant="h5">Information</Typography>
+                    <Typography className="text-end" sx={{ maxWidth: "280px" }}>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Iure dolore numquam esse.
+                    </Typography>
+                  </div>
+                  <div className="project_key d-flex flex-column align-items-end mb-3">
+                    <Typography variant="h5">Tasks</Typography>
+                    <Typography className="text-end" sx={{ maxWidth: "280px" }}>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Iure dolore numquam esse.
+                    </Typography>
+                  </div>
+                  <div className="project_key d-flex flex-column align-items-end mb-3">
+                    <Typography variant="h5">Information</Typography>
+                    <Typography className="text-end" sx={{ maxWidth: "280px" }}>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Iure dolore numquam esse.
+                    </Typography>
+                  </div>
+                  <div className="project_key d-flex flex-column align-items-end mb-3">
+                    <Typography variant="h5">Tasks</Typography>
+                    <Typography className="text-end" sx={{ maxWidth: "280px" }}>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Iure dolore numquam esse.
+                    </Typography>
+                  </div>
+                </div>
+
+                <Paper
+                  className="h-100 p-4 mx-4 d-flex flex-column align-items-center justify-content-center"
+                  sx={{
+                    border: (theme) =>
+                      `5px solid ${theme.palette.primary.main}`,
+                  }}
+                >
+                  <Typography
+                    variant="h1"
+                    color={"primary"}
+                    className=" fw-bold text-center"
+                  >
+                    8
+                  </Typography>
+                  <Typography
+                    variant="h4"
+                    color={"primary"}
+                    className=" fw-bold text-center"
+                    sx={{ maxWidth: 300 }}
+                  >
+                    Key elements to gurantee the success of your projects
+                  </Typography>
+                </Paper>
+                <div style={{ marginLeft: "90px" }} className="mt-4">
+                  <div className="project_key_left d-flex flex-column align-items-start mb-3">
+                    <Typography variant="h5">Risks</Typography>
+                    <Typography sx={{ maxWidth: "280px" }}>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Iure dolore numquam esse.
+                    </Typography>
+                  </div>
+
+                  <div className="project_key_left d-flex flex-column align-items-start mb-3">
+                    <Typography variant="h5">Topics</Typography>
+                    <Typography sx={{ maxWidth: "280px" }}>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Iure dolore numquam esse.
+                    </Typography>
+                  </div>
+
+                  <div className="project_key_left d-flex flex-column align-items-start mb-3">
+                    <Typography variant="h5">Risks</Typography>
+                    <Typography sx={{ maxWidth: "280px" }}>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Iure dolore numquam esse.
+                    </Typography>
+                  </div>
+
+                  <div className="project_key_left d-flex flex-column align-items-start mb-3">
+                    <Typography variant="h5">Topics</Typography>
+                    <Typography sx={{ maxWidth: "280px" }}>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Iure dolore numquam esse.
+                    </Typography>
+                  </div>
+                </div>
+              </div>
             </Grid>
+
             <Grid item xs={12}>
               <Typography
                 variant="h5"
@@ -842,7 +978,6 @@ function HomePage() {
           item
           xs={12}
           className={"d-flex flex-column align-items-center py-5 px-4"}
-          sx={{ bgcolor: (theme) => theme.palette.light.main }}
         >
           <Typography className="fw-bold text-uppercase" variant="h6">
             Collaborations
@@ -1099,7 +1234,29 @@ function HomePage() {
             </Box>
           </Box>
         </Grid>
-      </Grid>
+      </Grid> */}
+      <div className="d-flex flex-column align-items-center justify-content-start">
+        <Typography variant="h1" className="fw-bold">
+          500
+        </Typography>
+        <Typography variant="h5" className="fw-bold">
+          Internal Server Error
+        </Typography>
+        {show ? (
+          <Typography className="mt-2 text-muted" variant="body2">
+            Netlify servers are down. Please try again after some time.{" "}
+          </Typography>
+        ) : (
+          <button
+            className="text-underlined px-3 mt-2"
+            onClick={(e) => {
+              setShow(!show);
+            }}
+          >
+            More Details
+          </button>
+        )}
+      </div>
     </div>
   );
 }

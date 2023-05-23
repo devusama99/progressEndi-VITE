@@ -8,7 +8,7 @@ const CustomTextFeild = styled(Select, {
   backgroundColor: theme.palette.grey.dark,
   color: theme.palette.light.main,
   height: "40px",
-  textAlign: "center",
+
   ".MuiOutlinedInput-notchedOutline": {
     borderColor: border ? alpha(theme.palette.grey.light, 0.5) : "transparent",
   },

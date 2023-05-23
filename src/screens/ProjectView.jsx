@@ -33,6 +33,7 @@ import {
   ViewModule,
   Work,
   Menu,
+  DocumentScannerOutlined,
 } from "@mui/icons-material";
 import { Tooltip } from "@mui/material";
 
@@ -182,7 +183,9 @@ export default function ProjectView() {
       name: "CAD Viewer",
       link: "cad",
       icon: (
-        <ViewInArOutlined color={activeItem === "cad" ? "primary" : "light"} />
+        <DocumentScannerOutlined
+          color={activeItem === "cad" ? "primary" : "light"}
+        />
       ),
     },
   ];
@@ -206,9 +209,8 @@ export default function ProjectView() {
 
   function isIFC() {
     const path = history.pathname.split("/");
-    if (path[path.length - 2] === "ifc") setIFC(true);
-    else setIFC(false);
-    if (path[path.length - 2] === "cad") setIFC(true);
+    if (path[path.length - 2] === "ifc" || path[path.length - 2] === "cad")
+      setIFC(true);
     else setIFC(false);
   }
 
