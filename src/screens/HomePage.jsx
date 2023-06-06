@@ -55,7 +55,7 @@ function HomePage() {
   }
   return (
     <div>
-      {/* <Drawer anchor={"left"} open={drawer} onClose={toggleDrawer}>
+      <Drawer anchor={"left"} open={drawer} onClose={toggleDrawer}>
         <div className="d-flex flex-column h-100 justify-content-between m-2">
           <List sx={{ minWidth: 250 }} className="d-flex flex-column mt-3">
             <MenuItem
@@ -1234,29 +1234,7 @@ function HomePage() {
             </Box>
           </Box>
         </Grid>
-      </Grid> */}
-      <div className="d-flex flex-column align-items-center justify-content-start">
-        <Typography variant="h1" className="fw-bold">
-          500
-        </Typography>
-        <Typography variant="h5" className="fw-bold">
-          Internal Server Error
-        </Typography>
-        {show ? (
-          <Typography className="mt-2 text-muted" variant="body2">
-            Netlify servers are down. Please try again after some time.{" "}
-          </Typography>
-        ) : (
-          <button
-            className="text-underlined px-3 mt-2"
-            onClick={(e) => {
-              setShow(!show);
-            }}
-          >
-            More Details
-          </button>
-        )}
-      </div>
+      </Grid>
     </div>
   );
 }
