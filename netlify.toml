@@ -1,5 +1,5 @@
 [[redirects]]
-from = "/501"
-to = "/index501.html"
+from = "/"
+to = "/index.html"
 status = 200
 
